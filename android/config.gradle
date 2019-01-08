@@ -46,6 +46,7 @@ ext {
     configCommonLibDependencies = this.&configCommonLibDependencies
     configPhoneLibDependencies = this.&configPhoneLibDependencies
     config3rdLibDependencies = this.&config3rdLibDependencies
+    configBaselibDependencies = this.&configBaselibDependencies
 }
 
 def configAndroidDomain(Project pro) {
@@ -154,6 +155,7 @@ def configAppDependencies(Project pro) {
         implementation project(':commonlib')
         implementation project(':phonelib')
         implementation project(':3rdlib')
+        implementation project(':baselib')
         implementation depConfig.support.appcompat_v7
         implementation depConfig.support.design
         implementation depConfig.support.design
@@ -179,6 +181,13 @@ def config3rdLibDependencies(Project pro) {
         compileOnly depConfig.support.appcompat_v7
         compileOnly depConfig.support.design
         implementation project(':commonlib')
+    }
+}
+
+def configBaselibDependencies(Project pro) {
+    pro.dependencies {
+        compileOnly depConfig.support.appcompat_v7
+        compileOnly depConfig.support.design
     }
 }
 

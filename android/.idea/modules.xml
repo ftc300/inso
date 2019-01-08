@@ -3,15 +3,11 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/3rdlib/3rdlib.iml" filepath="$PROJECT_DIR$/3rdlib/3rdlib.iml" />
-      <module fileurl="file://D:\workspace\Frontend\inso\inso\android\3rdlib\3rdlib.iml" filepath="D:\workspace\Frontend\inso\inso\android\3rdlib\3rdlib.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://D:\workspace\Frontend\inso\inso\android\app\app.iml" filepath="D:\workspace\Frontend\inso\inso\android\app\app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/baselib/baselib.iml" filepath="$PROJECT_DIR$/baselib/baselib.iml" />
       <module fileurl="file://$PROJECT_DIR$/commonlib/commonlib.iml" filepath="$PROJECT_DIR$/commonlib/commonlib.iml" />
-      <module fileurl="file://D:\workspace\Frontend\inso\inso\android\commonlib\commonlib.iml" filepath="D:\workspace\Frontend\inso\inso\android\commonlib\commonlib.iml" />
       <module fileurl="file://$PROJECT_DIR$/inso.iml" filepath="$PROJECT_DIR$/inso.iml" />
-      <module fileurl="file://D:\workspace\Frontend\inso\inso\android\inso.iml" filepath="D:\workspace\Frontend\inso\inso\android\inso.iml" />
       <module fileurl="file://$PROJECT_DIR$/phonelib/phonelib.iml" filepath="$PROJECT_DIR$/phonelib/phonelib.iml" />
-      <module fileurl="file://D:\workspace\Frontend\inso\inso\android\phonelib\phonelib.iml" filepath="D:\workspace\Frontend\inso\inso\android\phonelib\phonelib.iml" />
     </modules>
   </component>
 </project>
