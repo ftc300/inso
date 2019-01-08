@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="com.xiaomi.infra.galaxy:galaxy-fds-sdk-android:3.0.8@jar">
+    <CLASSES>
+      <root url="jar://D:/AndroidEnvironment/AS/.gradle/caches/modules-2/files-2.1/com.xiaomi.infra.galaxy/galaxy-fds-sdk-android/3.0.8/4b72d2bcf7a9f7c689e6a2c8ac6c341fc40c12a8/galaxy-fds-sdk-android-3.0.8.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://D:/AndroidEnvironment/AS/.gradle/caches/modules-2/files-2.1/com.xiaomi.infra.galaxy/galaxy-fds-sdk-android/3.0.8/bb9ba1a4a82a89b44d9eb8db0a0bbfec2a311e0d/galaxy-fds-sdk-android-3.0.8-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

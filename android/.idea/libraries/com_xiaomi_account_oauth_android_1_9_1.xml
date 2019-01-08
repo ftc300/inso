@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="com.xiaomi.account:oauth-android-1.9.1">
+    <CLASSES>
+      <root url="jar://D:/AndroidEnvironment/AS/.gradle/caches/transforms-1/files-1.1/oauth-android-1.9.1.aar/9dc4f4303e64439a52eeb5b9935630a9/jars/classes.jar!/" />
+      <root url="file://D:/AndroidEnvironment/AS/.gradle/caches/transforms-1/files-1.1/oauth-android-1.9.1.aar/9dc4f4303e64439a52eeb5b9935630a9/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
