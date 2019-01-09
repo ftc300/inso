@@ -36,7 +36,9 @@ ext {
             xiaomi_auth              : "com.xiaomi.account:oauth-android:latest.release",
             butterknife: "com.jakewharton:butterknife:$versionConfig.butterknife",
             butterknife_annotationProcessor :"com.jakewharton:butterknife-compiler:$versionConfig.butterknife",
-            reactnative : "com.facebook.react:react-native:+"
+            reactnative : "com.facebook.react:react-native:+",
+            bottom_navigation_bar:"com.ashokvarma.android:bottom-navigation-bar:2.1.0",
+            eventbus:'org.greenrobot:eventbus:3.1.1'
     ]
 
     configAndroidDomain = this.&configAndroidDomain
@@ -166,6 +168,8 @@ def configAppDependencies(Project pro) {
         implementation depConfig.butterknife
         annotationProcessor depConfig.butterknife_annotationProcessor
         implementation depConfig.reactnative
+        implementation depConfig.bottom_navigation_bar
+        implementation depConfig.eventbus
     }
 }
 
@@ -188,6 +192,9 @@ def configBaselibDependencies(Project pro) {
     pro.dependencies {
         compileOnly depConfig.support.appcompat_v7
         compileOnly depConfig.support.design
+        implementation depConfig.eventbus
+        implementation depConfig.butterknife
+        annotationProcessor depConfig.butterknife_annotationProcessor
     }
 }
 
@@ -196,15 +203,5 @@ def configPhoneLibDependencies(Project pro) {
         implementation project(':commonlib')
         compileOnly depConfig.support.appcompat_v7
         compileOnly depConfig.support.design
-//        compileOnly depConfig.support.appcompat_v7
-//        compileOnly depConfig.support.design
-//        api depConfig.gson
-//        api(depConfig.glide) {
-//            exclude group: "com.android.support"
-//        }
-//        api depConfig.retrofit
-//
-//        testImplementation depConfig.junit
-//        testImplementation depConfig.robolectric
     }
 }

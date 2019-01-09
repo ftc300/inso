@@ -44,4 +44,7 @@
     <color name="word_black">#cc000000</color>
     <color name="word_white">#ccffffff</color>
 
+    <color name="primaryTheme">#ffee25</color>
+    <color name="container_color">#f3f3f3</color>
+    <color name="badge_color">#f85959</color>
 </resources>
