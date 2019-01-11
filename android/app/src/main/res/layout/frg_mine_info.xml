@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        style="@style/VerticalWeightOne"
+        android:orientation="vertical">
+
+        <com.inso.watch.baselib.wigets.LabelTextRow
+            android:id="@+id/mine_setting"
+            style="@style/label_row"
+            app:labelArrows="true"
+            app:labelDividerIndent="@dimen/content_padding"
+            android:layout_marginTop="@dimen/dp10"
+            app:labelText="账号" />
+
+        <LinearLayout
+            android:id="@+id/userIconLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/label_main_bg"
+            android:gravity="center_vertical">
+            <TextView
+                android:id="@+id/userName"
+                style="@style/label_main_15sp"
+                android:layout_width="0dp"
+                android:layout_marginLeft="@dimen/content_padding"
+                android:layout_weight="1"
+                android:text="头像" />
+
+            <com.inso.watch.baselib.wigets.CircleImageView
+                android:id="@+id/userIcon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="@dimen/drawable_padding"
+                android:src="@drawable/head_default" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/arrow_right"
+                android:layout_marginRight="@dimen/drawable_padding"/>
+        </LinearLayout>
+
+        <View
+            style="@style/horizontal_line"
+            android:layout_marginLeft="@dimen/content_padding" />
+
+
+        <com.inso.watch.baselib.wigets.LabelTextRow
+            android:id="@+id/mine_feedback"
+            style="@style/label_row"
+            app:labelArrows="true"
+            app:labelDividerIndent="@dimen/content_padding"
+            app:labelText="称呼" />
+
+
+        <com.inso.watch.baselib.wigets.LabelTextRow
+            style="@style/label_row"
+            android:layout_marginTop="@dimen/dp15"
+            app:labelDividerIndent="@dimen/content_padding"
+            app:labelArrows="true"
+            app:labelText="性别" />
+
+        <com.inso.watch.baselib.wigets.LabelTextRow
+            style="@style/label_row"
+            app:labelArrows="true"
+            app:labelDividerIndent="@dimen/content_padding"
+            app:labelText="出生年月" />
+
+        <com.inso.watch.baselib.wigets.LabelTextRow
+            style="@style/label_row"
+            app:labelArrows="true"
+            app:labelDividerIndent="@dimen/content_padding"
+            app:labelText="身高" />
+
+        <com.inso.watch.baselib.wigets.LabelTextRow
+            style="@style/label_row"
+            app:labelArrows="true"
+            app:labelDividerIndent="@dimen/content_padding"
+            app:labelText="体重" />
+
+        <com.inso.watch.baselib.wigets.LabelTextRow
+            style="@style/label_row"
+            android:layout_marginTop="@dimen/dp15"
+            app:labelArrows="true"
+            app:labelDividerIndent="@dimen/content_padding"
+            app:labelText="手机号" />
+
+        <com.inso.watch.baselib.wigets.LabelTextRow
+            style="@style/label_row"
+            app:labelArrows="true"
+            app:labelText="修改密码" />
+    </LinearLayout>
+</ScrollView>

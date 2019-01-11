@@ -47,6 +47,10 @@ public class TitleBar {
         setTitleBar(showBack, titleText, 0, null, null);
     }
 
+    public void setTitleBarR( boolean showBack,  CharSequence titleText, int rightIcon, View.OnClickListener rightClick){
+        setTitleBar(showBack, titleText, rightIcon, null, rightClick);
+    }
+
     /**
      * 设置标题栏
      * @param showBack 是否显示返回按钮

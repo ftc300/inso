@@ -121,6 +121,10 @@ public class BaseFragment extends Fragment{
         mTitleBar.setTitleBar(showBack, title);
     }
 
+    protected void setTitleR(boolean showBack, CharSequence title,int rightIcon,View.OnClickListener rightClick) {
+        mTitleBar.setTitleBarR(showBack, title,rightIcon,rightClick);
+    }
+
     /**
      * 设置具有返回按钮的标题
      * @param title

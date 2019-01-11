@@ -1,15 +1,19 @@
 package com.inso.product;
+
 import android.view.View;
 
 import com.inso.R;
 import com.inso.watch.baselib.base.BaseFragment;
-import com.inso.watch.baselib.base.CommonAct;
 
-public class ProductFrg extends BaseFragment {
+/**
+ * Comment:
+ * Author: ftc300
+ * Date: 2019/1/11
+ * Blog: www.ftc300.pub
+ * GitHub: https://github.com/ftc300
+ */
 
-    public static ProductFrg getInstance(){
-        return new ProductFrg();
-    }
+public class SelectDeviceFrg  extends BaseFragment {
 
     @Override
     protected int getContentRes() {
@@ -19,12 +23,11 @@ public class ProductFrg extends BaseFragment {
     @Override
     protected void initViewOrData() {
         super.initViewOrData();
-        setTitleR(false, "产品", R.drawable.add, new View.OnClickListener() {
+        setTitleR(true, "选择要添加的产品", R.drawable.product_scan, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CommonAct.start(mActivity,SelectDeviceFrg.class);
+
             }
         });
     }
-
 }
