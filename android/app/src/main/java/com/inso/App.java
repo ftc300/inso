@@ -12,7 +12,7 @@ import com.inso.example.Hybrid.HybridPackage;
 import java.util.Arrays;
 import java.util.List;
 
-public class MainApplication extends Application implements ReactApplication {
+public class App extends Application implements ReactApplication {
     public static HybridPackage hybridPackage =  new HybridPackage();
     private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
         @Override

@@ -10,6 +10,8 @@ import com.inso.watch.baselib.R;
 import com.inso.watch.baselib.wigets.TitleBar;
 import org.greenrobot.eventbus.EventBus;
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
+
 import static com.inso.watch.baselib.Constants.ARGS_EVENT_BUS;
 import static com.inso.watch.baselib.Constants.ARGS_HAS_TITLE;
 
@@ -35,6 +37,7 @@ public class BaseFragment extends Fragment{
 
     protected Context mActivity;
 
+    Unbinder unbinder;
     /**
      * 设置无标题显示
      * @return
@@ -93,8 +96,8 @@ public class BaseFragment extends Fragment{
             contentContainer.addView(mContentView, 0);
         }
 
+        unbinder = ButterKnife.bind(this, mContentView);
         // butterKnife初始化控件
-        ButterKnife.bind(this, mContentView);
 
         initViewOrData();
 
@@ -153,6 +156,7 @@ public class BaseFragment extends Fragment{
     @Override
     public void onDestroy() {
         super.onDestroy();
+        unbinder.unbind();
         if (arguments != null && arguments.getBoolean(ARGS_EVENT_BUS, false)) {
             EventBus.getDefault().unregister(this);
         }

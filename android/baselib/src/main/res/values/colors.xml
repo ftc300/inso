@@ -42,8 +42,16 @@
     <color name="black">#000000</color>
 
     <color name="word_black">#cc000000</color>
-    <color name="word_white">#ccffffff</color>
+    <color name="word_black_main">#3a3a3a</color>
+    <color name="word_black_second">#8a8a8a</color>
+    <color name="word_black_desc">#999999</color>
+    <color name="word_black_hint">#cccccc</color>
+    <color name="label_item_pressed">#eeeeee</color>
+    <color name="label_main_bg">#fffffe</color>
+    <color name="label_main_fore">#fffffe</color>
+    <color name="label_divider">#dfdfdf</color>
 
+    <color name="word_white">#ccffffff</color>
     <color name="primaryTheme">#ffee25</color>
     <color name="container_color">#f3f3f3</color>
     <color name="badge_color">#f85959</color>

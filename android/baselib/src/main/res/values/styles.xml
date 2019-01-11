@@ -1,4 +1,11 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+    <!-- 水平线样式 -->
+    <style name="horizontal_line">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1px</item>
+        <item name="android:background">@color/label_divider</item>
+    </style>
+
     <style name="MatchParent">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
@@ -22,6 +29,35 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">0dp</item>
         <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="label_main_15sp" parent="label_main">
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="label_main">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/word_black_main</item>
+        <item name="android:textColorHint">@color/word_black_hint</item>
+        <item name="android:drawablePadding">@dimen/drawable_padding</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <style name="label_row">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/selector_label_item</item>
+    </style>
+
+    <style name="label_value">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/word_black_second</item>
+        <item name="android:drawablePadding">@dimen/drawable_padding</item>
     </style>
 
 </resources>

@@ -1,4 +1,5 @@
-package com.inso;
+package com.inso.product;
+import com.inso.R;
 import com.inso.watch.baselib.base.BaseFragment;
 
 public class ProductFrg extends BaseFragment {

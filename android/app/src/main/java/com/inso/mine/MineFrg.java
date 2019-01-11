@@ -1,4 +1,5 @@
-package com.inso;
+package com.inso.mine;
+import com.inso.R;
 import com.inso.watch.baselib.base.BaseFragment;
 
 public class MineFrg extends BaseFragment {
@@ -8,7 +9,7 @@ public class MineFrg extends BaseFragment {
     }
     @Override
     protected int getContentRes() {
-        return R.layout.frg_wd;
+        return R.layout.frg_mine;
     }
 
     @Override

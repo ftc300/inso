@@ -5,11 +5,14 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.Gravity;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.ashokvarma.bottomnavigation.TextBadgeItem;
+import com.inso.mall.MallFrg;
+import com.inso.mine.MineFrg;
+import com.inso.notify.NotifyFrg;
+import com.inso.product.ProductFrg;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -30,7 +33,7 @@ public class MainAct extends AppCompatActivity implements BottomNavigationBar.On
     private ProductFrg mProductFrg;
     private MineFrg mMineFrg;
     private NotifyFrg mNotifyFrg;
-    private ShopFrg mShopFrg;
+    private MallFrg mMallFrg;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +42,7 @@ public class MainAct extends AppCompatActivity implements BottomNavigationBar.On
         mProductFrg = ProductFrg.getInstance();
         mMineFrg = MineFrg.getInstance();
         mNotifyFrg = NotifyFrg.getInstance();
-        mShopFrg = ShopFrg.getInstance();
+        mMallFrg = MallFrg.getInstance();
         InitNavigationBar();
         setDefaultFragment();
     }
@@ -84,7 +87,7 @@ public class MainAct extends AppCompatActivity implements BottomNavigationBar.On
                 transaction.replace(R.id.fragment_container, mProductFrg);
                 break;
             case 1:
-                transaction.replace(R.id.fragment_container, mShopFrg);
+                transaction.replace(R.id.fragment_container, mMallFrg);
                 break;
             case 2:
                 transaction.replace(R.id.fragment_container, mNotifyFrg);

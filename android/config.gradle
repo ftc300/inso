@@ -195,6 +195,7 @@ def configBaselibDependencies(Project pro) {
         implementation depConfig.eventbus
         implementation depConfig.butterknife
         annotationProcessor depConfig.butterknife_annotationProcessor
+        implementation project(':commonlib')
     }
 }
 
