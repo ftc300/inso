@@ -1,5 +1,6 @@
 package com.inso.watch.baselib.base;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -166,4 +167,7 @@ public class BaseFragment extends Fragment{
         }
     }
 
+    protected void finish(){
+        ((Activity)mActivity).finish();
+    }
 }

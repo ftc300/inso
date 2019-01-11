@@ -34,16 +34,16 @@ public class MineFrg extends BaseFragment {
                 CommonAct.start(mActivity,MineInfoFrg.class);
                 break;
             case R.id.mine_setting:
-                CommonAct.start(mActivity,MineInfoFrg.class);
+                CommonAct.start(mActivity,MineSettingFrg.class);
                 break;
             case R.id.mine_feedback:
-                CommonAct.start(mActivity,MineInfoFrg.class);
+                CommonAct.start(mActivity,MineFeedbackFrg.class);
                 break;
             case R.id.mine_about:
-                CommonAct.start(mActivity,MineInfoFrg.class);
+                CommonAct.start(mActivity,MineAboutFrg.class);
                 break;
             case R.id.mine_logout:
-                CommonAct.start(mActivity,MineInfoFrg.class);
+                finish();
                 break;
         }
     }

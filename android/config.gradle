@@ -38,7 +38,8 @@ ext {
             butterknife_annotationProcessor :"com.jakewharton:butterknife-compiler:$versionConfig.butterknife",
             reactnative : "com.facebook.react:react-native:+",
             bottom_navigation_bar:"com.ashokvarma.android:bottom-navigation-bar:2.1.0",
-            eventbus:'org.greenrobot:eventbus:3.1.1'
+            eventbus:'org.greenrobot:eventbus:3.1.1',
+            recyclerview: 'com.android.support:recyclerview-v7:23.4.0'
     ]
 
     configAndroidDomain = this.&configAndroidDomain
@@ -193,6 +194,7 @@ def configBaselibDependencies(Project pro) {
         compileOnly depConfig.support.appcompat_v7
         compileOnly depConfig.support.design
         implementation depConfig.eventbus
+        implementation depConfig.recyclerview
         implementation depConfig.butterknife
         annotationProcessor depConfig.butterknife_annotationProcessor
         implementation project(':commonlib')

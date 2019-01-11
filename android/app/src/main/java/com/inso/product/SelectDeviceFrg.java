@@ -1,9 +1,17 @@
 package com.inso.product;
 
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
-
 import com.inso.R;
 import com.inso.watch.baselib.base.BaseFragment;
+import com.inso.watch.baselib.wigets.recycler.CommonAdapter;
+import com.inso.watch.baselib.wigets.recycler.base.ViewHolder;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import butterknife.BindView;
 
 /**
  * Comment:
@@ -13,11 +21,15 @@ import com.inso.watch.baselib.base.BaseFragment;
  * GitHub: https://github.com/ftc300
  */
 
-public class SelectDeviceFrg  extends BaseFragment {
+public class SelectDeviceFrg extends BaseFragment {
+
+    @BindView(R.id.recyclerView)
+    RecyclerView mRecyclerView;
+    List<String> data = new ArrayList<>(Arrays.asList("米家石英表","隐秀AI翻译机","IBONZ猪年生肖表","米家石英表2"));
 
     @Override
     protected int getContentRes() {
-        return R.layout.frg_product;
+        return R.layout.frg_product_select_device;
     }
 
     @Override
@@ -27,6 +39,14 @@ public class SelectDeviceFrg  extends BaseFragment {
             @Override
             public void onClick(View v) {
 
+            }
+        });
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(mActivity));
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(mActivity, DividerItemDecoration.VERTICAL));
+        mRecyclerView.setAdapter(new CommonAdapter<String>(mActivity,R.layout.select_device_item,data) {
+            @Override
+            protected void convert(ViewHolder holder, String arg_s, int position) {
+                holder.setText(R.id.tvContent, arg_s);
             }
         });
     }

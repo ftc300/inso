@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp10">
+
+        <com.inso.watch.baselib.wigets.LabelTextRow
+            android:id="@+id/product_msg"
+            style="@style/label_row"
+            app:labelDividerIndent="@dimen/content_padding"
+            app:labelText="产品消息"/>
+
+        <CheckBox
+            android:id="@+id/product_msg_switch"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/content_padding"
+            android:clickable="true"
+            android:focusable="true"
+            style="@style/check_switch"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.inso.watch.baselib.wigets.LabelTextRow
+            android:id="@+id/mall_msg"
+            style="@style/label_row"
+            app:labelDividerIndent="@dimen/content_padding"
+            app:labelText="商城消息"/>
+
+        <CheckBox
+            android:id="@+id/mall_msg_switch"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/content_padding"
+            android:clickable="true"
+            android:focusable="true"
+            style="@style/check_switch"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.inso.watch.baselib.wigets.LabelTextRow
+            android:id="@+id/notify_msg"
+            style="@style/label_row"
+            app:labelDividerIndent="@dimen/content_padding"
+            app:labelText="小喇叭消息"/>
+
+        <CheckBox
+            android:id="@+id/notify_msg_switch"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/content_padding"
+            android:clickable="true"
+            android:focusable="true"
+            style="@style/check_switch"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp10">
+
+        <com.inso.watch.baselib.wigets.LabelTextRow
+            android:id="@+id/not_disturb_period"
+            style="@style/label_row"
+            app:labelDividerIndent="@dimen/content_padding"
+            app:labelText="免打扰时段"/>
+
+        <CheckBox
+            android:id="@+id/not_disturb_period_switch"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/content_padding"
+            android:clickable="true"
+            android:focusable="true"
+            style="@style/check_switch"/>
+    </RelativeLayout>
+
+</LinearLayout>

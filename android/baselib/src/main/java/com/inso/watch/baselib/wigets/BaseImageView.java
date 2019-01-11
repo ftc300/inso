@@ -11,14 +11,10 @@ import android.graphics.Xfermode;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.widget.ImageView;
 
 import java.lang.ref.WeakReference;
 
-/**
- * Created by Mostafa Gazar on 11/2/13.
- */
-public abstract class BaseImageView extends ImageView {
+public abstract class BaseImageView extends android.support.v7.widget.AppCompatImageView {
     private static final String TAG = BaseImageView.class.getSimpleName();
 
     protected Context mContext;
