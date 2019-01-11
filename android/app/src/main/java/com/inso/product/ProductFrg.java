@@ -13,7 +13,7 @@ public class ProductFrg extends BaseFragment {
 
     @Override
     protected int getContentRes() {
-        return R.layout.frg_cp;
+        return R.layout.frg_product;
     }
 
     @Override
