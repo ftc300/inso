@@ -1,0 +1,75 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/act_base"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/watch_white"
+    android:orientation="vertical" >
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/guide_height"
+        android:textColor="@color/black_80_transparent"
+        android:textSize="23sp"
+        android:gravity="center"
+        android:layout_marginTop="65dp"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/guide_tip"
+        android:textColor="@color/black_40_transparent"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:layout_marginTop="11dp"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="50dp"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        <com.inshow.watch.android.view.LineOnePicker
+            android:id="@+id/height"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/unit_limi"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:gravity="center"
+            android:layout_gravity="center"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:layout_margin="30dp"
+        >
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/common_btn_left"
+            style="?android:attr/borderlessButtonStyle"
+            android:textColor="@color/black_60_transparent"
+            android:textAllCaps="false"
+            android:text="@string/last_step"
+            android:textSize="@dimen/font_size_12sp"
+            android:id="@+id/left" />
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/common_btn_right"
+            style="?android:attr/borderlessButtonStyle"
+            android:textAllCaps="false"
+            android:textColor="@color/black_60_transparent"
+            android:text="@string/next_step"
+            android:textSize="@dimen/font_size_12sp"
+            android:id="@+id/right" />
+
+    </LinearLayout>
+</LinearLayout>

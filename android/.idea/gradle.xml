@@ -11,6 +11,7 @@
             <option value="$PROJECT_DIR$/3rdlib" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/baselib" />
+            <option value="$PROJECT_DIR$/common_ui" />
             <option value="$PROJECT_DIR$/commonlib" />
             <option value="$PROJECT_DIR$/phonelib" />
           </set>

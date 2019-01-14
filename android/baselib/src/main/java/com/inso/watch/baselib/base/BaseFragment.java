@@ -2,6 +2,7 @@ package com.inso.watch.baselib.base;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -45,6 +46,17 @@ public class BaseFragment extends Fragment{
      */
     public static Bundle configNoTitle() {
         return configTitleArgs(false);
+    }
+
+    protected  void switchTo(Class<?> to){
+        Intent intent = new Intent(mActivity,to);
+        startActivity(intent);
+    }
+
+    protected  void switchToWithEventBus(Class<?> to){
+        Intent intent = new Intent(mActivity,to);
+        intent.putExtra(ARGS_EVENT_BUS, true);
+        startActivity(intent);
     }
 
     @Override

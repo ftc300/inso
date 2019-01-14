@@ -1,0 +1,48 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/act_base"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/watch_gray"
+    android:orientation="vertical">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/topTip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/font_size_15sp"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:gravity="center"
+            android:text="@string/incoming_tip_top"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/black_40_transparent"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/centerTip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/font_size_15sp"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/incoming_center_tip"
+            android:textColor="@color/black_40_transparent" />
+
+
+        <ImageView
+            android:visibility="gone"
+            android:id="@+id/img"
+            android:layout_width="370dp"
+            android:layout_height="190dp"
+            android:layout_gravity="center"
+            android:src="@drawable/pic_bluetooth"/>
+
+    </FrameLayout>
+
+</LinearLayout>

@@ -159,6 +159,7 @@ def configAppDependencies(Project pro) {
         implementation project(':phonelib')
         implementation project(':3rdlib')
         implementation project(':baselib')
+        implementation project(':common_ui')
         implementation depConfig.support.appcompat_v7
         implementation depConfig.support.design
         implementation depConfig.support.design
@@ -171,6 +172,8 @@ def configAppDependencies(Project pro) {
         implementation depConfig.reactnative
         implementation depConfig.bottom_navigation_bar
         implementation depConfig.eventbus
+        implementation 'com.github.promeg:tinypinyin:1.0.0'
+        implementation 'com.githang:status-bar-compat:0.7'
     }
 }
 

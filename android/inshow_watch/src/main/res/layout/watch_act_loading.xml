@@ -1,0 +1,26 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:inshow="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/watch_tab_default"
+    android:orientation="vertical" >
+  <TextView
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      android:layout_weight="1"
+      android:text="信息验证中"
+      android:textSize="18sp"
+      android:background="@color/watch_tab_default"
+      android:gravity="center"
+      android:textColor="@color/black"
+      android:layout_marginTop="50dp"/>
+  <com.inshow.watch.android.view.GifView
+      android:id="@+id/gifview"
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      android:layout_weight="6"
+      android:layout_gravity="center"
+      android:foregroundGravity="center"
+      inshow:gif="@drawable/loading"/>
+
+</LinearLayout>

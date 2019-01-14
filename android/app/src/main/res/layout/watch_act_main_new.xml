@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.inso.plugin.view.MainDragLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/dragLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <FrameLayout
+        android:id="@+id/firstF"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="194dp"
+        />
+
+    <!--<FrameLayout-->
+        <!--android:id="@+id/secondF"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="404dp"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_marginBottom="-194dp"-->
+        <!--android:background="@color/white"/>-->
+    <FrameLayout
+        android:id="@+id/secondF"
+        android:layout_width="match_parent"
+        android:layout_height="434dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="-194dp"
+        android:background="@color/white"/>
+
+</com.inso.plugin.view.MainDragLayout>

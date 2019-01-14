@@ -1,0 +1,107 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white"
+    android:paddingTop="15dp"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="23dp"
+        android:paddingRight="24dp"
+        android:orientation="horizontal">
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:ellipsize="end"
+        android:gravity="center_vertical"
+        android:lines="1"
+        android:labelFor="@+id/switchButton"
+        android:textColor="@color/black_80_transparent"
+        tools:text="7:00 AM"
+        android:textSize="18sp" />
+     <TextView
+            android:id="@+id/tv_day_period"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:ellipsize="end"
+            android:lines="1"
+            android:gravity="center"
+            android:textColor="@color/black_60_transparent"
+            tools:text="上午"
+            android:paddingLeft="13dp"
+            android:paddingRight="13dp"
+            android:textSize="10sp" />
+    <LinearLayout
+        android:id="@+id/title_container"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/weekNum"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:ellipsize="end"
+            android:lines="1"
+            android:textColor="@color/black_80_transparent"
+            tools:text="法定工作日"
+            android:labelFor="@+id/switchButton"
+            android:textSize="10sp" />
+
+        <TextView
+            android:id="@+id/timeLeft"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            tools:text="未开启"
+            android:textColor="@color/black_80_transparent"
+            android:textSize="10sp" />
+    </LinearLayout>
+
+    <CheckBox
+        android:id="@+id/switchButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|center_vertical"
+        android:button="@drawable/watch_select_switch_black"
+        android:layout_marginLeft="@dimen/std_titlebar_margin_left_right"
+        android:focusable="false" />
+
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:button="@drawable/common_check_icon"
+        android:gravity="center"
+        android:textColor="@color/class_b_to_white_color"
+        android:textSize="@dimen/font_size_4"
+        android:visibility="gone"
+    />
+   </LinearLayout>
+
+    <View
+        android:id="@+id/divider_line"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@color/black_10_transparent"
+        />
+    <View
+        android:id="@+id/footer"
+        android:layout_width="match_parent"
+        android:layout_height="67dp"
+        android:background="@color/watch_gray"
+        android:visibility="gone"
+        />
+
+
+</LinearLayout>

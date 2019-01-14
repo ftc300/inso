@@ -1,0 +1,32 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/watch_white"
+    android:orientation="vertical" >
+    <include layout="@layout/title_bar_transparent_black" />
+    <LinearLayout
+        android:id="@+id/llContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone"
+        >
+    <com.inso.plugin.view.ClockView
+            android:layout_width="match_parent"
+            android:id="@+id/clock"
+             android:layout_margin="30dp"
+            android:layout_height="248dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/watch_black">
+        <TextView
+            android:id="@+id/step_counter"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textColor="@color/class_J"
+            />
+    </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

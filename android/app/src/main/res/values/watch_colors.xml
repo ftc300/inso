@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primaryColor">#ff7500</color>
+    <color name="primaryColor_20">#3302b9ae</color>
+    <color name="primaryColor_unable">#5f6977</color>
+    <color name="watch_white">#FFFFFF</color>
+    <color name="watch_black">#000000</color>
+    <color name="watch_clock_dark_gray">#666666</color>
+    <color name="watch_clock_gray">#999999</color>
+    <color name="watch_red">#b71f16</color>
+    <color name="watch_blue">#189afe</color>
+    <color name="watch_gray">#f8f8f8</color>
+    <color name="watch_tab_sel">#ebebeb</color>
+    <color name="watch_tab_default">#f8f8f8</color>
+    <color name="watch_tab_stroke">#bababa</color>
+    <color name="watchCir_unable">#AFB4BB</color>
+    <color name="minuteHand_normal">#272727</color>
+    <color name="minuteHand_unable">#43484F</color>
+    <color name="hourHand_normal">#4d4d4d</color>
+    <color name="hourHand_unable">#63676e</color>
+    <color name="mi_title_color">#19191d</color>
+    <color name="container_bg_color">#19191d</color>
+    <color name="hour_color">#d0d0d1</color>
+    <color name="clock_minute_color">#d0d0d1</color>
+    <color name="clock_middle_color">#f7f7f7</color>
+    <color name="main_bg">#121317</color>
+    <color name="white_05_transparent">#0CFFFFFF</color>
+    <color name="progress_bg">#d8edfb</color>
+    <color name="progress_color">#0195f3</color>
+    <color name="dialog_bg">#fff8f8f8</color>
+    <color name="dialog_title_txt_color">#cc000000</color>
+    <color name="dialog_sub_title_txt_color">#80000000</color>
+    <color name="dialog_sub_title_txt_color_sel">#ff7500</color>
+    <drawable name="transparent">#00ffffff</drawable>
+    <color name="transparent">#00000000</color>
+</resources>

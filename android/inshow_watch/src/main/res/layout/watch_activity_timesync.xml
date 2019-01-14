@@ -1,0 +1,122 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/watch_white"
+    android:orientation="vertical" >
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:text="表针和计步驱动"
+        android:id="@+id/textView" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:layout_margin="30dp"
+        >
+        <Button
+            android:id="@+id/clockDriver"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/common_btn_left"
+            style="?android:attr/borderlessButtonStyle"
+            android:textAllCaps="false"
+            android:textColor="@color/black_60_transparent"
+            android:text="时针转动"
+            android:textSize="@dimen/font_size_12sp"
+           />
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/common_btn_right"
+            style="?android:attr/borderlessButtonStyle"
+            android:textAllCaps="false"
+            android:textColor="@color/black_60_transparent"
+            android:text="步针转动"
+            android:textSize="@dimen/font_size_12sp"
+            android:id="@+id/stepDriver"
+            />
+
+    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:text="告知表盘当前指针所指的位置"/>
+    <com.xiaomi.smarthome.common.ui.widget.TimePicker
+        android:id="@+id/timePicker"
+        android:layout_width="match_parent"
+        android:layout_height="160dp" />
+    <Button
+        android:id="@+id/tellWatchItsTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/common_button"
+        android:gravity="center"
+        android:singleLine="true"
+        android:text="确定 "
+        android:textColor="@color/common_button"
+        android:textSize="@dimen/font_size_13sp" />
+    <View
+        android:id="@+id/title_divider_line"
+        android:layout_margin="5dp"
+        android:layout_width="fill_parent"
+        android:layout_height="2px"
+        android:background="@android:drawable/divider_horizontal_bright" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:text="通知手表当前时间"/>
+    <Button
+        android:id="@+id/btnSync"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:background="@drawable/common_button"
+        android:gravity="center"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:layout_margin="5dp"
+        android:text="同步手表时间"
+        android:textColor="@color/black"
+        android:textSize="15sp" />
+    <LinearLayout
+        android:id="@+id/ok"
+        android:layout_margin="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/alertdialog_button_panel_padding_vertical"
+        android:orientation="horizontal"
+        android:visibility="gone"
+         >
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="0dip"
+            android:layout_height="40.33dp"
+            android:layout_weight="1"
+            android:background="@drawable/common_btn_left"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="确定 "
+            android:textColor="@color/common_button"
+            android:textSize="@dimen/font_size_13sp" />
+
+        <Button
+            android:id="@+id/cancel"
+            android:layout_width="0dip"
+            android:layout_height="40.33dp"
+            android:layout_weight="1"
+            android:background="@drawable/common_btn_right"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="取消"
+            android:textColor="@color/common_button"
+            android:textSize="@dimen/font_size_13sp" />
+    </LinearLayout>
+</LinearLayout>

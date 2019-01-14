@@ -1,0 +1,89 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:inshow="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/class_F">
+    <com.xiaomi.smarthome.common.ui.widget.SettingsItemView
+        android:id="@+id/repeatType"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        inshow:item_title="@string/repeat"
+        inshow:item_subtitle=""
+        inshow:item_info=""
+        inshow:item_select="false"
+        inshow:item_type="type_arrow"
+        inshow:item_line_margin="3dp"
+        android:background="@color/white"
+        />
+
+    <LinearLayout
+        android:layout_below="@id/repeatType"
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:layout_height="55dp"
+        android:focusable="true"
+        android:visibility="gone"
+        android:focusableInTouchMode="true"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="闹钟备注"
+            android:layout_marginLeft="24dp"
+            android:textColor="@color/black_60_transparent"
+            android:layout_gravity="center_vertical"
+            />
+
+        <View
+            android:layout_above="@+id/timePicker"
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:background="@color/black_20_transparent"
+            android:layout_margin="10dp"
+            />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:textColorHint="@color/black_30_transparent"
+            android:hint="输入备注"
+            android:textSize="@dimen/font_size_13sp"
+            android:singleLine="true"
+            android:maxLength="20"
+            android:textColor="@color/black_60_transparent"
+            android:id="@+id/editText" />
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+    <TextView
+        android:id="@+id/tv_unused"
+        android:textSize="@dimen/font_size_13sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black_50_transparent"
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:visibility="gone"
+        android:text="未开启" />
+    <View
+        android:layout_above="@+id/timePicker"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/black_10_transparent"
+        />
+    <com.inso.plugin.view.WatchTimePicker
+        android:id="@+id/timePicker"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+    />
+    </LinearLayout>
+</RelativeLayout>

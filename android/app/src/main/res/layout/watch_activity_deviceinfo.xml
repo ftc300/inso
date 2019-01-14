@@ -1,0 +1,55 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:inshow="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#f8f8f8" >
+
+    <com.inso.plugin.view.LabelTextRow
+        android:id="@+id/name"
+        style="@style/label_text_row"
+        inshow:labelArrows="true"
+        inshow:labelText="@string/name"
+        inshow:labelValue=""
+        android:layout_marginBottom="12dp"
+        android:visibility="gone"/>
+
+    <com.inso.plugin.view.LabelTextRow
+        android:layout_marginTop="20dp"
+        android:id="@+id/model"
+        style="@style/label_text_row"
+        inshow:labelDividerIndent="24dp"
+        inshow:labelValueColor="@color/black_50_transparent"
+        inshow:labelText="@string/model"
+        inshow:labelValue="MW1"
+        />
+    <com.inso.plugin.view.LabelTextRow
+        android:id="@+id/firmware"
+        style="@style/label_text_row"
+        inshow:labelDividerIndent="24dp"
+        inshow:labelValueColor="@color/black_50_transparent"
+        inshow:labelText="@string/firmware"
+        inshow:labelValue="1.0.5_10"
+        />
+    <com.inso.plugin.view.LabelTextRow
+        android:id="@+id/bluetooth"
+        style="@style/label_text_row"
+        inshow:labelDividerIndent="24dp"
+        inshow:labelValueColor="@color/black_50_transparent"
+        inshow:labelText="@string/ble"
+        />
+    <com.inso.plugin.view.LabelTextRow
+        android:id="@+id/battery"
+        style="@style/label_text_row"
+        inshow:labelValueColor="@color/black_50_transparent"
+        inshow:labelText="@string/battery"
+        />
+    <com.inso.plugin.view.LabelTextRow
+        android:id="@+id/watchlog"
+        style="@style/label_text_row"
+        inshow:labelValueColor="@color/black_50_transparent"
+        inshow:labelText="@string/test_watchlog"
+        inshow:labelArrows="true"
+        android:visibility="gone"
+        />
+</LinearLayout>

@@ -37,7 +37,7 @@ import static android.support.v4.content.PermissionChecker.PERMISSION_DENIED;
 /**
  * Comment:
  * <p>
- * a包名： com.inso.watch
+ * a包名： com.ic_launcher.watch
  * AppID： 2882303761517886196
  * AppKey： 5921788667196
  * AppSecret： XdyTkiHAYWPruVJF3ox9rw==

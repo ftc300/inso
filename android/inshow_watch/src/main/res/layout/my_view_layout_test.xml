@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_bazier_two"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/watch_red"
+    android:orientation="vertical"
+   >
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="HellO"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:textColor="@color/black_50_transparent"/>
+</LinearLayout>

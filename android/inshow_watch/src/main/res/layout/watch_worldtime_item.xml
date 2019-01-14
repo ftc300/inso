@@ -1,0 +1,90 @@
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:paddingTop="15dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingRight="24dp">
+        <ImageView
+            android:id="@+id/img_world_time_sel"
+            android:layout_width="24dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_sel"
+            android:layout_gravity="center_vertical"/>
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:lines="1"
+            android:textColor="@color/primaryColor"
+            android:drawablePadding="5dp"
+            android:text="7:00"
+            android:textSize="18sp" />
+        <LinearLayout
+            android:id="@+id/title_container"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="27dp"
+            android:paddingLeft="12dp"
+            android:paddingRight="@dimen/listitem_2_padding_right"
+            android:layout_weight="1"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="南京"
+                android:textColor="@color/settings_subtitle_text_color"
+                android:textSize="@dimen/settings_item_subtitle_text_size" />
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="周一 2月27号"
+                android:textColor="@color/settings_subtitle_text_color"
+                android:textSize="@dimen/settings_item_subtitle_text_size" />
+        </LinearLayout>
+        <ImageView
+            android:id="@+id/loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_changecity"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            android:scaleType="center">
+        </ImageView>
+    </LinearLayout>
+
+    <View
+        android:id="@+id/divider_line"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="23dp"
+        android:layout_marginRight="23dp"
+        android:background="@color/black_10_transparent"
+        />
+
+    <View
+        android:id="@+id/footer"
+        android:layout_width="match_parent"
+        android:layout_height="67dp"
+        android:background="@color/watch_gray"
+        android:visibility="gone"
+        />
+
+</LinearLayout>

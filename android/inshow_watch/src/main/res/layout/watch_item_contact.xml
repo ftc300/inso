@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/watch_white"
+    android:paddingLeft="24dp"
+    android:paddingRight="14dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textColor="@color/black_90_transparent"
+            tools:text="hello"
+            android:labelFor="@+id/checkBox"
+            android:paddingLeft="3dp"
+            android:paddingRight="3dp"
+            android:textSize="@dimen/font_size_15sp" />
+
+        <TextView
+            android:id="@+id/tvNumber"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:ellipsize="end"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black_60_transparent"
+            tools:text="hello"
+            android:labelFor="@+id/checkBox"
+            android:singleLine="true"
+            android:paddingRight="3dp"
+            android:textSize="@dimen/font_size_12sp" />
+
+        <CheckBox
+            android:id="@+id/checkBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@drawable/common_check_icon"
+            android:clickable="false"
+            android:paddingRight="24dp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/black_10_transparent" />
+
+</LinearLayout>

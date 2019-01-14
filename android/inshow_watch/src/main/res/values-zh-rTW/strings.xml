@@ -1,0 +1,575 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="menu">選單範例</string>
+        
+    <string name="menu_key">範例</string>
+        
+    <string name="menu_intent">Intent Menu</string>
+        
+    <string name="time_day">天</string>
+    <string name="time_hour">時</string>
+    <string name="time_min">分</string>
+    <string name="alarm_time_min">分鐘</string>
+        
+    <string name="time_sec">秒</string>
+    <string name="menu_worldtime">世界時間</string>
+    <string name="menu_intervalremind">間隔提醒</string>
+    <string name="menu_vipremind">來電提醒</string>
+    <string name="menu_alarmclock">鬧鐘</string>
+    <string name="A01">米家石英錶</string>
+    <string name="A02">電池剩餘</string>
+    <string name="A03">%</string>
+        
+    <string name="A04">電池電量低查看詳情</string>
+        
+    <string name="A05">今天步數\n</string>
+        
+    <string name="A06">\t步</string>
+        
+    <string name="A08">連接失敗,點選重試</string>
+        
+    <string name="A09">裝置連接中,請稍候...</string>
+        
+    <string name="A10">連接失敗,請檢查網路後再試</string>
+
+        
+    <string name="B01">電池電量</string>
+        
+    <string name="B02">已使用</string>
+        
+    <string name="B03">耗電比例</string>
+        
+    <string name="B04">計時</string>
+        
+    <string name="B05">振動提醒</string>
+        
+    <string name="B06">計步</string>
+        
+    <string name="B07">資料傳輸</string>
+        
+    <string name="B08">剩餘電量</string>
+        <!--單位-->
+
+        
+    <string name="unit_step">\t步</string>
+        
+    <string name="unit_km">\t千米</string>
+        
+    <string name="unit_kc">\t大卡</string>
+        
+    <string name="unit_hour">\t時</string>
+        
+    <string name="unit_min">\t分</string>
+        
+    <string name="unit_second">秒</string>
+        
+    <string name="unit_min1">分鐘</string>
+    <string name="unit_min2">分鐘</string>
+        
+    <string name="unit_ge">個</string>
+        
+    <string name="unit_ren">人</string>
+        
+    <string name="empty_tip_worldtime">還沒有增加城市</string>
+        
+    <string name="title_worldtime">世界時間</string>
+        
+    <string name="title_setalarm">設定鬧鐘</string>
+        
+    <string name="button_ok">確定</string>
+        
+    <string name="button_repeat">重複</string>
+        
+    <string name="button_cancel">取消</string>
+        
+    <string name="have_used">已使用</string>
+        
+    <string name="off">未開啟</string>
+    <string name="interval_off">每隔一段時間，手錶將提醒</string>
+    <string name="interval_tip">每隔%1$d分鐘時間，手錶將振動提醒</string>
+    <string name="interval_tip_one">每隔%1$d分鐘時間，手錶將振動提醒</string>
+    <string name="interval_integral_tip">每到整點，手錶將振動提醒</string>
+        
+    <string name="interval_tip_default">每隔一段時間，手錶將振動提醒</string>
+        
+    <string name="dfu_success_exit">升級成功，請退出APP重新連接</string>
+        
+    <string name="power_enough">電量充足</string>
+        
+    <string name="power_lower_tip">電量低,請注意更換電池</string>
+        
+    <string name="dfu_file_download_fail">無法下載升級包，請檢查網路</string>
+        
+    <string name="unit_year">年</string>
+        
+    <string name="unit_year_space">\t年</string>
+        
+    <string name="unit_month_space">\t月</string>
+        
+    <string name="unit_day">日</string>
+        
+    <string name="unit_week">週</string>
+        
+    <string name="alarm">鬧鐘</string>
+        
+    <string name="world_time">世界時間</string>
+        
+    <string name="vip_alert">來電提醒</string>
+        
+    <string name="interval_remind">間隔提醒</string>
+        
+    <string name="alarm_empty_tip">還沒有增加鬧鐘，無法提醒\n最多可增加10個</string>
+        
+    <string name="please_select_item">請選擇項目</string>
+        
+        
+    <string name="less_than_one_minute">不到1分鐘振動</string>
+        
+    <string name="one_hour">小時</string>
+        
+    <string name="how_many_hours_ring">後振動</string>
+        
+    <string name="morning">上午</string>
+        
+    <string name="afternoon">下午</string>
+        
+    <string name="please_select_city">請選擇城市</string>
+        
+    <string name="btn_complete">完成</string>
+        
+    <string name="adjust_time_ing">正在調整時間</string>
+        
+    <string name="time_has_adjusted">時間已調整</string>
+        
+    <string name="adjust_time_fail">時間調整失敗，請重試</string>
+        
+    <string name="adjust_time_to_beijing">正在調整為北京時間</string>
+    <string name="adjust_time_to_tw">正在調整為臺北時間</string>
+    <string name="adjust_time_to_hk">正在調整為香港時間</string>
+        
+    <string name="ble_connect_off">手錶連接已中斷，請重新連接</string>
+        
+    <string name="unit_fenzhong">分鐘</string>
+        
+    <string name="set_interval_duration">設定間隔時長</string>
+        
+    <string name="adjust_ponit">指針校準</string>
+        
+    <string name="body_info">身體訊息</string>
+        
+    <string name="set_birthday">出生年月</string>
+        
+    <string name="set_gender">性別</string>
+        
+    <string name="nv">女</string>
+        
+    <string name="nan">男</string>
+        
+    <string name="setHeight">身高</string>
+       
+    <string name="unit_month">月</string> 
+    <string name="unit_limi">公分</string>
+        
+    <string name="unit_gongjin"> 公斤</string>
+        
+    <string name="unit_gongjin_space"> \t公斤</string>
+        
+    <string name="set_weight">體重</string>
+        
+    <string name="device_info">裝置訊息</string>
+        
+    <string name="settting">設定</string>
+        
+    <string name="vibrationsetting">振動設定</string>
+        
+    <string name="start_time">開啟時間</string>
+        
+    <string name="end_time">結束時間</string>
+        
+    <string name="please_select_contact">請選擇聯絡人</string>
+        
+    <string name="setting_waiting">設定中，請稍候...</string>
+        
+    <string name="setting_complete">設定完成</string>
+        
+    <string name="vip_empty_tip">無聯絡人,無法提醒\n最多可增加10個聯繫人</string>
+        
+    <string name="sorry_not_support_vip">抱歉，您的手機暫不支持此功能\n目前僅支援蘋果和小米手機MIUI9以上</string>
+        
+    <string name="no_contact_permission">沒有聯絡人權限，請前往系統設定頁面開啟應用讀取聯絡人權限。 </string>
+        
+    <string name="adjust_time_point">校準計時指針</string>
+        
+    <string name="have_adjusted">已校準</string>
+        
+    <string name="adjust_step_point">校準計步指針</string>
+        
+    <string name="adjust_step_tip">滑動下方滾輪,\n使計步指針指示到0</string>
+        
+    <string name="guide_birthday">出生年月</string>
+        
+    <string name="guide_tip">為了保證運動數據準確，請核對以下訊息</string>
+        
+    <string name="pass">跳過</string>
+        
+    <string name="next_step">下一步</string>
+        
+    <string name="guide_height">身高</string>
+        
+    <string name="last_step">上一步</string>
+        
+    <string name="recovery_tip">是否下載您以前的\n手錶設定？ </string>
+        
+    <string name="download_setting">下載設定</string>
+        
+    <string name="neednot">不用了</string>
+        
+    <string name="guide_gender">性別</string>
+        
+    <string name="guide_weight">體重</string>
+        
+        
+    <string name="vip_error">該米家應用版本暫不支持來電提醒功能，請升級米家APP。</string>
+        
+    <string name="repeat">重複</string>
+        
+    <string name="alert_double">振動時長加倍</string>
+        
+    <string name="notdisturb">勿擾時段</string>
+        
+    <string name="birthday">出生年月</string>
+        
+    <string name="gender">性別</string>
+        
+    <string name="height">身高</string>
+        
+    <string name="weight">體重</string>
+        
+    <string name="search_city">搜尋城市</string>
+        
+    <string name="name">名稱</string>
+        
+    <string name="model">型號</string>
+        
+    <string name="firmware">韌體</string>
+        
+    <string name="ble">藍牙</string>
+        
+    <string name="battery">電池</string>
+        
+    <string name="set_interval_time">設定間隔時間</string>
+        
+    <string name="reset_interval">重新計時</string>
+    <string name="search_contact">搜尋聯絡人</string>
+    <string name="have_no_content">沒有搜尋到配對的內容</string>
+    <string name="integral">整點</string>
+    <string name="alarm_most_tip">最多可增加10個鬧鐘</string>
+    <string name="city_most_tip">最多可增加10個城市</string>
+    <string name="contact_most_tip">最多可增加10個聯絡人</string>
+    <string name="low_power_title">手錶電量低</string>
+    <string name="low_power_msg">振動提醒會降低電力，有可能會造成\n手錶意外關機(需換電池後手動校準時間)，\n您是否需要關閉振動以延長使用時間？</string>
+    <string name="ignore">忽略</string>
+    <string name="close_vibration">關閉振動</string>
+    <string name="adjust_sure">校準</string>
+    <string name="retype">重新輸入</string>
+    <string name="time_still_adjust">繼續校準</string>
+    <string name="adjust_time_first_tip">滑動下方滾輪,使手錶上的分針\n指在臨近整點刻度,點選下一步</string>
+    <string name="what_is_time">輸入手錶上指示的時間,\n而非目前標準時間</string>
+    <string name="adjust_warning_tip">您應該輸入手錶時間,而不是標準時間</string>
+    <string name="format_date_no_year">MM月d日</string>
+    <string name="format_date_month">M月</string>
+    <string name="useragreement_privacypolicy">使用條款和隱私政策</string>
+    <string name="user_agreement">用戶協議</string>
+    <string name="privacy_policy">隐私条款</string>
+    <string name="watch_pick_hour">时</string>
+    <string name="watch_picker_minute">分</string>
+    <string name="open_ble_tip">當前藍牙未開啟，請先開啟藍牙？</string>
+    <string name="allow">確定</string>
+    <string name="reject">取消</string>
+    <string name="button_delete">刪除</string>
+    <string name="watch_select_all">全選</string>
+    <string name="watch_unselect_all">全不選</string>
+    <string name="loading_wait">數據加載中,請稍候...</string>
+    <string name="read_fail">讀取數據失敗</string>
+    <string name="watch_log">手錶日誌</string>
+    <string name="test_watchlog">實驗功能-手錶日誌</string>
+    <string name="connect_no_sure">無法連接？</string>
+    <string name="connect_timeout_msg">請嘗試以下方法：\n1.將手錶靠近手機，按一下手錶按鍵\n2.重啟手機藍牙或手機\n3.換新手機連接手錶時，請先關閉之前手機的藍牙\n更多建議請在使用幫助中查看</string>
+    <string name="connect_know">確定</string>
+    <string name="tip_only_once">為了延長使用時間,手錶會在低電時自動關閉振動。 \n您可以在\"更多-振動設置\"中修改。</string>
+    <string name="reject_switch">當前電量低,無法開啟振動功能。</string>
+    <string name="label_close_auto">低電時自動關閉振動功能</string>
+    <string name="low_power_reject_upgrade">目前電量不足以安全升級韌體，請更換電池後再試</string>
+    <string name="exit_wait">退出中，請稍侯...</string>
+    <string name="img_bottom_tip">點擊滾輪可以微調指針</string>
+    <string name="current_ver">當前版本:</string>
+    <string name="upgrade_success">更新成功</string>
+    <string name="upgrade_ing">更新中...</string>
+    <string name="upgrading_tip">手錶固件更新中,請勿退出\n待升級成功後即可使用</string>
+    <string name="pls_set_pos">請輸入手表的指針位置</string>
+    <string name="h_hand_position">時針位置</string>
+    <string name="m_hand_position">分針位置</string>
+    <string name="deal_with_accurate_pos">不確定分針精確位置怎麽辦？</string>
+    <string name="tap_to_exact_mark">點擊轉針按鈕， 讓分針對齊整刻度</string>
+    <string name="move_hand">轉針</string>
+    <string name="calibrate">校準</string>
+    <string name="tap_calibrate">點擊校準按鈕， 指針會自動轉到正確時間</string>
+    <string name="reference_step_hand">手表步針顯示的是概要計步，\n每走大約400步，步針才會行進一格</string>
+    <string name="xx_00">點擊校準按鈕，步針會自動指向當前準確步數</string>
+    <string name="xx_01">點擊或長按轉針按鈕，轉動\n步針，通過不斷點按，\n使步針指向0刻度</string>
+    <string name="xx_03">步針未動怎麽回事？</string>
+    <string name="xx12">例如，手表指針顯示為10點8分左右時，\n請把分針轉到10點10分</string>
+    <string name="dfu_call_user_upgrade">當前固件版本有問題，請盡快升級最新固件！</string>
+    <string name="dfu_fail">升級失敗</string>
+    <string name="n_12s">為恢復手錶的正常使用  請長按按鍵12秒重啟手錶</string>
+    <string name="action_more">更多</string>
+    <string name="add">添加</string>
+    <string name="inshow_protocol">
+&lt;p id="tw"&gt;&lt;strong&gt;軟體授權及服務協議&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt; 重要通知 &lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;深圳市隱秀科技有限公司（以下稱「隱秀」）特此提醒使用者詳讀並完整瞭解軟體授權及服務協議（以下稱「本協議」）。&lt;strong&gt;使用者應仔細閱讀並充分理解本協議條款，尤其是關於隱秀責任豁免或限制、糾紛解決方式以及適用法律的條款。請務必留意有關責任豁免或限制的相關條款，這些內容已經以粗體標示。請仔細閱讀並選擇是否接受本協議
+        (未成年使用者應於監護人陪同下詳讀本協議)。下載、安裝、使用軟體及取得和登入帳號，即代表您同意接受本協議，並完全受協議條款之約束。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;隱秀保留修改本協議之權利。本協議若有條款更新，將於官方網站或軟體內發布，於發布日期起生效。&lt;/strong&gt;使用者可重新下載並安裝軟體，或在網站上檢視本協議條款的最新版本。&lt;strong&gt;隱秀修改本協議條款後，若您不接受經修改的條款，請立即停止使用隱秀提供的「米家石英錶」&lt;/strong&gt;軟體和服務；繼續使用隱秀提供的&lt;strong&gt;「米家石英錶」軟體和服務即視為使用者接受本協議的修訂條款。&lt;/strong&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;1.一般條款&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;1.1.本協議由您 (以下稱「使用者」) 與隱秀及其營運合作夥伴 (以下稱「合作夥伴」) 針對使用者下載、安裝和使用隱秀提供的「米家石英錶」軟體 (以下稱「本軟體」) 及相關服務而共同締結。&lt;/p&gt;
+&lt;p&gt;1.2.本軟體及服務是隱秀提供的安裝在包括但不限於流動智能終端裝置上的軟件和服務，為使用該行動智慧終端裝置的使用者提供檢視步數、修改相關資訊（如機體資訊、裝置名稱）、設定米家的來電提醒、鬧鐘等功能，以及升級手錶韌體。&lt;/p&gt;
+&lt;p&gt;1.3.軟體與服務的所有權及經營權應歸屬隱秀所有。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2.軟體授權範圍&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;2.1.隱秀授權使用者個人、不可轉讓以及非獨佔性的許可使用本軟體，但不能轉授權。&lt;/p&gt;
+&lt;p&gt;
+    2.2.使用者可在非商業性目的下，在單一行動終端裝置上安裝、使用、顯示並執行本軟體。但使用者不得為商業性目的進行本軟體之安裝、使用或執行。使用者不得複製、變更或修改本軟體的任何資料，或本軟體運行過程中發送給任何終端裝置記憶體的任何資料，以及本軟體運行過程中客端與伺服器間產生的通信資料，或使用外掛程式執行本軟體，或以任何形式製造任何衍生作品，包括但不限於外掛程式、以未經授權之第三方工具／服務使用軟體的途徑和相關系統。倘若您需要以商業用途銷售、複製或發佈軟體
+            (例如軟體預先安裝與統合)，則必須獲得隱秀的書面授權和許可。 &lt;/p&gt;
+&lt;p&gt;2.3.使用者未取得隱秀准許，不得將本軟體安裝在其他未經隱秀明確許可的終端裝置上，包括但不限於數位機上盒、遊戲機、電視、DVD 播放器等裝置。 &lt;/p&gt;
+&lt;p&gt;2.4.使用者可為使用軟體和服務之目的複製本軟體，但此複製軟體僅能作為備份使用。備份軟體必須含有與正本軟體所含相同的所有著作權資訊。&lt;/p&gt;
+&lt;p&gt;2.5.隱秀不授予使用者本協議明確允許之外的其他權利。使用者欲使用任何其他權利，應事先取得隱秀提供之同意書。 &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;3.軟體取得、安裝和升級&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;
+    3.1.使用者應自網站或以隱秀指定方式下載及安裝軟體。請注意，勿自不明網站下載軟體，以避免行動裝置感染可能損害使用者資料及取得使用者隱私資訊的惡意程式。若您從未經隱秀許可之第三方取得本軟體，或安裝與本軟體同名之程式，則隱秀無法保證該軟體可正常使用，且隱秀對於因此對您造成的任何損失概不負責。&lt;/p&gt;
+&lt;p&gt;3.2.使用者必須選擇適合所安裝之終端裝置的軟體版本。否則，任何軟體版本與裝置機型不適合所引起的軟體問題、裝置問題或損壞，應完全由使用者自行負責。&lt;/p&gt;
+&lt;p&gt;
+    3.3.為提升使用者體驗並最佳化服務內容，隱秀保留提供本軟體之替換、修改、升級版本之權利，且亦保留針對此類替換、修改、升級版收費之權利，但收費前會事先取得您的同意。本軟體將為使用者預設啟用「升級提醒」功能。隱秀依據使用者所使用的軟體版本，讓使用者自行斟酌是否啟用上述功能。軟體新版本發布後，隱秀不保證舊軟體版本將持續可用。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;4.使用規範&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;4.1.使用者得按照本協議和法律規定使用本軟體及服務。使用者不應有以下行為：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;4.1.1.刪除本軟體和其他備份的任何著作權資訊，或修改、刪除或規避本軟體為保護智慧財產權所設定的技術措施； &lt;/p&gt;
+&lt;p&gt;4.1.2.對本軟體執行逆向工程，例如：反組譯、解譯或其他試圖取得本軟體原始碼的行為；&lt;/p&gt;
+&lt;p&gt;4.1.3.在軟體執行過程中，透過修改或編造指令和資料新增、移除或改變本軟體功能或執行效果，或是其他操作或對大眾散播本軟體或達到上述目的之方法，無論此類行為是否有商業性目的；&lt;/p&gt;
+&lt;p&gt;
+    4.1.4.使用本軟體進行任何危害網路安全的行為，包括但不限於：使用未經授權資料或未經授權伺服器/帳號；未經授權使用大眾網路或操作他人系統並刪除、修改或新增資料至任何已存資訊；未經授權嘗試偵測、掃描或測試本軟體系統或網路弱點，或進行其他破壞網路安全的事；嘗試干擾或破壞本軟體系統或網站的正常運作、故意散播惡意程式或病毒或進行其他破壞或干擾正常網路資訊服務的行為；編造
+            TCP/IP 資料封包的名稱或部分名稱；&lt;/p&gt;
+&lt;p&gt;4.1.5.使用者透過第三方相容軟體或非經隱秀開發、授權或允許之系統登入或使用本軟體和服務，或者製作、發布或散播上述工具；&lt;/p&gt;
+&lt;p&gt;
+    4.1.6.使用者未經隱秀書面同意即對本軟體或其中所含資訊進行任何舉措，包括但不限於使用、出租、出借、複製、修改、設定連結、重製、匯編、發布、發表、建立鏡像網站，或未經授權使用本軟體開發相關衍生產品、作品、服務、外掛程式、相容性或互連功能；&lt;/p&gt;&lt;/p&gt;
+&lt;p&gt;4.1.7.使用本軟體發表、傳輸、傳播或儲存任何違反當地法律法規的內容； &lt;/p&gt;
+&lt;p&gt;4.1.8.使用本軟體發表、傳輸、散播或儲存任何侵害諸如智慧財產權與其他商業秘密等合法權利的內容； &lt;/p&gt;
+&lt;p&gt;4.1.9.使用本軟體發表、傳輸或散播廣告資訊或大量垃圾郵件； &lt;/p&gt;
+&lt;p&gt;4.1.10.以非法方式或者任何違背本協議授權使用規定之方式，使用本軟體或隱秀提供的其他服務進行非法用途。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;4.2.資訊發佈規範&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;
+    4.2.1.您得使用本軟體發表意見、資料、文字、資訊、使用者名稱、圖片、照片、個人資訊、音訊或影片檔案、網站連結等由您建立或您有權發表之資訊。您必須保證所上傳資訊之智慧財產權為您所有，或者您已取得該資訊的合法發表授權，且保證您使用本軟體與服務不會侵害任何第三方的合法權利或利益。&lt;/p&gt;
+&lt;p&gt;4.2.2.在使用本軟體時，您必須遵守當地法律法規。&lt;/p&gt;
+&lt;p&gt;4.2.3.您不得使用本軟體進行以下行為，包括但不限於：&lt;/p&gt;
+&lt;p&gt;4.2.3.1.製造、重製、發表、散播或儲存以下違反當地法律與法規的任何內容：&lt;/p&gt;
+&lt;p&gt;4.2.3.2.發表、傳輸、散播或儲存任何侵害諸如名譽權、肖像權、智慧財產權與其他商業秘密等合法權利的內容；&lt;/p&gt;
+&lt;p&gt;4.2.3.3.捏造事實或隱瞞真相以誤導或矇騙他人；&lt;/p&gt;
+&lt;p&gt;4.2.3.4.發表、傳輸或散播廣告資訊或垃圾郵件；&lt;/p&gt;
+&lt;p&gt;4.2.3.5.參與違反當地法律法規的其他行為。&lt;/p&gt;
+&lt;p&gt;4.2.4.未經隱秀許可，您不得在軟體中進行任何商業行為，例如廣告推銷、銷售商品。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;4.3 您瞭解並同意以下約束：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;4.3.1.隱秀將確定使用者是否涉嫌違反上述使用規範，且根據確定之結果暫停或終止授予您使用軟體的權利，或採取其他依據本協議而實施之限制性措施；&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;4.3.2.隱秀將直接刪除使用者使用授權軟體期間所發表之任何疑有不合法、侵害他人合法權利或違反本協議的資訊；&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;4.3.3.若您違反上述使用規範，且因此造成第三方損害，其責任須單獨歸您名下，免於隱秀承擔當中引起的任何損失或費用；&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;4.3.4.對於使用者因違反相關法律或本協議所造成之所有損害、第三方索賠、行政罰鍰、損害和／或費用 (包括隱秀產生或承受之合理律師費、調查及收集證據費用)，應由使用者賠償，並使隱秀免受其損害。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;5.隱私權政策和個人資料保護&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;5.1.隱秀對於保護您的個人資料非常重視。為提供軟體功能以及改善使用者經驗，隱秀將會收集以下類型的資料：&lt;/p&gt;
+&lt;p&gt;&lt;a &gt;&lt;/a&gt;&lt;strong&gt;5.1.&lt;/strong&gt;&lt;a
+        &gt;&lt;/a&gt;&lt;strong&gt;您提供給我們或上傳的資料：&lt;/strong&gt;我們可能會收集您提供給我們個人資料。例如，&lt;a &gt;&lt;/a&gt;您的性別、身高、體重、步數資料、手錶設定（如鬧鐘設定、震動設定、裝置名稱、時區、來電提示中的聯絡姓名)
+        以及您透過小米雲端共用的意見反應。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;5.2.可能由我們指派給您的特定資料&lt;/strong&gt;：我們可能會收集和使用如您的小米帳號 ID 等資訊。&lt;/p&gt;
+&lt;p&gt;5.2.我們依據本公司的「隱私權政策」收集、使用並保護您的資料。隱私權政策提供於以下網站  www.insolife.com 。&lt;/p&gt;
+&lt;p&gt;5.3.&lt;strong&gt;我們可能隨時與小米分享小米/米家/米兔品牌和服務相關資料，以便小米及小米生態鏈提供並提升更令人興奮的產品和服務 (包括軟硬體)，並提供更好的功能與使用者體驗。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;6.服務風險與免責聲明&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;6.1.使用者必須購買網路連線所需裝置及行動終端裝置電信加值服務功能，並承擔其通訊費用、資訊費用和個人行動裝置上網或第三方 (包括但不限於電信通訊和行動通訊提供商)
+        收取的相關費用。若需要使用任何電信加值服務，建議您先向所屬的電信加值服務提供商確認費用。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;6.2.隱秀及其合作夥伴均不負擔任何使用者出於可歸屬第三方之理由所遭受的任何損失責任，諸如：通訊線路中斷、技術問題、網路或行動終端裝置無法使用、系統不穩定和其他各種不可抗力之因素問題。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;6.3.一如多數其他網路軟體，本軟體可能受以下因素影響，包括但不限於：使用者因素、網路服務品質、社會環境差異等，且可能受各種安全問題相關侵擾
+        (例如他人利用使用者資料)，因而造成現實生活之侵擾；使用者下載和安裝的其他軟體，或使用者造訪的其他網站含有「特洛伊木馬程式」和其他病毒，威脅使用者終端裝置資訊和資料之安全，進而影響本軟體的正常使用。使用者應加強認識資訊安全和使用者資料保護，並注意密碼保護的強度，以避免損失和侵擾。&lt;/strong&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;6.4.使用者使用本軟體或請求隱秀提供特定服務時，本軟體得調用第三方系統或軟體以支援使用者使用或存取。使用或存取之結果將由第三方提供。隱秀不保證透過上述系統或軟體支援所達到之結果的安全性、正確性和有效性，亦不承擔任何其他不確定風險；若當中導致任何紛爭或損害，隱秀概不承擔任何責任。&lt;/strong&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;6.5. 隱秀特別要求使用者注意，為保護公司的業務發展及調整自主權，隱秀有權在不通知使用者的情況下，隨時修改或暫停服務，且無須對使用者或任何第三方負責。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;6.6.除法律和法規明確規範外，我們將盡最大努力確保本軟體及所涉科技與資訊安全、有效、正確且可信賴；但使用者瞭解，受現有科技之影響，隱秀亦無法保證達到上述條件。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;6.7.使用者完全自行負責任何人身傷害或附帶性或者衍生性損害，包括但不限於利益損失、資料損失、業務中斷或其他出於或與下列相關的商業性損害：(1) 使用或是未能使用授權軟體；(2)
+        第三方未經授權使用軟體或修改使用者資料；(3) 使用者在使用軟體過程中產生的費用與損失；(4) 軟體使用者的誤解；(5) 與軟體有關但原因不在於隱秀的其他損失。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;6.8.若因為使用者和其他軟體使用者透過任何軟體所做行為，或因為使用者遭誤導或欺騙，已造成或可能造成任何個人或經濟性損害或損失，則當中引起的所有責任應由過失之一方承擔。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;7.智慧財產權聲明&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;7.1.隱秀為本軟體之智慧財產權持有者。著作權、商標、專利、商業秘密等本軟體有關之所有智慧財產權，以及本軟體相關所有資訊 (包括但不限於文字、照片、音訊、影片、圖像、介面設計、版面設計、資料或電子文件等)
+        均由當地法律和法規以及相應國際條約所保護。隱秀擁有除了小米/米家/米兔商標以外的上述智慧財產權。&lt;/p&gt;
+&lt;p&gt;7.2 未事先取得隱秀書面同意，使用者不應為了任何商業性或非商業性目的自行使用或轉讓任何上述智慧財產權，或准許任何第三方進行此行為。隱秀保留對此類行為追究法律責任之權利。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;8.條款修訂&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;8.1.隱秀保留隨時酌情修改本協議之權利，並且將及時於相關網頁公佈任何此類條款之修訂。若您不同意任何修訂內容，可主動取消本服務。若您繼續使用本服務，即視為您接受本協議之修訂。 &lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;8.2.隱秀或合作夥伴對於所提供之付費服務、收費標準、收費模式、服務費用或服務條款保留隨時酌情修改或變更的權利。隱秀在提供服務下得即時或於未來開始向部分使用者收取某些費用。若使用者拒絕付費，使用者將無法於收費開始後持續使用相關服務。&lt;/strong&gt;隱秀與合作夥伴將盡最大努力以電子郵件或其他方式，通知使用者任何協議的修訂或變更。
+&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;9.適用法律和紛爭解決&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;9.1.本協議之效力由中華人民共和國內地法律管轄並從其解釋。若無相關法律條款，得參照國際貿易慣例和/或商業慣例。&lt;/p&gt;
+&lt;p&gt;9.2.本協議於深圳南山區簽署。 &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;9.3.使用者和隱秀均同意，任何本服務引起之紛爭，應先透過雙方當事人協商調解。若無法透過此類協商解決，協議任一方當事人得將紛爭呈交至本協議簽署地管轄法院。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;10.雜項條款&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;10.1.本軟體的任何特定服務，可能有個別協議及相關業務條例等規範 (以下統稱「個別協議」)，因此再使用此類特定服務前，請先詳讀並同意相關的個別協議。&lt;/p&gt;
+&lt;p&gt;10.2.本協議於 2018 年 1 月 10 日起生效。&lt;/p&gt;
+&lt;p&gt;10.3.本協議中的所有條款標題，僅供參照方便之用，解釋本協議時應忽略此類標題。&lt;/p&gt;
+&lt;p&gt;10.4.無論出於任何因素，若本協議中任何條款發生無效或無法執行，則協議其餘的條款仍應維持約束雙方當事人的完整效力。&lt;/p&gt;
+&lt;p&gt;隱秀&lt;/p&gt;
+    </string>
+    <string name="inshow_privacy">&lt;p id="privacy_tw"&gt;隱私權政策&lt;/p&gt;
+&lt;p&gt;更新！&lt;/p&gt;
+&lt;p&gt;我們的隱私權政策已於 2018 年 7 月 26 日更新。本隱私權政策已前後更新修訂，自即日起，此隱私權政策將可提供關於我們如何針對由隱秀提供的米家石英錶軟體和服務，管理您個人資訊的隱私權細節。&lt;/p&gt;
+&lt;p&gt;請花一點時間熟悉我們的隱私權做法，如有任何疑問，請與我們聯絡。&lt;/p&gt;
+&lt;p&gt;我們的承諾&lt;/p&gt;
+&lt;p&gt;本隱私政策規定了深圳市隱秀科技有限公司如何收集、使用、披露、處理和保護您在使用 www.insolife.com
+        中的產品和服務以及由我們提供的米家石英錶應用程式時提供給我們的資訊。若我們要求您提供某些資訊以便在您使用米家石英錶軟體與服務時能辨識您的身分，該資訊將僅依照本隱私權政策和／或我們的使用者條款與條件加以使用。&lt;/p&gt;
+&lt;p&gt;我們制定隱私權政策時謹記為您服務的宗旨，請您務必全面瞭解我們的個人資訊收集和使用做法，並請確信您將可控制提供予隱秀的任何個人資訊。&lt;/p&gt;
+&lt;p&gt;在本隱私權政策中，「個人資訊」係指可用於識別個人身分的資訊，無論是單獨從該資訊，或將該資訊與隱秀可存取有關該個人的其他資訊相結合進行識別。此類個人資訊可能包括您的姓名、地址、電話號碼以及電子郵件地址。&lt;/p&gt;
+&lt;p&gt;
+    您若使用米家石英錶軟體與服務，即視為您已閱讀、瞭解且接受此隱私權政策載列的所有條款，包括任何我們隨時可能有的條款變更。我們承諾遵守包括您當地資料保護法的相關法律，以保護您個人資訊的隱私權、機密及安全。我們同樣承諾確保所有員工和代理商堅守這些保護隱私權的責任。&lt;/p&gt;
+&lt;p&gt;最終我們希望所有使用者都獲得最好的服務體驗。倘若您對本隱私權政策中所述的資料處理做法有任何疑慮，請與我們的資料保護主管聯絡以解決您的特定問題，電子郵件為
+        privacy@inshowlife.com。我們會很樂意直接為您解答與處理。&lt;/p&gt;
+&lt;p&gt;收集哪些資訊以及如何使用該資訊？&lt;/p&gt;
+&lt;p&gt;收集的資訊類型&lt;/p&gt;
+&lt;p&gt;為了向您提供我們的服務，我們會要求您提供一些必要的個人資訊。倘若您未提供個人資訊，我們可能無法為您提供本公司的產品或服務。&lt;/p&gt;
+&lt;p&gt;我們可能收集以下資訊類型 (可能是，也可能不是個人資訊)：&lt;/p&gt;
+&lt;p&gt;您提供給我們或上傳的資訊：我們可能會收集您提供給我們個人資訊。例如，&lt;a id="_Hlk503373599"&gt;&lt;/a&gt;您的小米帳號、性別、身高、體重、步數資料。 &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;由我們指定的與您相關的資訊&lt;/strong&gt;：我們可能會收集和使用您的手錶設定（如鬧鐘設定、震動設定、裝置名稱、時區、來電提醒中的聯絡姓名)。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;其他資&lt;/strong&gt;訊：透過小米雲端共用的意見反應。&lt;/p&gt;
+&lt;p&gt;如何使用個人資訊&lt;/p&gt;
+&lt;p&gt;個人資訊收集的目的，在於提供您服務和/或產品，以及履行我們遵守相關法律的規定。在此您同意我們處理您的個人資訊，並揭露該等資訊給我們的相關企業 (包含通訊、社群媒體、科技與雲端公司) 以及第三方服務提供商
+        (如下定義)，其用途如本隱私權政策所載。&lt;/p&gt;
+&lt;p&gt;我們可能使用您的個人資訊作為以下用途：&lt;/p&gt;
+&lt;p&gt;• 為您提供、處理、維護、改進和開發我們的產品及/或服務，包括售後服務和客戶支援，以及在您的裝置上或透過我們的網站所提供的服務。&lt;/p&gt;
+&lt;p&gt;• 進行有關您的裝置、服務或任何一般問題的溝通，例如更新、客戶疑問支援、我們的活動資訊和通知。&lt;/p&gt;
+&lt;p&gt;以下更多詳情說明我們如何使用您的資訊 (當中可能包含個人資訊)： &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;當您切換不同的行動裝置時同步您的資料（小米帳號、步數資料、鬧鐘設定、震動設定、裝置名稱、時區、來電提醒中的聯絡姓名）&lt;/li&gt;
+&lt;li&gt;收集您的性別、身高和體重，使活動資料（卡路里消耗和里程數）更準確&lt;/li&gt;
+&lt;li&gt;收集意見反應以改善本產品的使用者體驗。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;直效行銷&lt;/p&gt;
+&lt;p&gt;我們可能使用您的姓名、電話和電子郵件地址、米家帳號 ID 和 IMEI
+        號碼以提供您隱秀及業務夥伴產品和服務相關的行銷素材，包括網路、行動應用程式及雲端產品和服務。我們僅會在依當地資料保護法取得您的同意或表示不反對的情況下才會進行這些使用，這可能包含提供另外的明確同意。您有權選擇不接受我們使用您個人資訊做為直效行銷使用的建議。若您不想再收到某部分類型的行銷電子郵件，您可點選每封郵件底下的退訂連結或者傳送電郵至
+        privacy@inshowlife.com，取消收到這類郵件。我們不會將您的個人資訊轉給我們的業務夥伴進行直效行銷。&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;Cookie 和其他技術 (僅限於瀏覽 WWW.INSOLIFE.COM 時)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;收集哪些資訊以及如何使用這些資訊？隱秀和我們的第三方服務提供商使用諸如 Cookie、標記和 Script
+        等技術。這些技術用於分析趨勢、管理網站、追蹤使用者在網站上的行動，並收集我們整體用戶群的人口資訊。我們可能透過這些公司使用此等技術，依據個別及總用戶資料取得相關報告。
+&lt;/li&gt;
+&lt;li&gt;記錄檔：如同多數網站，我們收集某些資訊並且儲存於記錄檔中。此資訊可能包括網際網路協定 (IP) 位址、瀏覽器類型、網際網路服務供應商
+        (ISP)、參照/退出網頁位址、作業系統、日期/時間戳記和/或點擊流資料。我們不會將此類自動收集資料與我們對您收集的其他資訊進行連結。
+&lt;/li&gt;
+&lt;li&gt;廣告：我們與第三方服務提供商合作，在我們的網站顯示廣告，或者在其他網站管理我們的廣告。我們的第三方服務提供商可能使用 Cookie
+        等技術取得您在此網站和其他網站上的活動資訊，以根據您的瀏覽活動和興趣向您提供廣告。若您不希望此資訊用來針對您的興趣提供相關廣告，您可點選此處選擇取消。
+&lt;/li&gt;
+&lt;li&gt;
+        行動分析：我們在某些行動應用程式中使用行動分析軟體，以便更瞭解我們的行動軟體在用戶手機上的功能狀況。此軟體可能記錄您多久使用應用程式、應用程式中發生的事件、使用總數、效能資料和應用程式發生異常終止的問題等資訊。我們並不會將分析軟體內所存的資訊，與您在行動應用程式中提交的個人資訊進行連結。
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;我們與誰共享您的資訊？&lt;/p&gt;
+&lt;p&gt;我們不會銷售任何個人資訊給第三方。&lt;/p&gt;
+&lt;p&gt;我們可能不時揭露您的個人資訊給第三方 (如下所述)，以提供您要求的產品或服務。&lt;/p&gt;
+&lt;p&gt;
+    我們可能會向本節下文列出的第三方服務提供商和相關企業進行揭露。在本節所述的每種情況下，您可確信隱秀僅會在您的同意之下分享您的個人資訊。您應瞭解，當隱秀在本節所述的任何情況下與第三方服務提供商分享您的個人資訊時，隱秀將會與第三方簽訂合約，規定其必須遵守相關的慣例和義務，以符合本地資料保護法律的要求。隱秀會以合約方式確保任何第三方服務提供商遵守他們在您所在司法管轄區中適用的隱私標準。&lt;/p&gt;
+&lt;p&gt;與集團和第三方服務提供商分享&lt;/p&gt;
+&lt;p&gt;為了業務營運順暢，以全力提供您產品與服務，我們可能不時向其他隱秀相關企業 (包含通訊、社群媒體、科技與雲端公司)
+        或郵寄公司、快遞服務供應商、電信通訊公司、資料中心、資料儲存裝置、客戶服務提供商、廣告和行銷服務提供商及隱秀代理商等第三方揭露您的個人資訊。此類第三方服務提供商會代表隱秀，或因上述一個或多個目的而處理您的個人資訊。倘若您不再希望我們分享此資訊，請透過
+        privacy@inshowlife.com 與我們聯絡。&lt;/p&gt;
+&lt;p&gt;與集團生態系統內的公司分享&lt;/p&gt;
+&lt;p&gt;
+    小米與多家企業共同組成一家卓越的集團，形成所謂的米家生態系統。米家生態系統的公司為小米投資與發展的獨立實體，是各領域中的專門企業。隱秀可能向小米或其他米家生態系統公司揭露您的個人資訊，以便從小米生態系統提供並提升給您更令人興奮的產品與服務
+            (硬體與軟體均有)。其中某些產品和服務將仍屬&lt;strong&gt;小米/米家/米兔品牌&lt;/strong&gt;，其他部分則採用他們自己的品牌。隱秀將會採取適當的組織與技術措施以確保資訊分享過程中個人資訊的安全，包括但不限於個人資訊的加密。倘若隱秀涉及合併、收購或出售我們的全部或部分資產，針對所有權變更、您的個人資訊使用及您可能對於個人資訊所擁有之選擇等情事，我們將透過電子郵件和/或在網站上張貼顯著通知以進行告知。
+&lt;/p&gt;
+&lt;p&gt;與他人共享&lt;/p&gt;
+&lt;p&gt;隱秀可能在適用法律的規定下，不經您盡依不同意即揭露您的個人資訊。&lt;/p&gt;
+&lt;p&gt;不需經過同意的資訊&lt;/p&gt;
+&lt;p&gt;我們可能會出於商業目的，以彙整形式與第三方共享匿名資訊和統計資料，例如我們可能會與網站上的廣告客戶共享關於我們服務的一般使用趨勢，如在某些人口群體中購買特定產品或進行特定交易的客戶數量。&lt;/p&gt;
+&lt;p&gt;
+    為免疑慮，若當地資料保護法允許，隱秀可能在未經您的同意下，僅於法律明確許可範圍內收集、使用或揭露您的個人資訊。此類揭露可能是由於下列情況之必要性而產生：保護我們的權利、確保您和其他人的安全，以及遵守當地政府的要求，以利對非法活動進行的調查。&lt;/p&gt;
+&lt;p&gt;安全保障&lt;/p&gt;
+&lt;p&gt;隱秀的安全措施&lt;/p&gt;
+&lt;p&gt;我們承諾確保您個人資訊的安全。為了防止未經授權的存取、揭露或其他類似風險，我們採取合理的實體、電子和管理程式，來維護和保障我們從您使用隱秀產品與服務中以及在隱秀網站上所收集的資訊。我們將盡所有合理努力來保護您的個人資訊。&lt;/p&gt;
+&lt;p&gt;例如：當您存取小米帳號時，可選擇更高安全性的兩階段驗證程序。當您將資料從隱秀裝置傳送或接收至我們的伺服器時，我們確保這些資料會使用安全通訊端層（以下稱「SSL」）和其他演算法進行加密。&lt;/p&gt;
+&lt;p&gt;
+    您所有的個人資訊均儲存在由受控制設施保護的安全伺服器中。我們會根據重要性和敏感度對您的資料進行分類，並確保您的個人資訊具有最高的安全等級。若我們的員工和第三方服務提供商需存取資訊以協助為您提供產品和服務，我們確保其受到嚴格的合約保密義務規範，倘若其未履行此類義務，可能會受到紀律處分或終止聘雇。我們針對雲端資料儲存亦設有特殊的存取控制措施。總而言之，我們會定期檢討資訊收集、儲存及處理做法，包括實體安全措施，以防止任何未經授權的存取和使用。&lt;/p&gt;
+&lt;p&gt;我們將採取所有可行手段來保護您的個人資訊。但您應瞭解，使用網際網路並非絕對安全，因此我們無法保證透過網際網路由您轉移或轉移予您的任何個人資訊之安全性或完整性。&lt;/p&gt;
+&lt;p&gt;您可採取的行動&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;您不應向任何人洩露您的登入密碼或帳號資訊，除非其已獲得您的恰當授權，以確實保護您的個人資訊。無論何時在隱秀網站上以隱秀帳號使用者身分登入 (特別是在其他人的電腦或公共網際網路終端機上)，請務必在工作階段結束時登出。&lt;/li&gt;
+&lt;li&gt;倘若因您未能將個人資訊妥善保密，導致第三方存取您的個人資訊從而造成的安全漏洞，隱秀概不負責。儘管有上述規定，若有任何其他網際網路使用者未經授權使用您的帳號，或出現任何其他違反安全措施的情況，您仍須立即通知我們。&lt;/li&gt;
+&lt;li&gt;您的協助將有助於我們保護您個人資訊的隱私權。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;留存政策&lt;/p&gt;
+&lt;p&gt;只要履行收集個人資訊之目的所需，或根據適用法律的要求或允許，我們將會留存相關的個人資訊。我們一旦合理認為收集個人資訊之目的不必再經由留存個人資訊來履行
+        (包括不再需要個人資訊來解決法律糾紛、執行協議或達成業務目標等情況)，我們即會停止留存個人資訊，或取消可將個人資訊與特定個人相關聯的方式。&lt;/p&gt;
+&lt;p&gt;當您將裝置硬重設時，該裝置上的所有個人資訊（除了該裝置上顯示的當前時間和當前步數以外）將被清除。如要使用硬重設功能，您可以在米家應用程式中撤銷同意，然後按住手錶按鈕 12 秒以重設手錶。（注意：手錶將不會停止運作。）
+        請注意硬重設無法復原，因此您必須確認您已不再需要這些資訊。&lt;/p&gt;
+&lt;p&gt;在您的裝置上存取其他功能&lt;/p&gt;
+&lt;p&gt;我們的應用程式或需要使用您裝置的部分功能，如 Wi-Fi 網路狀態。該等資料將用於允許應用程式在您的裝置上執行，並允許您與應用程式互動。您隨時可在裝置層級關閉這些權限，或透過 privacy@inshowlife.com
+    與我們聯絡來撤銷您的權限。&lt;/p&gt;
+&lt;p&gt;您可充分掌控自己的資訊！&lt;/p&gt;
+&lt;p&gt;控制設定&lt;/p&gt;
+&lt;p&gt;隱秀瞭解每個人對於隱私權的在意程度各有不同。因此，我們提供了一些範例來說明隱秀提供的方式，您可選擇用於限制個人資訊的收集、使用、揭露或處理，並可控制您的隱私權設定：如登入或登出小米帳號。 &lt;/p&gt;
+&lt;p&gt;倘若您之前已同意我們使用您的個人資訊，您可隨時以書面方式或將電子郵件寄至 privacy@inshowlife.com 改變決定。&lt;/p&gt;
+&lt;p&gt;存取、更新、修正或消除您的個人資訊&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+        您有權要求存取和/或更正我們所持有的有關您的任何其他個人資訊。當您更新個人資訊時，系統會要求驗證您的身分，完成後我們才會繼續處理您的請求。一旦我們獲得足夠的資訊，可以允許您存取或更正個人資訊，我們將在適用資料保護法所規定的任何時間範圍內持續回應您的請求。
+&lt;/li&gt;
+&lt;li&gt;我們通常會免費提供此類服務，但仍保留為您的資料存取請求收取合理費用的權利。&lt;/li&gt;
+&lt;li&gt;
+        倘若您要存取我們持有的有關您的個人資訊，或您認為我們持有的有關您的任何資訊不正確或不完整，或您認為我們持有的有關您的任何資訊不適當或過度，請盡速以書面方式通知我們，或將電子郵件寄至以下電子郵件地址。電郵地址：privacy@inshowlife.com
+&lt;/li&gt;
+&lt;li&gt;如需有關您小米帳號中個人資訊的詳情，請造訪 http://account.mi.com 或在裝置上登入帳號，您亦可於此進行存取和變更。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;撤銷同意&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;針對我們擁有或控制的個人資訊，您可提交請求以撤銷對該類資訊收集、使用和/或揭露的同意。可以在米家應用程式的「一般設定」功能表中按下「使用者協議和隱私政權策」者傳送電郵至 privacy@inshowlife.com
+        來進行。我們將於您提出請求後的合理時間內對其進行處理，然後根據您的要求不再收集、使用和/或揭露您的個人資訊。
+&lt;/li&gt;
+&lt;li&gt;請注意，撤銷同意可能會導致某些法律後果。根據您對於同意我們處理您個人資訊的撤銷程度，撤銷後您可能無法繼續享用隱秀軟體和服務。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;將個人資訊轉移至您的司法管轄區外&lt;/p&gt;
+&lt;p&gt;倘若我們可能需要將個人資訊轉移至您的司法管轄區外，無論是轉移至我們的相關企業 (包含通訊、社群媒體、科技與雲端公司)
+        或第三方服務提供商，我們均會遵照適用的法律行事。尤其是，我們將透過適當的保護措施，確保所有轉移行為均符合適用的當地資料保護法律要求。&lt;/p&gt;
+&lt;p&gt;
+    隱秀可能會使用由隱秀所營運和控制的海外設施來處理或備份您的個人資訊。目前，隱秀在北京和新加坡等地均設有資料中心。這些海外司法管轄區不一定具備與您所在司法管轄區基本相似的資料保護法律。我們可能會將您的個人資訊轉移至我們的海外設施並儲存。但是，這並不會改變我們依據本隱私權政策保護您的個人資訊的任何承諾。&lt;/p&gt;
+&lt;p&gt;其他&lt;/p&gt;
+&lt;p&gt;未成年人&lt;/p&gt;
+&lt;p&gt;我們認為父母有責任監督孩子使用我們的產品和服務。不過，我們的政策不會要求未成年人提供個人資訊，也不會提議向此類人員傳送任何促銷資料。&lt;/p&gt;
+&lt;p&gt;隱秀並不會向未成年人尋求或意圖尋求取得任何個人資訊。倘若家長或監護人有理由相信在其未事先同意的情況下，未成年人將個人資訊提供給隱秀，則請與我們聯絡，以確保移除該個人資訊，且將該未成年人取消訂閱任何適用的隱秀服務。&lt;/p&gt;
+&lt;p&gt;條款優先順序&lt;/p&gt;
+&lt;p&gt;若您已同意我們適用的使用者協議，如使用者協議與本隱私權政策不一致，則應以此類使用者協議為準。&lt;/p&gt;
+&lt;p&gt;隱私權政策更新&lt;/p&gt;
+&lt;p&gt;我們會定期審查隱私權政策，並可能更新本隱私權政策，以反映我們在資訊保護方面做法的變動之處。如果我們針對隱私權政策進行了重大變更，將會透過電子郵件通知您
+        (傳送至您帳號中指定的電子郵件地址)，或是在所有隱秀網站上或透過我們的行動裝置發布變更內容，以便您瞭解我們所收集的資訊及其使用方式。此類隱私權政策的變更將自通知或網頁上規定的生效日期起實施。我們鼓勵您定期檢視本頁面，以瞭解關於我們隱私權做法的最新資訊。若您繼續在網站、手機和/或任何其他裝置上使用產品和服務，即視為接受更新後的隱私權政策。如果我們要向您收集更多的個人資訊，或希望針對新目的使用或揭露您的個人資訊，我們將會先徵求您的同意。&lt;/p&gt;
+&lt;p&gt;我是否必須同意任何第三方條款和條件？&lt;/p&gt;
+&lt;p&gt;
+    我們的隱私權政策不適用於第三方提供的產品和服務。隱秀產品和服務可能包含第三方產品、服務以及到第三方網站的連結。當您使用此類產品或服務時，第三方亦可能會收集您的資訊。因此，我們強烈建議您花時間詳閱第三方的隱私權政策，就像您閱讀我們的隱私權政策一樣。我們對於第三方如何使用其向您收集的個人資訊概不負責，亦無法控制。我們的隱私權政策並不適用於從我們服務連結的其他網站。&lt;/p&gt;
+&lt;p&gt;社群媒體 (功能) 和小工具&lt;/p&gt;
+&lt;p&gt;我們的網站包括一些社群媒體功能，如 Facebook 的「讚」(Like) 按鈕，以及各種小工具，如「分享」(Share this) 按鈕或是在我們網站上執行的互動式小程式。這些功能可能會收集您的 IP
+        地址及您在我們網站上所造訪的頁面，並且可能會設定一個 cookie，以使功能可正常運作。社群媒體功能和小工具會由第三方託管或直接在我們的網站上託管。您與這些功能的互動將受提供該功能之公司的隱私權政策管轄。&lt;/p&gt;
+&lt;p&gt;單一登入&lt;/p&gt;
+&lt;p&gt;根據所在司法管轄區的不同，您也許可使用 Facebook Connect 或 Open ID 提供商等登入服務來登入我們的網站。這些服務將會驗證您的身分，為您提供與我們共享某些個人資訊 (如您的姓名和電子郵件地址)
+        的選項，並預先填寫我們的註冊表單。如 Facebook Connect 等服務可讓您選擇將有關您在此網站上的活動資訊發佈至您的個人資訊頁面，以便與您網路中的其他人分享。&lt;/p&gt;
+&lt;p&gt;聯絡我們&lt;/p&gt;
+&lt;p&gt;若您對此隱私權政策有任何意見或疑問，或是對於隱秀收集、使用或揭露您的個人資訊有任何疑問，請與我們的資料保護主管聯絡，地址如下 (請提及「隱私權政策」)：&lt;/p&gt;
+&lt;p&gt;深圳市隱秀科技有限公司&lt;/p&gt;
+&lt;p&gt;深圳市南山區留仙大道崇文花園金琪智谷大廈 &lt;/p&gt;
+&lt;p&gt;1004室&lt;/p&gt;
+&lt;p&gt;電郵地址：privacy@inshowlife.com&lt;/p&gt;
+&lt;p&gt;感謝您撥冗瞭解我們的隱私權政策！&lt;/p&gt;
+
+</string>
+    <string name="on">已開啓</string>
+    <string name="vip_change_ota">來電提醒功能已優化升級，請更新韌體後使用</string>
+    <string name="incoming_tip_top">已開啓\n為確保功能正常，請不要關閉手機藍牙</string>
+    <string name="incoming_center_tip">開啓後，手機來電時手錶會震動提醒\n此功能會加速電量消耗</string>g>
+</resources>

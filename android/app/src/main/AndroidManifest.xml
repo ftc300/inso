@@ -32,6 +32,14 @@
 
         <!--通用activity-->
         <activity android:name="com.inso.watch.baselib.base.CommonAct"/>
+        <activity android:name=".plugin.act.interval.IntervalRemindAct" />
+        <activity android:name=".plugin.alarm.AlarmClockAct" />
+        <activity android:name=".plugin.alarm.ClockOperationAct" />
+        <activity android:name=".plugin.act.vip.InComingPhoneAlertAct" />
+        <activity android:name=".plugin.act.city.WorldTimeAct" />
+        <activity android:name=".plugin.act.city.CitySelectAct" />
+        <activity android:name=".plugin.act.datasheet.DataSheetAct" />
+        <activity android:name=".plugin.act.mainpagelogic.PluginMainAct" />
     </application>
 
 </manifest>

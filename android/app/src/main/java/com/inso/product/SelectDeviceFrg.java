@@ -4,13 +4,17 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+
 import com.inso.R;
+import com.inso.plugin.act.mainpagelogic.PluginMainAct;
 import com.inso.watch.baselib.base.BaseFragment;
 import com.inso.watch.baselib.wigets.recycler.CommonAdapter;
 import com.inso.watch.baselib.wigets.recycler.base.ViewHolder;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
 import butterknife.BindView;
 
 /**
@@ -45,8 +49,26 @@ public class SelectDeviceFrg extends BaseFragment {
         mRecyclerView.addItemDecoration(new DividerItemDecoration(mActivity, DividerItemDecoration.VERTICAL));
         mRecyclerView.setAdapter(new CommonAdapter<String>(mActivity,R.layout.select_device_item,data) {
             @Override
-            protected void convert(ViewHolder holder, String arg_s, int position) {
+            protected void convert(ViewHolder holder, String arg_s, final int position) {
                 holder.setText(R.id.tvContent, arg_s);
+                holder.setOnClickListener(R.id.ll_item, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+//                        if(position==0) {
+//                            switchTo(IntervalRemindAct.class);
+//                        }
+//                        if(position==1) {
+//                            switchToWithEventBus(AlarmClockAct.class);
+//                        }
+//                        if(position==2) {
+//                            switchTo(com.ic_launcher.plugin.act.vip.InComingPhoneAlertAct.class);
+//                        }
+//                        if(position==3) {
+//                            switchTo(com.ic_launcher.plugin.act.city.WorldTimeAct.class);
+//                        }
+                        switchTo(PluginMainAct.class);
+                    }
+                });
             }
         });
     }

@@ -1,0 +1,20 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    <com.inshow.watch.android.view.DragLayout
+        android:id="@+id/dragLayout"
+        android:layout_width="match_parent"
+        android:background="@color/primaryColor_unable"
+        android:layout_height="0dp"
+        android:layout_weight="1" >
+        <FrameLayout
+            android:id="@+id/firstF"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <FrameLayout
+            android:id="@+id/secondF"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </com.inshow.watch.android.view.DragLayout>
+</LinearLayout>

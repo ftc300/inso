@@ -96,7 +96,7 @@ def enableProguardInReleaseBuilds = false
 android {
     compileSdkVersion androidConfig.compileSdkVersion
     defaultConfig {
-        applicationId "com.inso"
+        applicationId "com.ic_launcher"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

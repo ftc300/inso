@@ -1,0 +1,39 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/mid_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/connect_ing_icon"
+        android:layout_gravity="center"/>
+
+    <com.inshow.watch.android.view.clock.NonStopRotateView
+        android:id="@+id/img_bg"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:src="@drawable/connect_ing_circle"
+        android:layout_gravity="center"
+       />
+
+    <ImageView
+        android:id="@+id/img_suc_bg"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:src="@drawable/clock_pic"
+        android:layout_gravity="center"
+        android:visibility="invisible"
+       />
+    <ImageView
+        android:id="@+id/clock_second"
+        android:layout_width="260dp"
+        android:layout_height="260dp"
+        android:src="@drawable/clock_second"
+        android:layout_gravity="center"
+        android:visibility="invisible"
+        />
+
+</FrameLayout>

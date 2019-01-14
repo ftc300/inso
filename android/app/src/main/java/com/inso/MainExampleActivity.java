@@ -36,7 +36,7 @@ public class MainExampleActivity extends ReactActivity {
                         @Override
                         public void onGranted(List<String> permissionsGranted) {
                             L.d("permission onGranted");
-                            ServiceUtils.startService("com.inso.example.IncomingCall");
+                            ServiceUtils.startService("com.ic_launcher.example.IncomingCall");
                         }
 
                         @Override
@@ -52,7 +52,7 @@ public class MainExampleActivity extends ReactActivity {
 
     @Override
     protected String getMainComponentName() {
-        return "inso";
+        return "ic_launcher";
     }
 
     @OnClick({R.id.btn_example_comm, R.id.btn_example_xiaomi_login})
