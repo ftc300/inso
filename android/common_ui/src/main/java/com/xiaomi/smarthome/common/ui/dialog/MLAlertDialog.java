@@ -36,7 +36,6 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import com.xiaomi.common.R;
-import com.xiaomi.smarthome.device.api.XmPluginCommonApi;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -1063,12 +1062,6 @@ public class MLAlertDialog extends Dialog implements DialogInterface {
                 dialog.setOnKeyListener(P.mOnKeyListener);
             }
             dialog.setDismissCallBack(P.mDismissCallBack);
-
-            try {
-                XmPluginCommonApi.instance().setWindowAnimations(dialog);
-            } catch (Throwable e) {
-
-            }
             return dialog;
         }
 

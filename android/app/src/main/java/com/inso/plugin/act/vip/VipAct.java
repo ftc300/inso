@@ -12,6 +12,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.inso.R;
+import com.inso.core.XmBluetoothManager;
 import com.inso.plugin.adapter.VipListAdp;
 import com.inso.plugin.basic.BasicListAct;
 import com.inso.plugin.event.ChangeUI;
@@ -25,10 +26,15 @@ import com.xiaomi.smarthome.common.ui.dialog.MLAlertDialog;
 
 import org.greenrobot.eventbus.EventBus;
 
+import java.nio.charset.Charset;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import static com.inso.plugin.event.ChangeUI.RENDER_AGAIN;
+import static com.inso.plugin.manager.BleManager.setVip;
+import static com.inso.plugin.tools.Constants.GattUUIDConstant.CHARACTERISTIC_VIP;
+import static com.inso.plugin.tools.Constants.GattUUIDConstant.IN_SHOW_SERVICE;
 import static com.inso.plugin.tools.Constants.TimeStamp.VIP_KEY;
 
 /**
@@ -130,12 +136,7 @@ public class VipAct extends BasicListAct implements View.OnClickListener {
         needPush = true;
         VipEntity entity = adp.getItem(position);
         mDBHelper.updateVip(new VipEntity(entity.contactId, entity.id, entity.number, entity.name, isChecked));
-//        XmBluetoothManager.getInstance().write(MAC, UUID.fromString(IN_SHOW_SERVICE), UUID.fromString(CHARACTERISTIC_VIP), setVip(entity.id, isChecked ? 2 : 1, isChecked ? entity.name.getBytes(Charset.forName("UTF-8")) : new byte[18]), new Response.BleWriteResponse() {
-//            @Override
-//            public void onResponse(int code, Void data) {
-//
-//            }
-//        });
+        XmBluetoothManager.getInstance().write(MAC, UUID.fromString(IN_SHOW_SERVICE), UUID.fromString(CHARACTERISTIC_VIP), setVip(entity.id, isChecked ? 2 : 1, isChecked ? entity.name.getBytes(Charset.forName("UTF-8")) : new byte[18]));
         EventBus.getDefault().post(new ChangeUI(RENDER_AGAIN));
     }
 

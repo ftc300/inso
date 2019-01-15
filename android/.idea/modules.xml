@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/3rdlib/3rdlib.iml" filepath="$PROJECT_DIR$/3rdlib/3rdlib.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/baselib/baselib.iml" filepath="$PROJECT_DIR$/baselib/baselib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/blelib/blelib.iml" filepath="$PROJECT_DIR$/blelib/blelib.iml" />
       <module fileurl="file://$PROJECT_DIR$/common_ui/common_ui.iml" filepath="$PROJECT_DIR$/common_ui/common_ui.iml" />
       <module fileurl="file://$PROJECT_DIR$/commonlib/commonlib.iml" filepath="$PROJECT_DIR$/commonlib/commonlib.iml" />
       <module fileurl="file://$PROJECT_DIR$/inso.iml" filepath="$PROJECT_DIR$/inso.iml" />

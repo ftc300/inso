@@ -6,7 +6,10 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <application
         android:name=".App"
         android:allowBackup="false"
@@ -23,6 +26,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <service android:name="com.inuker.bluetooth.library.BluetoothService" />
         <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
         <activity android:name=".example.Hybrid.NativeAct" />
         <activity android:name=".example.Login.XiaoMiSampleAct" />
@@ -32,9 +36,10 @@
 
         <!--通用activity-->
         <activity android:name="com.inso.watch.baselib.base.CommonAct"/>
+        <!--plug activity-->
         <activity android:name=".plugin.act.interval.IntervalRemindAct" />
-        <activity android:name=".plugin.alarm.AlarmClockAct" />
-        <activity android:name=".plugin.alarm.ClockOperationAct" />
+        <activity android:name=".plugin.act.alarm.AlarmClockAct" />
+        <activity android:name=".plugin.act.alarm.ClockOperationAct" />
         <activity android:name=".plugin.act.vip.InComingPhoneAlertAct" />
         <activity android:name=".plugin.act.city.WorldTimeAct" />
         <activity android:name=".plugin.act.city.CitySelectAct" />

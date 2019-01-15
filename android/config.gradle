@@ -3,7 +3,7 @@ ext {
             applicationId    : 'com.inso.watch',
             appName          : 'inso',
             compileSdkVersion: 27,
-            minSdkVersion    : 14,
+            minSdkVersion    : 18,
             targetSdkVersion : 27,
             versionCode      : 1,
             versionName      : '1.0.0'// E.g. 1.9.72 => 1,009,072
@@ -39,7 +39,11 @@ ext {
             reactnative : "com.facebook.react:react-native:+",
             bottom_navigation_bar:"com.ashokvarma.android:bottom-navigation-bar:2.1.0",
             eventbus:'org.greenrobot:eventbus:3.1.1',
-            recyclerview: 'com.android.support:recyclerview-v7:23.4.0'
+            recyclerview: 'com.android.support:recyclerview-v7:23.4.0',
+            statusbarcompat: 'com.githang:status-bar-compat:0.7',
+            tinypinyin: 'com.github.promeg:tinypinyin:1.0.0',
+            permission: 'com.yanzhenjie:permission:2.0.0-rc12',
+            scanner: 'no.nordicsemi.android.support.v18:scanner:1.0.0'
     ]
 
     configAndroidDomain = this.&configAndroidDomain
@@ -50,6 +54,8 @@ ext {
     configPhoneLibDependencies = this.&configPhoneLibDependencies
     config3rdLibDependencies = this.&config3rdLibDependencies
     configBaselibDependencies = this.&configBaselibDependencies
+    configCommonUIDependencies = this.&configCommonUIDependencies
+    confiBleLibDependencies = this.&confiBleLibDependencies
 }
 
 def configAndroidDomain(Project pro) {
@@ -160,6 +166,7 @@ def configAppDependencies(Project pro) {
         implementation project(':3rdlib')
         implementation project(':baselib')
         implementation project(':common_ui')
+        implementation project(':blelib')
         implementation depConfig.support.appcompat_v7
         implementation depConfig.support.design
         implementation depConfig.support.design
@@ -172,8 +179,10 @@ def configAppDependencies(Project pro) {
         implementation depConfig.reactnative
         implementation depConfig.bottom_navigation_bar
         implementation depConfig.eventbus
-        implementation 'com.github.promeg:tinypinyin:1.0.0'
-        implementation 'com.githang:status-bar-compat:0.7'
+        implementation depConfig.statusbarcompat
+        implementation depConfig.tinypinyin
+        implementation depConfig.permission
+        implementation depConfig.scanner
     }
 }
 
@@ -201,6 +210,7 @@ def configBaselibDependencies(Project pro) {
         implementation depConfig.butterknife
         annotationProcessor depConfig.butterknife_annotationProcessor
         implementation project(':commonlib')
+        implementation project(':common_ui')
     }
 }
 
@@ -209,5 +219,13 @@ def configPhoneLibDependencies(Project pro) {
         implementation project(':commonlib')
         compileOnly depConfig.support.appcompat_v7
         compileOnly depConfig.support.design
+    }
+}
+def configCommonUIDependencies(Project pro) {
+    pro.dependencies {
+    }
+}
+def confiBleLibDependencies(Project pro) {
+    pro.dependencies {
     }
 }

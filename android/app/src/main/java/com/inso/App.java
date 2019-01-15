@@ -8,11 +8,16 @@ import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
 import com.inso.example.Hybrid.HybridPackage;
+import com.inuker.bluetooth.library.BluetoothContext;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class App extends Application implements ReactApplication {
+    private static App instance;
+    public static Application getInstance() {
+        return instance;
+    }
     public static HybridPackage hybridPackage =  new HybridPackage();
     private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
         @Override
@@ -42,6 +47,9 @@ public class App extends Application implements ReactApplication {
     @Override
     public void onCreate() {
         super.onCreate();
+        instance = this;
+        BluetoothContext.set(this);
         SoLoader.init(this, /* native exopackage */ false);
+
     }
 }

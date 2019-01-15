@@ -11,13 +11,14 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.inso.R;
+import com.inso.core.XmBluetoothManager;
 import com.inso.plugin.act.city.WorldTimeAct;
 import com.inso.plugin.act.datasheet.DataSheetAct;
 import com.inso.plugin.act.interval.IntervalHelper;
 import com.inso.plugin.act.interval.IntervalRemindAct;
 import com.inso.plugin.act.user.WatchUserInfoHelper;
 import com.inso.plugin.act.vip.InComingPhoneAlertAct;
-import com.inso.plugin.alarm.AlarmClockAct;
+import com.inso.plugin.act.alarm.AlarmClockAct;
 import com.inso.plugin.basic.BasicFragment;
 import com.inso.plugin.dao.AlarmDao;
 import com.inso.plugin.dao.IntervalDao;
@@ -35,17 +36,21 @@ import com.inso.plugin.tools.TimeUtil;
 import com.inso.plugin.view.CustomItem;
 import com.inso.plugin.view.ItemStatus;
 import com.inso.plugin.view.risenum.RiseNumberTextView;
+import com.inuker.bluetooth.library.connect.response.BleNotifyResponse;
 
 import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import static com.inso.plugin.event.ChangeUI.CONNECT_DFU;
 import static com.inso.plugin.event.ChangeUI.RENDER_AGAIN;
 import static com.inso.plugin.event.ChangeUI.SYNC_BIND_RENDER;
 import static com.inso.plugin.manager.BleManager.B2I_getStep;
 import static com.inso.plugin.manager.BleManager.bytesToHexString;
+import static com.inso.plugin.tools.Constants.GattUUIDConstant.CHARACTERISTIC_TODAY_STEP;
+import static com.inso.plugin.tools.Constants.GattUUIDConstant.IN_SHOW_SERVICE;
 import static com.inso.plugin.tools.Constants.OFF;
 import static com.inso.plugin.tools.Constants.ON;
 import static com.inso.plugin.tools.Constants.SystemConstant.EXTRAS_EVENT_BUS;
@@ -336,20 +341,29 @@ public class FragmentBottom extends BasicFragment implements View.OnClickListene
         setOnClickListeners();
         renderByData();
         //通知监听
-//        XmBluetoothManager.getInstance().notify(MAC, UUID.fromString(IN_SHOW_SERVICE), UUID.fromString(CHARACTERISTIC_TODAY_STEP), new Response.BleNotifyResponse() {
-//            @Override
-//            public void onResponse(int code, Void data) {
-//
-//            }
-//        });
-//        L.e("renderSuccess read  CHARACTERISTIC_TODAY_STEP");
-//        XmBluetoothManager.getInstance().read(MAC, UUID.fromString(IN_SHOW_SERVICE), UUID.fromString(CHARACTERISTIC_TODAY_STEP), new Response.BleReadResponse() {
-//            @Override
-//            public void onResponse(int i, byte[] bytes) {
-//                L.e("renderSuccess CHARACTERISTIC_TODAY_STEP:" + bytes);
-//                displayNowStep(false, bytes);
-//            }
-//        });
+        XmBluetoothManager.getInstance().notify(MAC, UUID.fromString(IN_SHOW_SERVICE), UUID.fromString(CHARACTERISTIC_TODAY_STEP), new BleNotifyResponse() {
+            @Override
+            public void onNotify(UUID service, UUID character, byte[] value) {
+                displayNowStep(true, value);
+            }
+
+            @Override
+            public void onResponse(int code) {
+
+            }
+        });
+        L.e("renderSuccess read  CHARACTERISTIC_TODAY_STEP");
+        XmBluetoothManager.getInstance().read(MAC, UUID.fromString(IN_SHOW_SERVICE), UUID.fromString(CHARACTERISTIC_TODAY_STEP), new XmBluetoothManager.IReadOnResponse() {
+            @Override
+            public void onSuccess(byte[] data) {
+                displayNowStep(false, data);
+            }
+
+            @Override
+            public void onFail() {
+
+            }
+        });
     }
 
     @Override

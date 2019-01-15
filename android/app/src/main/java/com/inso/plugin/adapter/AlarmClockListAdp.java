@@ -12,7 +12,7 @@ import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import com.inso.R;
-import com.inso.plugin.alarm.AlarmHelper;
+import com.inso.plugin.act.alarm.AlarmHelper;
 import com.inso.plugin.dao.AlarmDao;
 import com.inso.plugin.provider.DBHelper;
 import com.inso.plugin.tools.TimeUtil;

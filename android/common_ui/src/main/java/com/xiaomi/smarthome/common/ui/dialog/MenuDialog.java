@@ -16,7 +16,6 @@ import android.widget.TextView;
 
 import com.xiaomi.common.R;
 import com.xiaomi.smarthome.common.plug.utils.TitleBarUtil;
-import com.xiaomi.smarthome.device.api.XmPluginCommonApi;
 
 /**
  * Created by livy on 15/10/22.
@@ -55,11 +54,6 @@ public class MenuDialog extends Dialog {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().setGravity(Gravity.TOP);
         TitleBarUtil.enableWhiteTranslucentStatus(getWindow());
-        try {
-            XmPluginCommonApi.instance().setMenuDialogWindowAnimations(getWindow());
-        } catch (Throwable e) {
-        }
-        
         mLayoutInflater = LayoutInflater.from(getContext());
         mRootView = mLayoutInflater.inflate(R.layout.menu_dialog, null);
         getWindow().setContentView(mRootView);

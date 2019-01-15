@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_checked="true" android:drawable="@drawable/mid_sel_solid_border" android:color="@color/watch_tab_sel"/>
-    <item  android:drawable="@drawable/mid_solid_border" android:color="@color/watch_tab_default"/>
-</selector>

@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.inso.plugin.manager.SPManager;
 import com.inso.plugin.provider.DBHelper;
 
 import org.greenrobot.eventbus.EventBus;
@@ -18,6 +19,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static com.inso.plugin.tools.Constants.SystemConstant.EXTRAS_EVENT_BUS;
+import static com.inso.plugin.tools.Constants.SystemConstant.SP_ARG_MAC;
 
 /**
  * Created by chendong on 2017/2/17.
@@ -32,9 +34,6 @@ public class BasicFragment extends Fragment {
     private Bundle arguments;
     protected DBHelper mDBHelper;
     protected String MAC;
-    protected String MODEL;
-    protected String DID;
-    protected String UID;
 
     //直接跳转
     protected  void switchTo(Class<?> to) {
@@ -86,6 +85,7 @@ public class BasicFragment extends Fragment {
         super.onCreate(savedInstanceState);
         mContext = getActivity();
         mDBHelper = new DBHelper(getActivity());
+        MAC = (String) SPManager.get(mContext,SP_ARG_MAC,"");
         if (arguments != null && arguments.getBoolean(EXTRAS_EVENT_BUS, false)) {
             EventBus.getDefault().register(this);
         }

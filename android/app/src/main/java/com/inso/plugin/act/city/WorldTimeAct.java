@@ -13,6 +13,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.inso.R;
+import com.inso.core.XmBluetoothManager;
 import com.inso.plugin.adapter.WorldTimeListAdp;
 import com.inso.plugin.basic.BasicListAct;
 import com.inso.plugin.dao.PreferCitiesDao;
@@ -31,12 +32,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.UUID;
 
 import static com.inso.plugin.event.ChangeUI.RENDER_AGAIN;
-import static com.inso.plugin.tools.Constants.SystemConstant.BJID;
-import static com.inso.plugin.tools.Constants.SystemConstant.HKID;
-import static com.inso.plugin.tools.Constants.SystemConstant.SP_ARG_HAS_DEFAULT_CITY;
-import static com.inso.plugin.tools.Constants.SystemConstant.TBID;
+import static com.inso.plugin.manager.BleManager.I2B_SyncTime;
+import static com.inso.plugin.tools.Constants.GattUUIDConstant.*;
+import static com.inso.plugin.tools.Constants.SystemConstant.*;
 import static com.inso.plugin.tools.Constants.TimeStamp.WORLD_CITY_KEY;
 
 /**
@@ -210,20 +211,18 @@ public class WorldTimeAct extends BasicListAct {
                                                   L.e( " TimeUtil.getNowTimeSeconds(item.zone):" + TimeUtil.getNowTimeSeconds(item.zone) );
                                                   L.e( "TimeUtil.getWatchSysStartTimeSecs() :" +  TimeUtil.getWatchSysStartTimeSecs());
                                                   L.e("TimeUtil.getNowTimeSeconds(item.zone) - TimeUtil.getWatchSysStartTimeSecs() : " + (TimeUtil.getNowTimeSeconds(item.zone) - TimeUtil.getWatchSysStartTimeSecs()));
-//                                                  XmBluetoothManager.getInstance().write(MAC, UUID.fromString(IN_SHOW_SERVICE), UUID.fromString(CHARACTERISTIC_SYNC_CURRENT_TIME), I2B_SyncTime(TimeUtil.getNowTimeSeconds(item.zone) - TimeUtil.getWatchSysStartTimeSecs()), new Response.BleWriteResponse() {
-//                                                      @Override
-//                                                      public void onResponse(int code, Void data) {
-//                                                          imageView.clearAnimation();
-//                                                          imageView.setVisibility(View.GONE);
-//                                                          if (code == XmBluetoothManager.Code.REQUEST_SUCCESS) {
-////                                                                      mDBHelper.updateSelPreferCity((int) adp.getItem(i).id);
-////                                                                      renderListView();
-////                                                                      ToastUtil.showToastNoRepeat(mContext, getString(R.string.time_has_adjusted));
-//                                                          } else {
-////                                                                      ToastUtil.showToastNoRepeat(mContext, getString(R.string.adjust_time_fail));
-//                                                          }
-//                                                      }
-//                                                  });
+                                                  XmBluetoothManager.getInstance().write(MAC, UUID.fromString(IN_SHOW_SERVICE), UUID.fromString(CHARACTERISTIC_SYNC_CURRENT_TIME), I2B_SyncTime(TimeUtil.getNowTimeSeconds(item.zone) - TimeUtil.getWatchSysStartTimeSecs()), new XmBluetoothManager.IWriteResponse() {
+                                                      @Override
+                                                      public void onSuccess() {
+                                                          imageView.clearAnimation();
+
+                                                      }
+
+                                                      @Override
+                                                      public void onFail() {
+
+                                                      }
+                                                  });
                                               } else if (!adp.getItem(i).isDefault && preferPos == DELETE_POS) {
                                                   L.e("adp.getItem(i).isSel " + adp.getItem(i).isSel);
                                                   if (adp.getItem(i).isSel){//删除手表时间时 恢复到北京时间
@@ -252,18 +251,18 @@ public class WorldTimeAct extends BasicListAct {
                                                               return null;
                                                           }
                                                       });
-                                                      //写入北京时间 成功操作数据库
-//                                                      XmBluetoothManager.getInstance().write(MAC, UUID.fromString(IN_SHOW_SERVICE), UUID.fromString(CHARACTERISTIC_SYNC_CURRENT_TIME), I2B_SyncTime( TimeUtil.getNowTimeSeconds()- TimeUtil.getWatchSysStartTimeSecs()), new Response.BleWriteResponse() {
-//                                                          @Override
-//                                                          public void onResponse(int code, Void data) {
-//                                                              if (code == XmBluetoothManager.Code.REQUEST_SUCCESS) {
-////                                                                          ToastUtil.showToastNoRepeat(mContext, getString(R.string.time_has_adjusted));
-//                                                                  deleteAndRender(true, i);
-//                                                              } else {
-////                                                                          ToastUtil.showToastNoRepeat(mContext, getString(R.string.adjust_time_fail));
-//                                                              }
-//                                                          }
-//                                                      });
+//                                                      写入北京时间 成功操作数据库
+                                                      XmBluetoothManager.getInstance().write(MAC, UUID.fromString(IN_SHOW_SERVICE), UUID.fromString(CHARACTERISTIC_SYNC_CURRENT_TIME), I2B_SyncTime(TimeUtil.getNowTimeSeconds() - TimeUtil.getWatchSysStartTimeSecs()), new XmBluetoothManager.IWriteResponse() {
+                                                          @Override
+                                                          public void onSuccess() {
+                                                              ToastUtil.showToastNoRepeat(mContext, getString(R.string.time_has_adjusted));
+                                                          }
+
+                                                          @Override
+                                                          public void onFail() {
+                                                              ToastUtil.showToastNoRepeat(mContext, getString(R.string.adjust_time_fail));
+                                                          }
+                                                      });
                                                   } else {
                                                       deleteAndRender(false, i);
                                                   }

@@ -15,7 +15,7 @@ import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 
 import com.inso.R;
-import com.inso.plugin.alarm.IOnceAlarm;
+import com.inso.plugin.act.alarm.IOnceAlarm;
 import com.inso.plugin.dao.AlarmDao;
 import com.inso.plugin.model.PickVipEntity;
 import com.inso.plugin.provider.DBHelper;

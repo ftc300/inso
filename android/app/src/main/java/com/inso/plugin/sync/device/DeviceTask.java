@@ -125,7 +125,7 @@ public class DeviceTask implements Runnable {
 //                    if (code == XmBluetoothManager.Code.REQUEST_SUCCESS) {
 //                        if (null != utcListener) utcListener.onFinish(); //连接成功就更新页面
                         //notify is android device
-//                        int[] i = BleManager.getControl(bytes);
+//                        int[] i = XmBluetoothManager.getControl(bytes);
 //                        SyncDeviceHelper.syncSetControlFlag(MAC, new SyncDeviceHelper.BtCallback() {
 //                            @Override
 //                            public void onBtResponse(byte[] bytes) {

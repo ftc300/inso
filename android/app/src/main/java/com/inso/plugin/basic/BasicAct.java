@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.githang.statusbar.StatusBarCompat;
 import com.inso.R;
+import com.inso.plugin.manager.SPManager;
 import com.inso.plugin.provider.DBHelper;
 import com.inso.plugin.tools.Rom;
 
@@ -24,6 +25,7 @@ import java.util.List;
 import java.util.Map;
 
 import static com.inso.plugin.tools.Constants.SystemConstant.EXTRAS_EVENT_BUS;
+import static com.inso.plugin.tools.Constants.SystemConstant.SP_ARG_MAC;
 
 /**
  * Created by chendong on 2017/2/4.
@@ -107,6 +109,7 @@ public class BasicAct extends AppCompatActivity {
         flSelectAll = (FrameLayout) findViewById(R.id.select_all_title_bar);
         llBasic = (LinearLayout) findViewById(R.id.act_base);
         //mHostActivity.setTitleBarPadding(flTitle);
+        MAC = (String)SPManager.get(mContext,SP_ARG_MAC,"");
         setActStyle(getActStyle());
         //注册EventBus
         if (getIntent().getBooleanExtra(EXTRAS_EVENT_BUS, false))
