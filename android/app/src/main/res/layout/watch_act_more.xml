@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/watch_gray">
+
+    <LinearLayout
+        style="@style/VerticalWeightOne"
+        android:orientation="vertical">
+
+        <com.inso.watch.baselib.wigets.LabelTextRow
+            android:id="@+id/watch_device_info"
+            style="@style/label_row"
+            app:labelTopDivider="true"
+            app:labelArrows="true"
+            android:layout_marginTop="@dimen/dp10"
+            app:labelText="设备信息" />
+
+        <com.inso.watch.baselib.wigets.LabelTextRow
+            android:id="@+id/order"
+            style="@style/label_row"
+            android:layout_marginTop="@dimen/dp15"
+            app:labelDividerIndent="@dimen/content_padding"
+            app:labelTopDivider="true"
+            app:labelArrows="true"
+            app:labelText="屏幕顺序" />
+
+        <com.inso.watch.baselib.wigets.LabelTextRow
+            android:id="@+id/duration"
+            style="@style/label_row"
+            app:labelArrows="true"
+            app:labelDividerIndent="@dimen/content_padding"
+            app:labelText="超时息屏"
+            app:labelValue="3秒"
+            />
+
+        <com.inso.watch.baselib.wigets.LabelTextRow
+            android:id="@+id/adjust"
+            style="@style/label_row"
+            app:labelArrows="true"
+            app:labelDividerIndent="@dimen/content_padding"
+            app:labelText="指针校准" />
+
+        <com.inso.watch.baselib.wigets.LabelTextRow
+            android:id="@+id/help"
+            style="@style/label_row"
+            app:labelTopDivider="true"
+            android:layout_marginTop="@dimen/dp15"
+            app:labelArrows="true"
+            app:labelDividerIndent="@dimen/content_padding"
+            app:labelText="使用帮助" />
+
+        <com.inso.watch.baselib.wigets.LabelTextRow
+            android:id="@+id/dfu"
+            style="@style/label_row"
+            app:labelArrows="true"
+            app:labelText="固件更新" />
+
+        <com.inso.watch.baselib.wigets.LabelTextRow
+            android:id="@+id/delete_device"
+            style="@style/label_row"
+            app:labelTopDivider="true"
+            app:labelArrows="true"
+            android:layout_marginTop="@dimen/dp15"
+            app:labelText="删除设备" />
+    </LinearLayout>
+</ScrollView>

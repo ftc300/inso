@@ -24,6 +24,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import butterknife.ButterKnife;
+
 import static com.inso.plugin.tools.Constants.SystemConstant.EXTRAS_EVENT_BUS;
 import static com.inso.plugin.tools.Constants.SystemConstant.SP_ARG_MAC;
 
@@ -133,6 +135,7 @@ public class BasicAct extends AppCompatActivity {
                     flContent.addView(mContentView);
             }
         }
+        ButterKnife.bind(this);
         preInitViewData();
         initViewOrData();
     }
@@ -320,7 +323,7 @@ public class BasicAct extends AppCompatActivity {
                 ((ImageView) findViewById(R.id.title_bar_return)).setImageDrawable(ContextCompat.getDrawable(mContext, R.drawable.std_tittlebar_main_device_back));
                 ((TextView) findViewById(R.id.title_bar_title)).setTextColor(ContextCompat.getColor(mContext, R.color.std_word_001));
                 findViewById(R.id.divider_line).setVisibility(View.VISIBLE);
-                StatusBarCompat.setStatusBarColor(this, ContextCompat.getColor(this, R.color.watch_white));
+                StatusBarCompat.setStatusBarColor(this, ContextCompat.getColor(this,Rom.isMIUI() ? R.color.class_F : R.color.white));
                 break;
             case DFU:
                 llBasic.setBackgroundColor(ContextCompat.getColor(mContext, R.color.white));

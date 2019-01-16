@@ -17,7 +17,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainAct"
+            android:name=".plugin.act.more.MoreAct"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:label="@string/app_name"
             android:windowSoftInputMode="adjustResize">
@@ -45,6 +45,16 @@
         <activity android:name=".plugin.act.city.CitySelectAct" />
         <activity android:name=".plugin.act.datasheet.DataSheetAct" />
         <activity android:name=".plugin.act.mainpagelogic.PluginMainAct" />
+        <!--<activity android:name=".plugin.act.more.MoreAct" />-->
+        <activity android:name=".plugin.act.more.InstructionAct" />
+        <activity android:name=".plugin.act.more.DeviceInfoAct" />
+        <activity android:name=".plugin.act.more.adjust.AdjustMainAct" />
+        <activity android:name=".plugin.act.more.adjust.NewAdjustStepFirstAct" />
+        <activity android:name=".plugin.act.more.adjust.NewAdjustStepSecAct" />
+        <activity android:name=".plugin.act.more.adjust.NewAdjustTimeFirstAct" />
+        <activity android:name=".plugin.act.more.adjust.NewAdjustTimeSecAct" />
+        <activity android:name=".plugin.act.more.adjust.NewAdjustTimeThirdAct" />
+        <activity android:name=".plugin.act.more.order.FunOrderAct" />
     </application>
 
 </manifest>

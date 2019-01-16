@@ -176,4 +176,15 @@
         <item>11</item>
         <item>11-12</item>
     </string-array>
+
+
+    <string-array name="fun_order">
+        <item>时间</item>
+        <item>日期</item>
+        <item>步数</item>
+        <item>闹钟</item>
+        <item>间隔提醒</item>
+        <item>倒计时</item>
+        <item>电量</item>
+    </string-array>>
 </resources>
