@@ -187,4 +187,12 @@
         <item>倒计时</item>
         <item>电量</item>
     </string-array>>
+
+    <string-array name="screen_off">
+        <item>2秒</item>
+        <item>3秒</item>
+        <item>5秒</item>
+        <item>10秒</item>
+        <item>永久</item>
+    </string-array>>
 </resources>

@@ -2,7 +2,6 @@ package com.inso.plugin.act.more.order;
 
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
-import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +20,7 @@ public class WatchDragAdapter extends RecyclerView.Adapter<WatchDragAdapter.Drag
     private List<String> list;
 
     private WatchRecycleCallBack mRecycleClick;
-    public SparseArray<Integer> show = new SparseArray<>();
+//    public SparseArray<Integer> show = new SparseArray<>();
 
     public WatchDragAdapter(WatchRecycleCallBack click, List<String> data) {
         this.list = data;
@@ -34,7 +33,7 @@ public class WatchDragAdapter extends RecyclerView.Adapter<WatchDragAdapter.Drag
 
     @Override
     public DragHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.order_drag_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.watch_item_drag, parent, false);
         return new DragHolder(view, mRecycleClick);
     }
 
@@ -62,8 +61,8 @@ public class WatchDragAdapter extends RecyclerView.Adapter<WatchDragAdapter.Drag
 
         @Override
         public void onSelect() {
-            show.clear();
-            show.put(getAdapterPosition(), getAdapterPosition());
+//            show.clear();
+//            show.put(getAdapterPosition(), getAdapterPosition());
             itemView.setBackgroundColor(Color.parseColor("#80ffffff"));
         }
 

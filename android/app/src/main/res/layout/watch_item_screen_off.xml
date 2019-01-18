@@ -8,21 +8,23 @@
     android:paddingTop="3dp">
 
     <TextView
-        android:id="@+id/text"
-        android:layout_width="match_parent"
+        android:id="@+id/content"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="10dp"
-        android:gravity="center"
+        android:layout_centerVertical="true"
+        android:gravity="left"
         android:textColor="@color/word_black"
+        android:paddingLeft="@dimen/dp20"
         android:textSize="@dimen/sp14"
-        tools:text="时间" />
+        tools:text="2秒" />
 
     <ImageView
+        android:id="@+id/img"
         android:layout_width="25dp"
         android:layout_height="20dp"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:layout_margin="@dimen/dp10"
-        android:src="@drawable/drag" />
+        android:layout_margin="@dimen/dp15"
+        android:src="@drawable/select_screen_off"
+        android:visibility="gone"/>
 </RelativeLayout>

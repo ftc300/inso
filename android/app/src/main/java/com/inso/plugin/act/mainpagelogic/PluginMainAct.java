@@ -11,6 +11,7 @@ import com.inso.R;
 import com.inso.core.XmBluetoothManager;
 import com.inso.core.pressed.CsdMgr;
 import com.inso.core.pressed.ICheckDevicePressed;
+import com.inso.plugin.act.more.MoreAct;
 import com.inso.plugin.basic.BasicAct;
 import com.inso.plugin.basic.BasicFragment;
 import com.inso.plugin.fragment.FragmentBottom;
@@ -120,7 +121,7 @@ public class PluginMainAct extends BasicAct {
         barMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                L.e("barMore set onClick listener.");
+                switchTo(MoreAct.class);
             }
         });
         firstF = FragmentTop.getInstance();

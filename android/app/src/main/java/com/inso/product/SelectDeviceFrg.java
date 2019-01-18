@@ -54,18 +54,6 @@ public class SelectDeviceFrg extends BaseFragment {
                 holder.setOnClickListener(R.id.ll_item, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-//                        if(position==0) {
-//                            switchTo(IntervalRemindAct.class);
-//                        }
-//                        if(position==1) {
-//                            switchToWithEventBus(AlarmClockAct.class);
-//                        }
-//                        if(position==2) {
-//                            switchTo(com.ic_launcher.plugin.act.vip.InComingPhoneAlertAct.class);
-//                        }
-//                        if(position==3) {
-//                            switchTo(com.ic_launcher.plugin.act.city.WorldTimeAct.class);
-//                        }
                         switchTo(PluginMainAct.class);
                     }
                 });

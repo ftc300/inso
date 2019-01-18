@@ -45,6 +45,8 @@ public class Constants {
         public static final String SP_INITDB_FIRST = "SP_INITDB_FIRST";
         public static final String SP_INCOMING_SWITCH = "SP_INCOMING_SWITCH";
         public static final String SP_VIP_OLD_PLUGIN = "SP_VIP_OLD_PLUGIN";
+        public static final String SP_SCREEN_OFF_POSITION = "SP_SCREEN_OFF_POSITION";
+        public static final String SP_FUNCTION_ORDER = "SP_FUNCTION_ORDER";
     }
 
     //UUID管理
