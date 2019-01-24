@@ -55,4 +55,6 @@
     <color name="primaryTheme">#ffee25</color>
     <color name="container_color">#f3f3f3</color>
     <color name="badge_color">#f85959</color>
+    <color name="box_main_bg">#edf1f4</color>
+    <color name="box_main_fore">#fffffe</color>
 </resources>

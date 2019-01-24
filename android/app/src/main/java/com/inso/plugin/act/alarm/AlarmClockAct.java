@@ -11,7 +11,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.inso.R;
-import com.inso.core.XmBluetoothManager;
+import com.inso.core.BleMgr;
 import com.inso.plugin.adapter.AlarmClockListAdp;
 import com.inso.plugin.basic.BasicListAct;
 import com.inso.plugin.dao.AlarmDao;
@@ -156,7 +156,7 @@ public class AlarmClockAct extends BasicListAct implements View.OnClickListener,
         }
         //设置相关
         setBTArg(event.id, 2, 0);
-        XmBluetoothManager.getInstance().write(MAC, UUID.fromString(IN_SHOW_SERVICE), UUID.fromString(CHARACTERISTIC_ALARM_CLOCK), setAlarm(intArray, event.seconds, getRepeatWriteBytes(event.repeatType)));
+        BleMgr.getInstance().write(MAC, UUID.fromString(IN_SHOW_SERVICE), UUID.fromString(CHARACTERISTIC_ALARM_CLOCK), setAlarm(intArray, event.seconds, getRepeatWriteBytes(event.repeatType)));
     }
 
     /**
@@ -228,7 +228,7 @@ public class AlarmClockAct extends BasicListAct implements View.OnClickListener,
                 if (isCheck_delete.get(i) != null && isCheck_delete.get(i)) {
                     //清除
                     setBTArg(adp.getItem(position).id, 1);
-                    XmBluetoothManager.getInstance().write(MAC, UUID.fromString(IN_SHOW_SERVICE), UUID.fromString(CHARACTERISTIC_ALARM_CLOCK), setAlarm(intArray, 0, new byte[2]));
+                    BleMgr.getInstance().write(MAC, UUID.fromString(IN_SHOW_SERVICE), UUID.fromString(CHARACTERISTIC_ALARM_CLOCK), setAlarm(intArray, 0, new byte[2]));
                     if (mDBHelper.deleteAlarmByID(adp.getItem(position).id)) {
                         renderListView();
                     }
@@ -323,7 +323,7 @@ public class AlarmClockAct extends BasicListAct implements View.OnClickListener,
                 }
                 if (mDBHelper.updateAlarmClock(insertItem)) {
                     setBTArg(insertItem.id, isChecked ? 4 : 3);
-                    XmBluetoothManager.getInstance().write(MAC, UUID.fromString(IN_SHOW_SERVICE), UUID.fromString(CHARACTERISTIC_ALARM_CLOCK), setAlarm(intArray, 0, new byte[2]));
+                    BleMgr.getInstance().write(MAC, UUID.fromString(IN_SHOW_SERVICE), UUID.fromString(CHARACTERISTIC_ALARM_CLOCK), setAlarm(intArray, 0, new byte[2]));
                 }
             }
         });

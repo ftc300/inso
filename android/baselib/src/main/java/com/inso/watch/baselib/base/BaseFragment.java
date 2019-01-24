@@ -47,7 +47,7 @@ public class BaseFragment extends Fragment{
     public static Bundle configNoTitle() {
         return configTitleArgs(false);
     }
-
+    private boolean mDestroyed;
     protected  void switchTo(Class<?> to){
         Intent intent = new Intent(mActivity,to);
         startActivity(intent);
@@ -80,6 +80,7 @@ public class BaseFragment extends Fragment{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mDestroyed = false;
         if (arguments != null && arguments.getBoolean(ARGS_EVENT_BUS, false)) {
             EventBus.getDefault().register(this);
         }

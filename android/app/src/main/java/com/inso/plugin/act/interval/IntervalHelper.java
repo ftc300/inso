@@ -5,7 +5,7 @@ import android.content.DialogInterface;
 import android.view.View;
 
 import com.inso.R;
-import com.inso.core.XmBluetoothManager;
+import com.inso.core.BleMgr;
 import com.inso.plugin.dao.IntervalDao;
 import com.inso.plugin.provider.DBHelper;
 import com.inso.plugin.tools.L;
@@ -55,7 +55,7 @@ public class IntervalHelper {
             inputs[1] = 0;
             inputs[2] = dao.time / 60; //min
             inputs[3] = dao.time; //s 整点就是61*60
-            XmBluetoothManager.getInstance().write(MAC, UUID.fromString(IN_SHOW_SERVICE), UUID.fromString(CHARACTERISTIC_INTERVAL_REMIND), setWriteIntervalByte(inputs));
+            BleMgr.getInstance().write(MAC, UUID.fromString(IN_SHOW_SERVICE), UUID.fromString(CHARACTERISTIC_INTERVAL_REMIND), setWriteIntervalByte(inputs));
         }
     }
 
@@ -70,7 +70,7 @@ public class IntervalHelper {
             inputs[1] = 0;
             inputs[2] = 0;
             inputs[3] = 0;
-            XmBluetoothManager.getInstance().write(MAC, UUID.fromString(IN_SHOW_SERVICE), UUID.fromString(CHARACTERISTIC_INTERVAL_REMIND), setWriteIntervalByte(inputs));
+            BleMgr.getInstance().write(MAC, UUID.fromString(IN_SHOW_SERVICE), UUID.fromString(CHARACTERISTIC_INTERVAL_REMIND), setWriteIntervalByte(inputs));
         }
     }
 
@@ -86,7 +86,7 @@ public class IntervalHelper {
             inputs[1] = 0;
             inputs[2] = 0;
             inputs[3] = 0;
-            XmBluetoothManager.getInstance().write(MAC, UUID.fromString(IN_SHOW_SERVICE), UUID.fromString(CHARACTERISTIC_INTERVAL_REMIND), setWriteIntervalByte(inputs));
+            BleMgr.getInstance().write(MAC, UUID.fromString(IN_SHOW_SERVICE), UUID.fromString(CHARACTERISTIC_INTERVAL_REMIND), setWriteIntervalByte(inputs));
         }
     }
 

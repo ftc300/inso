@@ -2,7 +2,7 @@ package com.inso.plugin.act.more.adjust;
 
 
 import com.inso.R;
-import com.inso.core.XmBluetoothManager;
+import com.inso.core.BleMgr;
 import com.inso.plugin.basic.BasicMultiButtonAct;
 import com.inso.plugin.event.AdjustStepBus;
 import com.inso.plugin.manager.BleManager;
@@ -64,7 +64,7 @@ public class NewAdjustStepFirstAct extends BasicMultiButtonAct {
     @Override
     public void onStartDriver() {
         if (!hasChanged) hasChanged = true;
-        XmBluetoothManager.getInstance().write(MAC, UUID.fromString(IN_SHOW_SERVICE), UUID.fromString(CHARACTERISTIC_STEP_DRIVER), BleManager.I2B_StepDriver(1));
+        BleMgr.getInstance().write(MAC, UUID.fromString(IN_SHOW_SERVICE), UUID.fromString(CHARACTERISTIC_STEP_DRIVER), BleManager.I2B_StepDriver(1));
     }
 
     @Override
@@ -77,7 +77,7 @@ public class NewAdjustStepFirstAct extends BasicMultiButtonAct {
         super.onDestroy();
         if (hasChanged) {
             L.e("adjust step write 00000");
-            XmBluetoothManager.getInstance().write(MAC, UUID.fromString(IN_SHOW_SERVICE), UUID.fromString(CHARACTERISTIC_STEP_DRIVER_COMPLETE), new byte[]{0, 0, 0, 0});
+            BleMgr.getInstance().write(MAC, UUID.fromString(IN_SHOW_SERVICE), UUID.fromString(CHARACTERISTIC_STEP_DRIVER_COMPLETE), new byte[]{0, 0, 0, 0});
 //            EventBus.getDefault().post(new AdjustStepBus(true));
         }
     }

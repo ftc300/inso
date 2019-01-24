@@ -14,14 +14,14 @@ import java.util.UUID;
 
 import static com.inuker.bluetooth.library.Code.REQUEST_SUCCESS;
 
-public class XmBluetoothManager {
+public class BleMgr {
 
-    private static XmBluetoothManager mInstance;
+    private static BleMgr mInstance;
     private static BluetoothClient mClient;
 
     private static void  initClient() {
         if (mClient == null) {
-            synchronized (XmBluetoothManager.class) {
+            synchronized (BleMgr.class) {
                 if (mClient == null) {
                     mClient = new BluetoothClient(App.getInstance());
                 }
@@ -29,13 +29,13 @@ public class XmBluetoothManager {
         }
     }
 
-    private XmBluetoothManager() {
+    private BleMgr() {
     }
 
-    public static XmBluetoothManager getInstance() {
+    public static BleMgr getInstance() {
         initClient();
         if (mInstance == null) {
-            mInstance = new XmBluetoothManager();
+            mInstance = new BleMgr();
         }
         return mInstance;
     }

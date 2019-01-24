@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.inso.R;
-import com.inso.core.XmBluetoothManager;
+import com.inso.core.BleMgr;
 import com.inso.core.pressed.CsdMgr;
 import com.inso.core.pressed.ICheckDevicePressed;
 import com.inso.plugin.act.more.MoreAct;
@@ -82,7 +82,7 @@ public class PluginMainAct extends BasicAct {
         public void onConnectStatusChanged(String mac, int status) {
             if (status == STATUS_CONNECTED) {
             } else if (status == STATUS_DISCONNECTED) {
-                XmBluetoothManager.getInstance().unRegister(mac, mBleConnectStatusListener);
+                BleMgr.getInstance().unRegister(mac, mBleConnectStatusListener);
                 connectFailCallback();
             }
         }
@@ -151,27 +151,27 @@ public class PluginMainAct extends BasicAct {
 
 
     private void checkBleAndConn() {
-        if (XmBluetoothManager.getInstance().isBluetoothOpen()) {
+        if (BleMgr.getInstance().isBluetoothOpen()) {
             startScan(scanner, callback);
             CsdMgr.getInstance().setCheckDevicePressed(new ICheckDevicePressed() {
                 @Override
                 public void miWatchPressed(final String mac) {
 //                L.d("PressedMiWatchAct miWatchPressed mac:" + mac);
                     try {
-                            XmBluetoothManager.getInstance().connect(mac, new BleConnectResponse() {
+                            BleMgr.getInstance().connect(mac, new BleConnectResponse() {
                                 @Override
                                 public void onResponse(int code, BleGattProfile data) {
                                     scanner.stopScan(callback);
                                     if (code == REQUEST_SUCCESS) {
                                         SPManager.put(mContext, SP_ARG_MAC, mac);
-                                        XmBluetoothManager.getInstance().write(mac, UUID.fromString(IN_SHOW_SERVICE), UUID.fromString(CHARACTERISTIC_CONTROL), new byte[]{3, 1, 0, 0});
+                                        BleMgr.getInstance().write(mac, UUID.fromString(IN_SHOW_SERVICE), UUID.fromString(CHARACTERISTIC_CONTROL), new byte[]{3, 1, 0, 0});
                                         connectSuccessCallback();
                                     }else {
                                         connectFailCallback();
                                     }
                                 }
                             });
-                            XmBluetoothManager.getInstance().register(mac, mBleConnectStatusListener);
+                            BleMgr.getInstance().register(mac, mBleConnectStatusListener);
                     } catch (Exception arg_e) {
                         arg_e.printStackTrace();
                     }
@@ -186,7 +186,7 @@ public class PluginMainAct extends BasicAct {
                         .setPositiveButton(getString(R.string.allow), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                XmBluetoothManager.getInstance().openBluetoothSilently();
+                                BleMgr.getInstance().openBluetoothSilently();
                             }
                         })
                         .setNegativeButton(getString(R.string.reject), new DialogInterface.OnClickListener() {
@@ -252,8 +252,8 @@ public class PluginMainAct extends BasicAct {
             timer = null;
         }
         super.onDestroy();
-        if(XmBluetoothManager.getInstance().isConnected(MAC)) {
-            XmBluetoothManager.getInstance().disConnect(MAC);
+        if(BleMgr.getInstance().isConnected(MAC)) {
+            BleMgr.getInstance().disConnect(MAC);
         }
     }
 

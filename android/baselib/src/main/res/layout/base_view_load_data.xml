@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.inso.watch.baselib.wigets.LoadStatusBox xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/loadStatusBox"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/box_main_bg"
+    android:clickable="true"
+    android:visibility="visible">
+
+    <include layout="@layout/base_loading" />
+
+    <include layout="@layout/base_load_error" />
+
+    <include layout="@layout/base_empty_layout" />
+
+</com.inso.watch.baselib.wigets.LoadStatusBox>

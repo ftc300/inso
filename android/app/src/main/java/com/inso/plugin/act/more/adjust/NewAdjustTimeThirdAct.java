@@ -2,7 +2,7 @@ package com.inso.plugin.act.more.adjust;
 
 
 import com.inso.R;
-import com.inso.core.XmBluetoothManager;
+import com.inso.core.BleMgr;
 import com.inso.plugin.basic.BasicMultiButtonAct;
 
 import java.util.UUID;
@@ -47,7 +47,7 @@ public class NewAdjustTimeThirdAct extends BasicMultiButtonAct {
 
     @Override
     public void onStartDriver() {
-        XmBluetoothManager.getInstance().write(MAC, UUID.fromString(IN_SHOW_SERVICE), UUID.fromString(CHARACTERISTIC_CLOCK_DRIVER), I2B_ClockDriver(1));
+        BleMgr.getInstance().write(MAC, UUID.fromString(IN_SHOW_SERVICE), UUID.fromString(CHARACTERISTIC_CLOCK_DRIVER), I2B_ClockDriver(1));
     }
 
     @Override

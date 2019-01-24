@@ -304,7 +304,7 @@ public class BasicAct extends AppCompatActivity {
     /**
      * 设置样式
      * https://github.com/msdx/status-bar-compat
-     * StatusBarCompat是一个用于设置系统状态栏颜色的兼容库，兼容Android 4.4.2(API 19)以上，使用简单，仅需要一行代码的调用。
+     * StatusBarCompat是一个用于设置系统状态栏颜色的兼容库，兼容Android 4.4.2(HttpAPI 19)以上，使用简单，仅需要一行代码的调用。
      * 第三方ROM适配支持
      * ROM	适配说明
      * MIUI	调用小米的API适配

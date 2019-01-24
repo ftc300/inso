@@ -54,7 +54,7 @@ public class MainAct extends AppCompatActivity implements BottomNavigationBar.On
         mMallFrg = MallFrg.getInstance();
         InitNavigationBar();
         setDefaultFragment();
-        addShortcut();
+//        addShortcut();
     }
 
     private void InitNavigationBar() {

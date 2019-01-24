@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.inso.R;
-import com.inso.core.XmBluetoothManager;
+import com.inso.core.BleMgr;
 import com.inso.plugin.act.city.WorldTimeAct;
 import com.inso.plugin.act.datasheet.DataSheetAct;
 import com.inso.plugin.act.interval.IntervalHelper;
@@ -341,7 +341,7 @@ public class FragmentBottom extends BasicFragment implements View.OnClickListene
         setOnClickListeners();
         renderByData();
         //通知监听
-        XmBluetoothManager.getInstance().notify(MAC, UUID.fromString(IN_SHOW_SERVICE), UUID.fromString(CHARACTERISTIC_TODAY_STEP), new BleNotifyResponse() {
+        BleMgr.getInstance().notify(MAC, UUID.fromString(IN_SHOW_SERVICE), UUID.fromString(CHARACTERISTIC_TODAY_STEP), new BleNotifyResponse() {
             @Override
             public void onNotify(UUID service, UUID character, byte[] value) {
                 displayNowStep(true, value);
@@ -353,7 +353,7 @@ public class FragmentBottom extends BasicFragment implements View.OnClickListene
             }
         });
         L.e("renderSuccess read  CHARACTERISTIC_TODAY_STEP");
-        XmBluetoothManager.getInstance().read(MAC, UUID.fromString(IN_SHOW_SERVICE), UUID.fromString(CHARACTERISTIC_TODAY_STEP), new XmBluetoothManager.IReadOnResponse() {
+        BleMgr.getInstance().read(MAC, UUID.fromString(IN_SHOW_SERVICE), UUID.fromString(CHARACTERISTIC_TODAY_STEP), new BleMgr.IReadOnResponse() {
             @Override
             public void onSuccess(byte[] data) {
                 displayNowStep(false, data);

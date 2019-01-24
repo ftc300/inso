@@ -13,7 +13,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.inso.R;
-import com.inso.core.XmBluetoothManager;
+import com.inso.core.BleMgr;
 import com.inso.plugin.adapter.WorldTimeListAdp;
 import com.inso.plugin.basic.BasicListAct;
 import com.inso.plugin.dao.PreferCitiesDao;
@@ -211,7 +211,7 @@ public class WorldTimeAct extends BasicListAct {
                                                   L.e( " TimeUtil.getNowTimeSeconds(item.zone):" + TimeUtil.getNowTimeSeconds(item.zone) );
                                                   L.e( "TimeUtil.getWatchSysStartTimeSecs() :" +  TimeUtil.getWatchSysStartTimeSecs());
                                                   L.e("TimeUtil.getNowTimeSeconds(item.zone) - TimeUtil.getWatchSysStartTimeSecs() : " + (TimeUtil.getNowTimeSeconds(item.zone) - TimeUtil.getWatchSysStartTimeSecs()));
-                                                  XmBluetoothManager.getInstance().write(MAC, UUID.fromString(IN_SHOW_SERVICE), UUID.fromString(CHARACTERISTIC_SYNC_CURRENT_TIME), I2B_SyncTime(TimeUtil.getNowTimeSeconds(item.zone) - TimeUtil.getWatchSysStartTimeSecs()), new XmBluetoothManager.IWriteResponse() {
+                                                  BleMgr.getInstance().write(MAC, UUID.fromString(IN_SHOW_SERVICE), UUID.fromString(CHARACTERISTIC_SYNC_CURRENT_TIME), I2B_SyncTime(TimeUtil.getNowTimeSeconds(item.zone) - TimeUtil.getWatchSysStartTimeSecs()), new BleMgr.IWriteResponse() {
                                                       @Override
                                                       public void onSuccess() {
                                                           imageView.clearAnimation();
@@ -252,7 +252,7 @@ public class WorldTimeAct extends BasicListAct {
                                                           }
                                                       });
 //                                                      写入北京时间 成功操作数据库
-                                                      XmBluetoothManager.getInstance().write(MAC, UUID.fromString(IN_SHOW_SERVICE), UUID.fromString(CHARACTERISTIC_SYNC_CURRENT_TIME), I2B_SyncTime(TimeUtil.getNowTimeSeconds() - TimeUtil.getWatchSysStartTimeSecs()), new XmBluetoothManager.IWriteResponse() {
+                                                      BleMgr.getInstance().write(MAC, UUID.fromString(IN_SHOW_SERVICE), UUID.fromString(CHARACTERISTIC_SYNC_CURRENT_TIME), I2B_SyncTime(TimeUtil.getNowTimeSeconds() - TimeUtil.getWatchSysStartTimeSecs()), new BleMgr.IWriteResponse() {
                                                           @Override
                                                           public void onSuccess() {
                                                               ToastUtil.showToastNoRepeat(mContext, getString(R.string.time_has_adjusted));

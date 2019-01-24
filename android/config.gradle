@@ -43,7 +43,11 @@ ext {
             statusbarcompat: 'com.githang:status-bar-compat:0.7',
             tinypinyin: 'com.github.promeg:tinypinyin:1.0.0',
             permission: 'com.yanzhenjie:permission:2.0.0-rc12',
-            scanner: 'no.nordicsemi.android.support.v18:scanner:1.0.0'
+            scanner: 'no.nordicsemi.android.support.v18:scanner:1.0.0',
+            retrofit: 'com.squareup.retrofit2:retrofit:2.1.0',
+            okhttp: 'com.squareup.okhttp3:okhttp:3.3.1',
+            gson: 'com.squareup.retrofit2:converter-gson:2.1.0',
+            picasso: 'com.squareup.picasso:picasso:2.71828'
     ]
 
     configAndroidDomain = this.&configAndroidDomain
@@ -183,6 +187,10 @@ def configAppDependencies(Project pro) {
         implementation depConfig.tinypinyin
         implementation depConfig.permission
         implementation depConfig.scanner
+        implementation depConfig.gson
+        implementation depConfig.retrofit
+        implementation depConfig.okhttp
+        implementation depConfig.picasso
     }
 }
 
@@ -206,6 +214,9 @@ def configBaselibDependencies(Project pro) {
         compileOnly depConfig.support.appcompat_v7
         compileOnly depConfig.support.design
         implementation depConfig.eventbus
+        implementation depConfig.gson
+        implementation depConfig.retrofit
+        implementation depConfig.okhttp
         implementation depConfig.recyclerview
         implementation depConfig.butterknife
         annotationProcessor depConfig.butterknife_annotationProcessor

@@ -199,7 +199,7 @@ public class SyncDeviceHelper {
         source[2] = 0;
         source[3] = 0;
         source[4] = 0;
-//        XmBluetoothManager.getInstance().write(MAC, UUID.fromString(IN_SHOW_SERVICE), UUID.fromString(CHARACTERISTIC_VIBRATION_SETTING), XmBluetoothManager.setWriteVibration(source), new Response.BleWriteResponse() {
+//        BleMgr.getInstance().write(MAC, UUID.fromString(IN_SHOW_SERVICE), UUID.fromString(CHARACTERISTIC_VIBRATION_SETTING), BleMgr.setWriteVibration(source), new Response.BleWriteResponse() {
 //            @Override
 //            public void onResponse(int code, Void data) {
 //
@@ -287,7 +287,7 @@ public class SyncDeviceHelper {
 //        source[2] = item.startTime;
 //        source[3] = item.endTime;
 //        source[4] = 0;
-//        XmBluetoothManager.getInstance().write(MAC, UUID.fromString(IN_SHOW_SERVICE), UUID.fromString(CHARACTERISTIC_VIBRATION_SETTING), XmBluetoothManager.setWriteVibration(source), new Response.BleWriteResponse() {
+//        BleMgr.getInstance().write(MAC, UUID.fromString(IN_SHOW_SERVICE), UUID.fromString(CHARACTERISTIC_VIBRATION_SETTING), BleMgr.setWriteVibration(source), new Response.BleWriteResponse() {
 //            @Override
 //            public void onResponse(int code, Void data) {
 //
@@ -298,7 +298,7 @@ public class SyncDeviceHelper {
 //        source[2] = item.startTime;
 //        source[3] = item.endTime;
 //        source[4] = 0;
-//        XmBluetoothManager.getInstance().write(MAC, UUID.fromString(IN_SHOW_SERVICE), UUID.fromString(CHARACTERISTIC_VIBRATION_SETTING), XmBluetoothManager.setWriteVibration(source), new Response.BleWriteResponse() {
+//        BleMgr.getInstance().write(MAC, UUID.fromString(IN_SHOW_SERVICE), UUID.fromString(CHARACTERISTIC_VIBRATION_SETTING), BleMgr.setWriteVibration(source), new Response.BleWriteResponse() {
 //            @Override
 //            public void onResponse(int code, Void data) {
 //

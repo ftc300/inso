@@ -12,7 +12,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.inso.R;
-import com.inso.core.XmBluetoothManager;
+import com.inso.core.BleMgr;
 import com.inso.plugin.adapter.VipListAdp;
 import com.inso.plugin.basic.BasicListAct;
 import com.inso.plugin.event.ChangeUI;
@@ -136,7 +136,7 @@ public class VipAct extends BasicListAct implements View.OnClickListener {
         needPush = true;
         VipEntity entity = adp.getItem(position);
         mDBHelper.updateVip(new VipEntity(entity.contactId, entity.id, entity.number, entity.name, isChecked));
-        XmBluetoothManager.getInstance().write(MAC, UUID.fromString(IN_SHOW_SERVICE), UUID.fromString(CHARACTERISTIC_VIP), setVip(entity.id, isChecked ? 2 : 1, isChecked ? entity.name.getBytes(Charset.forName("UTF-8")) : new byte[18]));
+        BleMgr.getInstance().write(MAC, UUID.fromString(IN_SHOW_SERVICE), UUID.fromString(CHARACTERISTIC_VIP), setVip(entity.id, isChecked ? 2 : 1, isChecked ? entity.name.getBytes(Charset.forName("UTF-8")) : new byte[18]));
         EventBus.getDefault().post(new ChangeUI(RENDER_AGAIN));
     }
 
@@ -233,7 +233,7 @@ public class VipAct extends BasicListAct implements View.OnClickListener {
                 int position = i - (count - adp.getCount());
                 if (isCheck_delete.get(i) != null && isCheck_delete.get(i)) {
                     //清除
-//                    XmBluetoothManager.getInstance().write(MAC, UUID.fromString(IN_SHOW_SERVICE), UUID.fromString(CHARACTERISTIC_VIP), setVip(adp.getItem(position).id, 1, new byte[18]), new Response.BleWriteResponse() {
+//                    BleMgr.getInstance().write(MAC, UUID.fromString(IN_SHOW_SERVICE), UUID.fromString(CHARACTERISTIC_VIP), setVip(adp.getItem(position).id, 1, new byte[18]), new Response.BleWriteResponse() {
 //                        @Override
 //                        public void onResponse(int code, Void data) {
 //

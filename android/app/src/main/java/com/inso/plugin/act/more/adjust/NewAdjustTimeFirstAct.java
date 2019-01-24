@@ -5,7 +5,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.inso.R;
-import com.inso.core.XmBluetoothManager;
+import com.inso.core.BleMgr;
 import com.inso.plugin.basic.BasicSingleButtonAct;
 import com.inso.plugin.event.AdjustTimeBus;
 import com.inso.plugin.sync.SyncDeviceHelper;
@@ -64,7 +64,7 @@ public class NewAdjustTimeFirstAct extends BasicSingleButtonAct {
             if (hasSelected()) {
                 generateSettingTime();
                 pushAdjustTime(TimeUtil.getNowTimeSeconds(),settingTime);
-                XmBluetoothManager.getInstance().write(MAC, UUID.fromString(IN_SHOW_SERVICE), UUID.fromString(CHARACTERISTIC_SYNC_WATCH_TIME), I2B_WatchTime(settingTime));
+                BleMgr.getInstance().write(MAC, UUID.fromString(IN_SHOW_SERVICE), UUID.fromString(CHARACTERISTIC_SYNC_WATCH_TIME), I2B_WatchTime(settingTime));
             }
             finish();
         }

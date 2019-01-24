@@ -19,7 +19,7 @@ import no.nordicsemi.android.support.v18.scanner.ScanRecord;
 import no.nordicsemi.android.support.v18.scanner.ScanResult;
 import no.nordicsemi.android.support.v18.scanner.ScanSettings;
 
-import static com.inso.core.XmBluetoothManager.bytes2HexString;
+import static com.inso.core.BleMgr.bytes2HexString;
 
 /**
  * Created by chendong on 2018/6/25.
