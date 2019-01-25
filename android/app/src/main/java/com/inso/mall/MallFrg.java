@@ -1,7 +1,6 @@
 package com.inso.mall;
 
 import android.os.Bundle;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -49,7 +48,6 @@ public class MallFrg extends BaseFragment {
         super.initViewOrData();
         setTitle("商城");
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mActivity));
-        mRecyclerView.addItemDecoration(new DividerItemDecoration(mActivity, DividerItemDecoration.VERTICAL));
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())

@@ -1,6 +1,5 @@
 package com.inso.product;
 
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -46,7 +45,6 @@ public class SelectDeviceFrg extends BaseFragment {
             }
         });
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mActivity));
-        mRecyclerView.addItemDecoration(new DividerItemDecoration(mActivity, DividerItemDecoration.VERTICAL));
         mRecyclerView.setAdapter(new CommonAdapter<String>(mActivity,R.layout.select_device_item,data) {
             @Override
             protected void convert(ViewHolder holder, String arg_s, final int position) {

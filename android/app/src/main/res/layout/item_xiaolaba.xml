@@ -22,14 +22,15 @@
           style="@style/MatchParent"
           android:orientation="vertical"
           android:layout_margin="@dimen/content_padding"
-          android:background="@drawable/selector_label_item"
+          android:background="@drawable/selector_information_item"
           >
 
         <ImageView
             android:id="@+id/img"
             android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:src="@drawable/pic_default" />
+            android:layout_height="150dp"
+            android:background="@drawable/corner_top"
+            android:src="@drawable/pic_default_large" />
 
         <TextView
             android:id="@+id/title"
@@ -37,7 +38,10 @@
             android:layout_height="wrap_content"
             android:singleLine="true"
             android:textColor="@color/word_black"
-            android:textSize="@dimen/sp16"
+            android:paddingLeft="@dimen/dp10"
+            android:paddingRight="@dimen/dp10"
+            android:paddingTop="@dimen/dp10"
+            android:textSize="@dimen/sp14"
             tools:text="彭博社：苹果高通分道扬镳或因软件权限问题起冲突" />
 
         <TextView
@@ -46,7 +50,11 @@
             android:layout_height="wrap_content"
             android:maxLines="2"
             android:textColor="@color/word_black_desc"
-            android:textSize="@dimen/sp13"
+            android:textSize="@dimen/sp12"
+            android:paddingTop="@dimen/dp5"
+            android:paddingLeft="@dimen/dp10"
+            android:paddingRight="@dimen/dp10"
+            android:paddingBottom="@dimen/dp15"
             tools:text="彭博社获得的邮件显示，苹果与高通之间高达数十亿美元的芯片供应协议可能并非因为专利费而取消，真正的影响原因可能是他们在软件权限问题上发生冲突。当苹果高管杰夫·威廉姆斯（Jeff Williams）对法院表示高通取消iPhone芯片供应时，对美国联邦贸易委员会（FTC）起诉这家半导体巨头提供了有利的证词。" />
 
     </LinearLayout>
