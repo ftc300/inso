@@ -66,4 +66,21 @@
         <item name="android:button">@drawable/select_switch</item>
     </style>
 
+    <style name="label_minor" parent="label_main">
+        <item name="android:textColor">@color/label_text_minor</item>
+    </style>
+
+    <style name="label_edit" parent="label_row">
+        <item name="android:background">@drawable/bg_edit_row</item>
+        <item name="labelHintColor">@color/label_text_desc</item>
+        <item name="labelPwdCheck">false</item>
+    </style>
+
+    <style name="btn_dominate">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/dp40</item>
+        <item name="android:background">@drawable/selector_btn_dominate</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">17sp</item>
+    </style>
 </resources>

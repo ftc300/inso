@@ -18,4 +18,27 @@
         <attr name="labelValueSize" format="dimension" />
         <attr name="labelDividerIndent" format="dimension" />
     </declare-styleable>
+    <declare-styleable name="LabelEditRow">
+        <attr name="labelUnit" format="string"/>
+        <attr name="labelUnitColor" format="color"/>
+        <attr name="labelPasswordMode" format="boolean"/>
+        <attr name="labelPwdCheck" format="boolean"/>
+        <attr name="labelEditEnable" format="boolean"/>
+        <attr name="android:inputType"/>
+        <attr name="android:maxLength"/>
+    </declare-styleable>
+
+    <declare-styleable name="ClearEditText">
+        <attr name="clearEnable" format="boolean"/>
+    </declare-styleable>
+
+    <declare-styleable name="ItemView">
+        <attr name="itemIcon" format="reference"/>
+        <attr name="itemLabel" format="string"/>
+    </declare-styleable>
+
+    <!-- 长宽等比例放大缩小图片 -->
+    <declare-styleable name="ScaleView">
+        <attr name="scale_ratio" format="float"></attr>
+    </declare-styleable>
 </resources>

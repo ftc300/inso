@@ -50,6 +50,8 @@
     <color name="label_main_bg">#fffffe</color>
     <color name="label_main_fore">#fffffe</color>
     <color name="label_divider">#dfdfdf</color>
+    <color name="label_text_minor">#8a8a8a</color>
+    <color name="label_text_desc">#999999</color>
 
     <color name="word_white">#ccffffff</color>
     <color name="primaryTheme">#ffee25</color>
@@ -57,4 +59,7 @@
     <color name="badge_color">#f85959</color>
     <color name="box_main_bg">#edf1f4</color>
     <color name="box_main_fore">#fffffe</color>
+    <color name="text_hint">#cccccc</color>
+    <color name="main_fore">#fffffe</color>
+    <color name="dominate_bg">#e2e4e4</color>
 </resources>

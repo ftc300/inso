@@ -49,7 +49,7 @@ import static android.support.v4.content.PermissionChecker.PERMISSION_DENIED;
 public class XiaoMiSampleAct extends AppCompatActivity{
     private Context context;
     private static final String TAG = "OAuthDemoActivity";
-    public static final Long appId = 2882303761517886196L;
+    public static final Long appId = 2882303761517943069L;
     public static final String redirectUri = "http://www.inshowlife.com";
     XiaomiOAuthResults results;
     private AsyncTask waitResultTask;
@@ -250,10 +250,8 @@ public class XiaoMiSampleAct extends AppCompatActivity{
         scopeMap.put(com.inso.watch.thirdlib.R.id.scopeRelation, XiaomiOAuthConstants.SCOPE_RELATION);
         scopeMap.put(com.inso.watch.thirdlib.R.id.scopeOpenId, XiaomiOAuthConstants.SCOPE_OPEN_ID);
         scopeMap.put(com.inso.watch.thirdlib.R.id.scopePhone, XiaomiOAuthConstants.SCOPE_PHONE);
-
         int[] scopes = new int[scopeMap.size()];
         int checkedCount = 0;
-
         for (Integer id : scopeMap.keySet()) {
             CheckBox cb = (CheckBox) findViewById(id);
             if (cb.isChecked()) {
