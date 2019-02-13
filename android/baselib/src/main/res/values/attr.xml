@@ -41,4 +41,12 @@
     <declare-styleable name="ScaleView">
         <attr name="scale_ratio" format="float"></attr>
     </declare-styleable>
+
+    <declare-styleable name="RotateLoading">
+        <attr name="loading_width" format="dimension"/>
+        <attr name="loading_color" format="color"/>
+        <attr name="shadow_position" format="integer"/>
+        <attr name="loading_speed" format="integer"/>
+    </declare-styleable>
+
 </resources>

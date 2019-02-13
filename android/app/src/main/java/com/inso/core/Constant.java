@@ -17,6 +17,9 @@ public class Constant {
     public static final String PLATFORM_XM = "xiaomi";
     public static final String PLATFORM_WX = "weixin";
 
+    public static final String SP_ACCESS_TOKEN = "SP_ACCESS_TOKEN";
+
+
 
 
 

@@ -1,6 +1,9 @@
 package com.inso;
 
+import android.accounts.OperationCanceledException;
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,32 +12,33 @@ import android.text.TextUtils;
 import android.view.View;
 
 import com.google.gson.Gson;
-import com.inso.core.HttpAPI;
-import com.inso.entity.http.SignUpResponse;
+import com.inso.core.HttpMgr;
 import com.inso.entity.http.XmProfile;
+import com.inso.entity.http.post.Sign;
+import com.inso.plugin.manager.SPManager;
 import com.inso.plugin.tools.L;
+import com.inso.watch.baselib.wigets.RotateLoading;
+import com.inso.watch.baselib.wigets.ToastWidget;
 import com.xiaomi.account.openauth.XMAuthericationException;
 import com.xiaomi.account.openauth.XiaomiOAuthConstants;
 import com.xiaomi.account.openauth.XiaomiOAuthFuture;
 import com.xiaomi.account.openauth.XiaomiOAuthResults;
 import com.xiaomi.account.openauth.XiaomiOAuthorize;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 import static com.inso.core.Constant.PLATFORM_XM;
 import static com.inso.core.Constant.REDIRECT_URI;
+import static com.inso.core.Constant.SP_ACCESS_TOKEN;
 import static com.inso.core.Constant.XIAOMI_APPID;
 import static com.inso.watch.baselib.Constants.BASE_URL;
 
@@ -47,8 +51,19 @@ import static com.inso.watch.baselib.Constants.BASE_URL;
  */
 
 public class LoginAct extends AppCompatActivity {
-    XiaomiOAuthResults results;
+    @BindView(R.id.rotateloading)
+    RotateLoading mRotateloading;
+    private XiaomiOAuthResults results;
     private AsyncTask waitResultTask;
+    private Context mContext = this;
+    private Executor mExecutor = Executors.newCachedThreadPool();
+
+    void switch2Main() {
+        this.finish();
+        Intent intent = new Intent(this, MainAct.class);
+        startActivity(intent);
+    }
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,6 +90,7 @@ public class LoginAct extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        mRotateloading.stop();
         if (waitResultTask != null && !waitResultTask.isCancelled()) {
             waitResultTask.cancel(false);
         }
@@ -98,7 +114,7 @@ public class LoginAct extends AppCompatActivity {
                     v = future.getResult();
                 } catch (IOException e1) {
                     this.e = e1;
-                } catch (android.accounts.OperationCanceledException e1) {
+                } catch (OperationCanceledException e1) {
                     this.e = e1;
                 } catch (XMAuthericationException e1) {
                     this.e = e1;
@@ -111,7 +127,7 @@ public class LoginAct extends AppCompatActivity {
                 if (v != null) {
                     if (v instanceof XiaomiOAuthResults) {
                         results = (XiaomiOAuthResults) v;
-                        if(!TextUtils.isEmpty( results.getAccessToken())&&!TextUtils.isEmpty( results.getMacAlgorithm()) && !TextUtils.isEmpty( results.getMacKey())) {
+                        if (!TextUtils.isEmpty(results.getAccessToken()) && !TextUtils.isEmpty(results.getMacAlgorithm()) && !TextUtils.isEmpty(results.getMacKey())) {
                             XiaomiOAuthFuture<String> future = new XiaomiOAuthorize()
                                     .callOpenApi(getApplicationContext(),
                                             XIAOMI_APPID,
@@ -121,35 +137,37 @@ public class LoginAct extends AppCompatActivity {
                                             results.getMacAlgorithm());
                             waitAndShowFutureResult(future);
                         }
-                        String r = v.toString();
-                        if(r.indexOf("unionId")>-1 && r.indexOf("ok")>-1){
-                            XmProfile response =  new Gson().fromJson(r, XmProfile.class);
-                            Retrofit retrofit = new Retrofit.Builder()
-                                    .baseUrl(BASE_URL)
-                                    .addConverterFactory(GsonConverterFactory.create())
-                                    .build();
-                            HttpAPI api = retrofit.create(HttpAPI.class);
-                            Map<String, String> params = new HashMap<>();
-                            params.put("platform",PLATFORM_XM);
-                            params.put("nickname",response.getData().getMiliaoNick());
-                            params.put("unionId",response.getData().getUnionId());
-                            params.put("avatar",response.getData().getMiliaoIcon_orig());
-                            api.postSignUp(params).enqueue(new Callback<SignUpResponse>() {
-                                @Override
-                                public void onResponse(Call<SignUpResponse> call, Response<SignUpResponse> response) {
-                                    SignUpResponse info = response.body();
-                                    L.d(info.toString());
-                                }
-
-                                @Override
-                                public void onFailure(Call<SignUpResponse> call, Throwable t) {
-
-                                }
-                            });
-
-                        }
-                        L.d(r);
                     }
+                    String r = v.toString();
+                    if (r.indexOf("unionId") > -1 && r.indexOf("ok") > -1) {
+                        try {
+                            XmProfile response = new Gson().fromJson(r, XmProfile.class);
+                            XmProfile.DataBean data = response.getData();
+                            Sign sign = new Sign(PLATFORM_XM, data.getMiliaoNick(), data.getUnionId(), data.getMiliaoIcon(), "male");
+                            mRotateloading.start();
+                            HttpMgr.getRequestQueue(getApplicationContext()).add(HttpMgr.postRequest(BASE_URL + "member/signup", new Gson().toJson(sign), new HttpMgr.IResponse<JSONObject>() {
+                                @Override
+                                public void onSuccess(JSONObject obj) {
+                                    try {
+                                        SPManager.put(mContext, SP_ACCESS_TOKEN, obj.get("access_token"));
+                                        L.d("obj.get(\"access_token\")" + obj.get("access_token"));
+                                        switch2Main();
+                                    } catch (JSONException arg_e) {
+                                        arg_e.printStackTrace();
+                                    }
+                                }
+
+                                @Override
+                                public void onFail() {
+                                    ToastWidget.showFail(mContext, "Login Error!");
+                                }
+                            }));
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            L.e(e.getMessage());
+                        }
+                    }
+                    L.d(r);
                 } else if (e != null) {
                     L.d(e.toString());
                 } else {
@@ -159,5 +177,5 @@ public class LoginAct extends AppCompatActivity {
         }.executeOnExecutor(mExecutor);
     }
 
-    Executor mExecutor = Executors.newCachedThreadPool();
+
 }

@@ -10,6 +10,7 @@ import com.inso.watch.baselib.wigets.recycler.base.ItemViewDelegate;
 import com.inso.watch.baselib.wigets.recycler.base.ItemViewDelegateManager;
 import com.inso.watch.baselib.wigets.recycler.base.ViewHolder;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,7 +18,7 @@ import java.util.List;
  */
 public class MultiItemTypeAdapter<T> extends RecyclerView.Adapter<ViewHolder> {
     protected Context mContext;
-    protected List<T> mDatas;
+    protected List<T> mDatas = new ArrayList<>();
 
     protected ItemViewDelegateManager mItemViewDelegateManager;
     protected OnItemClickListener mOnItemClickListener;
@@ -90,7 +91,10 @@ public class MultiItemTypeAdapter<T> extends RecyclerView.Adapter<ViewHolder> {
 
     @Override
     public int getItemCount() {
-        int itemCount = mDatas.size();
+        int itemCount = 0;
+        if(null!=mDatas) {
+             itemCount = mDatas.size();
+        }
         return itemCount;
     }
 

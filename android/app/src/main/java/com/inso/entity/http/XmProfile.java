@@ -138,5 +138,29 @@ public class XmProfile {
         public void setMiliaoIcon_120(String miliaoIcon_120) {
             this.miliaoIcon_120 = miliaoIcon_120;
         }
+
+        @Override
+        public String toString() {
+            return "DataBean{" +
+                    "miliaoNick='" + miliaoNick + '\'' +
+                    ", unionId='" + unionId + '\'' +
+                    ", miliaoIcon_75='" + miliaoIcon_75 + '\'' +
+                    ", miliaoIcon_orig='" + miliaoIcon_orig + '\'' +
+                    ", miliaoIcon='" + miliaoIcon + '\'' +
+                    ", miliaoIcon_320='" + miliaoIcon_320 + '\'' +
+                    ", miliaoIcon_90='" + miliaoIcon_90 + '\'' +
+                    ", miliaoIcon_120='" + miliaoIcon_120 + '\'' +
+                    '}';
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "XmProfile{" +
+                "result='" + result + '\'' +
+                ", code=" + code +
+                ", data=" + data +
+                ", description='" + description + '\'' +
+                '}';
     }
 }

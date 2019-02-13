@@ -21,13 +21,13 @@ public class SignUpResponse {
      */
 
     private String user_id;
-    private Object nickname;
+    private String nickname;
     private String username;
-    private Object phone;
+    private String phone;
     private String access_token;
     private String expired_at;
     private ProfileBean profile;
-
+//
     public String getUser_id() {
         return user_id;
     }
@@ -36,11 +36,11 @@ public class SignUpResponse {
         this.user_id = user_id;
     }
 
-    public Object getNickname() {
+    public String getNickname() {
         return nickname;
     }
 
-    public void setNickname(Object nickname) {
+    public void setNickname(String nickname) {
         this.nickname = nickname;
     }
 
@@ -52,11 +52,11 @@ public class SignUpResponse {
         this.username = username;
     }
 
-    public Object getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(Object phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 
@@ -97,11 +97,11 @@ public class SignUpResponse {
 
         private String avatar;
         private String gender;
-        private Object birth;
-        private Object height;
-        private Object weight;
-        private Object signature;
-        private Object locale;
+        private String birth;
+        private String height;
+        private String weight;
+        private String signature;
+        private String locale;
 
         public String getAvatar() {
             return avatar;
@@ -119,57 +119,45 @@ public class SignUpResponse {
             this.gender = gender;
         }
 
-        public Object getBirth() {
+        public String getBirth() {
             return birth;
         }
 
-        public void setBirth(Object birth) {
+        public void setBirth(String birth) {
             this.birth = birth;
         }
 
-        public Object getHeight() {
+        public String getHeight() {
             return height;
         }
 
-        public void setHeight(Object height) {
+        public void setHeight(String height) {
             this.height = height;
         }
 
-        public Object getWeight() {
+        public String getWeight() {
             return weight;
         }
 
-        public void setWeight(Object weight) {
+        public void setWeight(String weight) {
             this.weight = weight;
         }
 
-        public Object getSignature() {
+        public String getSignature() {
             return signature;
         }
 
-        public void setSignature(Object signature) {
+        public void setSignature(String signature) {
             this.signature = signature;
         }
 
-        public Object getLocale() {
+        public String getLocale() {
             return locale;
         }
 
-        public void setLocale(Object locale) {
+        public void setLocale(String locale) {
             this.locale = locale;
         }
-    }
 
-    @Override
-    public String toString() {
-        return "SignUpResponse{" +
-                "user_id='" + user_id + '\'' +
-                ", nickname=" + nickname +
-                ", username='" + username + '\'' +
-                ", phone=" + phone +
-                ", access_token='" + access_token + '\'' +
-                ", expired_at='" + expired_at + '\'' +
-                ", profile=" + profile +
-                '}';
     }
 }

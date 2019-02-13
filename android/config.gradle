@@ -47,7 +47,8 @@ ext {
             retrofit: 'com.squareup.retrofit2:retrofit:2.1.0',
             okhttp: 'com.squareup.okhttp3:okhttp:3.3.1',
             gson: 'com.squareup.retrofit2:converter-gson:2.1.0',
-            picasso: 'com.squareup.picasso:picasso:2.71828'
+            picasso: 'com.squareup.picasso:picasso:2.71828',
+            volley: 'com.mcxiaoke.volley:library:1.0.19'
     ]
 
     configAndroidDomain = this.&configAndroidDomain
@@ -191,6 +192,8 @@ def configAppDependencies(Project pro) {
         implementation depConfig.retrofit
         implementation depConfig.okhttp
         implementation depConfig.picasso
+        implementation depConfig.volley
+
     }
 }
 
