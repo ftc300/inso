@@ -11,12 +11,15 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.inso.plugin.manager.SPManager;
 import com.inso.plugin.tools.L;
 
 import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import static com.inso.core.Constant.SP_ACCESS_TOKEN;
 
 /**
  * Comment:
@@ -140,8 +143,8 @@ public class HttpMgr {
      * @param url 请求url
      * @return JsonObjectRequest
      */
-    public static JsonObjectRequest getRequest(final String url,final IResponse<JSONObject> iResponse) {
-        return mJsonObjectRequest = new JsonObjectRequest(url, null,
+    public static JsonObjectRequest getRequest(final Context context, final String url, final IResponse<JSONObject> iResponse) {
+        return  new JsonObjectRequest(url+"?access_token=" + SPManager.get(context,SP_ACCESS_TOKEN,"") , null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -155,7 +158,14 @@ public class HttpMgr {
                 L.e("JsonObjectRequest", "onErrorResponse: " + volleyError.getMessage());
                 iResponse.onFail();
             }
-        });
+        }){
+
+            @Override
+            public String getBodyContentType() {
+                return "application/x-www-form-urlencoded; charset=UTF-8";
+            }
+
+        };
 
     }
 

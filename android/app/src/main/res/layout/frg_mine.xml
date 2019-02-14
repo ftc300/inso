@@ -16,11 +16,12 @@
         android:layout_marginTop="@dimen/dp10"
         android:padding="@dimen/content_padding">
 
-        <com.inso.watch.baselib.wigets.CircleImageView
+        <ImageView
             android:id="@+id/userIcon"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/head_default" />
+            android:src="@drawable/head_default"
+          />
 
         <TextView
             android:id="@+id/userName"

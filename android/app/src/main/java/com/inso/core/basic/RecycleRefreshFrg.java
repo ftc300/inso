@@ -1,16 +1,17 @@
 package com.inso.core.basic;
 
+import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.google.gson.Gson;
 import com.inso.R;
 import com.inso.core.HttpMgr;
-import com.inso.entity.http.FatherResponse;
 import com.inso.plugin.tools.L;
 import com.inso.watch.baselib.base.BaseFragment;
-import com.inso.watch.baselib.wigets.ToastWidget;
+import com.inso.watch.baselib.wigets.LoadStatusBox;
 import com.inso.watch.baselib.wigets.recycler.CommonAdapter;
 
 import org.json.JSONObject;
@@ -28,16 +29,22 @@ import butterknife.BindView;
  * GitHub: https://github.com/ftc300
  */
 
-public abstract class RecycleRefreshFrg<T extends FatherResponse> extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener {
+public abstract class RecycleRefreshFrg<T> extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener {
 
     @BindView(R.id.recyclerView)
-    RecyclerView recyclerView;
+    protected RecyclerView recyclerView;
     @BindView(R.id.swipe_container)
-    SwipeRefreshLayout mSwipeRefreshLayout;
-    CommonAdapter mAdapter;
+    protected SwipeRefreshLayout mSwipeRefreshLayout;
+    protected CommonAdapter mAdapter;
+    @BindView(R.id.loadStatusBox)
+    protected LoadStatusBox mLoadStatusBox;
     private Class<T> cls = null;
+    protected Handler mHandler = new Handler();
+
     protected abstract String getRequestUrl();
+
     protected abstract String getTitle();
+
     protected abstract void dealWithFetchData(T t);
 
 
@@ -78,24 +85,53 @@ public abstract class RecycleRefreshFrg<T extends FatherResponse> extends BaseFr
     @Override
     public void onRefresh() {
         // Showing refresh animation before making http call
-        mSwipeRefreshLayout.setRefreshing(true);
-        loadRecyclerViewData();
+        try {
+            if (null != mSwipeRefreshLayout) {
+                mSwipeRefreshLayout.setRefreshing(true);
+            }
+            loadRecyclerViewData();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void loadRecyclerViewData() {
-        HttpMgr.getRequestQueue(mActivity).add(HttpMgr.getRequest(getRequestUrl(), new HttpMgr.IResponse<JSONObject>() {
+        HttpMgr.getRequestQueue(mActivity).add(HttpMgr.getRequest(mActivity, getRequestUrl(), new HttpMgr.IResponse<JSONObject>() {
             @Override
-            public void onSuccess(JSONObject obj) {
+            public void onSuccess(final JSONObject obj) {
                 L.d("#######  getRequest onSuccess from " + getRequestUrl() + "\n" + obj.toString());
-                T t = new Gson().fromJson(obj.toString(),cls);
-                mSwipeRefreshLayout.setRefreshing(false);
-                dealWithFetchData(t);
+                if (null != mHandler) {
+                    mHandler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (null != mSwipeRefreshLayout && null != mLoadStatusBox && null != recyclerView) {
+                                mLoadStatusBox.success();
+                                mSwipeRefreshLayout.setVisibility(View.VISIBLE);
+                                T t = new Gson().fromJson(obj.toString(), cls);
+                                mSwipeRefreshLayout.setRefreshing(false);
+                                dealWithFetchData(t);
+                                recyclerView.setAdapter(mAdapter);
+                            }
+                        }
+                    }, 1000);
+                }
+
             }
 
             @Override
             public void onFail() {
-                ToastWidget.showFail(mActivity, "Fetch Error!");
-                mSwipeRefreshLayout.setRefreshing(false);
+                if (null != mHandler) {
+                    mHandler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (null != mSwipeRefreshLayout && null != mLoadStatusBox && null != recyclerView) {
+                                mSwipeRefreshLayout.setRefreshing(false);
+                                mLoadStatusBox.failed();
+                                mSwipeRefreshLayout.setVisibility(View.GONE);
+                            }
+                        }
+                    }, 2000);
+                }
             }
         }));
     }
