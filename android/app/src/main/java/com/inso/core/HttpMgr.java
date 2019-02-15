@@ -14,6 +14,7 @@ import com.android.volley.toolbox.Volley;
 import com.inso.plugin.manager.SPManager;
 import com.inso.plugin.tools.L;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -133,7 +134,7 @@ public class HttpMgr {
     }
 
     public interface IResponse<T> {
-        void onSuccess(T t);
+        void onSuccess(T t) throws JSONException;
 
         void onFail();
     }
@@ -150,7 +151,11 @@ public class HttpMgr {
                     public void onResponse(JSONObject response) {
                         L.d("JsonObjectRequest", response.toString());
                         L.d("######### response from " + url + "######### \n " + response.toString());
-                        iResponse.onSuccess(response);
+                        try {
+                            iResponse.onSuccess(response);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -176,7 +181,11 @@ public class HttpMgr {
                     @Override
                     public void onResponse(JSONObject response) {
                         L.d("######### response from " + url + "######### \n " + response.toString());
-                        iResponse.onSuccess(response);
+                        try {
+                            iResponse.onSuccess(response);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }, new Response.ErrorListener() {
             @Override

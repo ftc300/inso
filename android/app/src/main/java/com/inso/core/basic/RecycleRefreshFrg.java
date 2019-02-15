@@ -1,5 +1,7 @@
 package com.inso.core.basic;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -7,13 +9,17 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.google.gson.Gson;
+import com.inso.LoginAct;
 import com.inso.R;
+import com.inso.core.ACache;
 import com.inso.core.HttpMgr;
 import com.inso.plugin.tools.L;
 import com.inso.watch.baselib.base.BaseFragment;
 import com.inso.watch.baselib.wigets.LoadStatusBox;
+import com.inso.watch.baselib.wigets.ToastWidget;
 import com.inso.watch.baselib.wigets.recycler.CommonAdapter;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.lang.reflect.ParameterizedType;
@@ -40,6 +46,7 @@ public abstract class RecycleRefreshFrg<T> extends BaseFragment implements Swipe
     protected LoadStatusBox mLoadStatusBox;
     private Class<T> cls = null;
     protected Handler mHandler = new Handler();
+    private ACache mCache;
 
     protected abstract String getRequestUrl();
 
@@ -47,6 +54,18 @@ public abstract class RecycleRefreshFrg<T> extends BaseFragment implements Swipe
 
     protected abstract void dealWithFetchData(T t);
 
+    /**
+     * 设置LoadingView点击事件（重新请求）
+     */
+    private void setLoadingClickListener() {
+        mLoadStatusBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mLoadStatusBox.loading();
+                loadRecyclerViewData();
+            }
+        });
+    }
 
     @Override
     protected int getContentRes() {
@@ -60,8 +79,9 @@ public abstract class RecycleRefreshFrg<T> extends BaseFragment implements Swipe
         ParameterizedType type = (ParameterizedType) clz.getGenericSuperclass();
         Type[] types = type.getActualTypeArguments();
         cls = (Class<T>) types[0];
-
+        mCache = ACache.get(mActivity);
         setTitle(getTitle());
+        setLoadingClickListener();
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(mActivity));
         mSwipeRefreshLayout.setOnRefreshListener(this);
@@ -71,12 +91,18 @@ public abstract class RecycleRefreshFrg<T> extends BaseFragment implements Swipe
          * Showing Swipe Refresh animation on activity create
          * As animation won't start on onCreate, post runnable is used
          */
-        mSwipeRefreshLayout.post(new Runnable() {
-            @Override
-            public void run() {
-                loadRecyclerViewData();
-            }
-        });
+        String cache = mCache.getAsString(getRequestUrl());
+        if (null != cache ) {
+            fillAdapter(cache);
+        }else{
+            loadRecyclerViewData();
+        }
+//        mSwipeRefreshLayout.post(new Runnable() {
+//            @Override
+//            public void run() {
+//
+//            }
+//        });
     }
 
     /**
@@ -100,6 +126,18 @@ public abstract class RecycleRefreshFrg<T> extends BaseFragment implements Swipe
             @Override
             public void onSuccess(final JSONObject obj) {
                 L.d("#######  getRequest onSuccess from " + getRequestUrl() + "\n" + obj.toString());
+                try {
+                    if (obj.getInt("errcode") == 401) { //invalid credentials &&  expired
+                        ToastWidget.showWarn(mActivity, "登录已经过期，请重新登录");
+                        mActivity.startActivity(new Intent(mActivity, LoginAct.class));
+                        ((Activity) mActivity).finish();
+                        ((Activity) mActivity).overridePendingTransition(0, 0);
+                        return;
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
                 if (null != mHandler) {
                     mHandler.postDelayed(new Runnable() {
                         @Override
@@ -107,13 +145,12 @@ public abstract class RecycleRefreshFrg<T> extends BaseFragment implements Swipe
                             if (null != mSwipeRefreshLayout && null != mLoadStatusBox && null != recyclerView) {
                                 mLoadStatusBox.success();
                                 mSwipeRefreshLayout.setVisibility(View.VISIBLE);
-                                T t = new Gson().fromJson(obj.toString(), cls);
                                 mSwipeRefreshLayout.setRefreshing(false);
-                                dealWithFetchData(t);
-                                recyclerView.setAdapter(mAdapter);
+                                fillAdapter(obj.toString());
+                                mCache.put(getRequestUrl(),obj.toString(),ACache.TIME_HOUR);
                             }
                         }
-                    }, 1000);
+                    }, 800);
                 }
 
             }
@@ -130,10 +167,16 @@ public abstract class RecycleRefreshFrg<T> extends BaseFragment implements Swipe
                                 mSwipeRefreshLayout.setVisibility(View.GONE);
                             }
                         }
-                    }, 2000);
+                    }, 800);
                 }
             }
         }));
+    }
+
+    private void fillAdapter(String obj) {
+        T t = new Gson().fromJson(obj, cls);
+        dealWithFetchData(t);
+        recyclerView.setAdapter(mAdapter);
     }
 
 }

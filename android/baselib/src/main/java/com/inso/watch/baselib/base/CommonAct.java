@@ -15,7 +15,7 @@ import com.inso.watch.baselib.R;
 /**
  * 公用Activity，不包含任何业务，用于加载Fragment
  */
-public class CommonAct extends BaseAct {
+public class CommonAct extends BaseAct  {
 
     private static final String EXA_NAME = "name";
     private static final String EXA_ARGS = "args";

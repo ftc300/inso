@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="com.xiaomi.account:passportsdk-diagnosis-1.0.3">
+    <CLASSES>
+      <root url="file://D:/AndroidEnvironment/AS/.gradle/caches/transforms-1/files-1.1/passportsdk-diagnosis-1.0.3.aar/055cc4a7380e02557fbc14060cdf46bf/res" />
+      <root url="jar://D:/AndroidEnvironment/AS/.gradle/caches/transforms-1/files-1.1/passportsdk-diagnosis-1.0.3.aar/055cc4a7380e02557fbc14060cdf46bf/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

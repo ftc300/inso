@@ -48,8 +48,8 @@ public class MineFrg extends BaseFragment {
             public void onSuccess(JSONObject obj) {
                 L.d("#######  getRequest onSuccess from " + BASE_URL + "member/info" + "\n" + obj.toString());
                 SignUpResponse r = new Gson().fromJson(obj.toString(), SignUpResponse.class);
-                if(null!=r) {
-                    if(!TextUtils.isEmpty(r.getProfile().getAvatar())) {
+                if (null != r) {
+                    if (!TextUtils.isEmpty(r.getProfile().getAvatar())) {
                         Picasso.get()
                                 .load(r.getProfile().getAvatar())
                                 .placeholder(R.drawable.head_default)
@@ -57,7 +57,7 @@ public class MineFrg extends BaseFragment {
                                 .transform(new CropCircleTransformation())
                                 .into(mUserIcon);
                     }
-                    mUserName.setText(TextUtils.isEmpty(r.getUsername())?r.getUser_id():r.getUsername());
+                    mUserName.setText(TextUtils.isEmpty(r.getUsername()) ? r.getUser_id() : r.getUsername());
                 }
             }
 
