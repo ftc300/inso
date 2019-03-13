@@ -6,9 +6,11 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.view.View;
 
+import com.githang.statusbar.StatusBarCompat;
 import com.inso.watch.baselib.R;
 
 
@@ -103,7 +105,7 @@ public class CommonAct extends BaseAct  {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         setContentView(R.layout.common_act_container);
-
+        StatusBarCompat.setStatusBarColor(this, ContextCompat.getColor(this, R.color.white));
         String fragmentName = getIntent().getStringExtra(EXA_NAME);
         Bundle args = getIntent().getBundleExtra(EXA_ARGS);
         if (!TextUtils.isEmpty(fragmentName)) {

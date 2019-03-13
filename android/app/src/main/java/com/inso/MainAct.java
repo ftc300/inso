@@ -9,12 +9,14 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.ashokvarma.bottomnavigation.TextBadgeItem;
+import com.githang.statusbar.StatusBarCompat;
 import com.inso.mall.MallFrg;
 import com.inso.mine.MineFrg;
 import com.inso.notify.NotifyFrg;
@@ -45,9 +47,9 @@ public class MainAct extends AppCompatActivity implements BottomNavigationBar.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        StatusBarCompat.setStatusBarColor(this, ContextCompat.getColor(this, R.color.white));
         setContentView(R.layout.act_main);
         ButterKnife.bind(this);
-
         mProductFrg = ProductFrg.getInstance();
         mMineFrg = MineFrg.getInstance();
         mNotifyFrg = NotifyFrg.getInstance();

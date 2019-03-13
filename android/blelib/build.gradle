@@ -4,4 +4,4 @@ plugins {
 
 // in config.gradle
 configAndroidDomain project
-confiBleLibDependencies project
+configBleLibDependencies project

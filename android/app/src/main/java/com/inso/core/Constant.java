@@ -18,7 +18,11 @@ public class Constant {
     public static final String PLATFORM_WX = "weixin";
 
     public static final String SP_ACCESS_TOKEN = "SP_ACCESS_TOKEN";
+    public static final String SP_EXPIRED_AT = "SP_EXPIRED_AT";
 
+
+
+    public static final String CHARACTERISTIC_BIND = "c99a310-7f3c-4e85-bde2-92f2037bfd42";
 
 
 

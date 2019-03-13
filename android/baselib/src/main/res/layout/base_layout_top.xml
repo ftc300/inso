@@ -20,7 +20,7 @@
             android:drawableLeft="@drawable/top_left_arrow"
             android:gravity="center"
             android:text=""
-            android:textColor="@color/white_40_transparent"
+            android:textColor="@color/word_black"
             android:textSize="15sp"
             android:visibility="gone" />
 
@@ -36,7 +36,7 @@
         android:singleLine="true"
         android:textColor="@color/word_black"
         android:textSize="@dimen/sp14"
-        tools:text="Title"
+        tools:text="Title1"
       />
 
     <FrameLayout

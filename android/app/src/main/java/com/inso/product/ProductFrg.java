@@ -1,4 +1,5 @@
 package com.inso.product;
+
 import android.view.View;
 
 import com.inso.R;

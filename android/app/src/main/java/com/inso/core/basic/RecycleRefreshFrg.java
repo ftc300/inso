@@ -11,7 +11,7 @@ import android.view.View;
 import com.google.gson.Gson;
 import com.inso.LoginAct;
 import com.inso.R;
-import com.inso.core.ACache;
+import com.inso.core.CacheMgr;
 import com.inso.core.HttpMgr;
 import com.inso.plugin.tools.L;
 import com.inso.watch.baselib.base.BaseFragment;
@@ -46,7 +46,7 @@ public abstract class RecycleRefreshFrg<T> extends BaseFragment implements Swipe
     protected LoadStatusBox mLoadStatusBox;
     private Class<T> cls = null;
     protected Handler mHandler = new Handler();
-    private ACache mCache;
+    private CacheMgr mCache;
 
     protected abstract String getRequestUrl();
 
@@ -79,7 +79,7 @@ public abstract class RecycleRefreshFrg<T> extends BaseFragment implements Swipe
         ParameterizedType type = (ParameterizedType) clz.getGenericSuperclass();
         Type[] types = type.getActualTypeArguments();
         cls = (Class<T>) types[0];
-        mCache = ACache.get(mActivity);
+        mCache = CacheMgr.get(mActivity);
         setTitle(getTitle());
         setLoadingClickListener();
         recyclerView.setHasFixedSize(true);
@@ -94,15 +94,10 @@ public abstract class RecycleRefreshFrg<T> extends BaseFragment implements Swipe
         String cache = mCache.getAsString(getRequestUrl());
         if (null != cache ) {
             fillAdapter(cache);
+            mLoadStatusBox.success();
         }else{
             loadRecyclerViewData();
         }
-//        mSwipeRefreshLayout.post(new Runnable() {
-//            @Override
-//            public void run() {
-//
-//            }
-//        });
     }
 
     /**
@@ -147,7 +142,7 @@ public abstract class RecycleRefreshFrg<T> extends BaseFragment implements Swipe
                                 mSwipeRefreshLayout.setVisibility(View.VISIBLE);
                                 mSwipeRefreshLayout.setRefreshing(false);
                                 fillAdapter(obj.toString());
-                                mCache.put(getRequestUrl(),obj.toString(),ACache.TIME_HOUR);
+                                mCache.put(getRequestUrl(),obj.toString(), CacheMgr.TIME_HOUR);
                             }
                         }
                     }, 800);

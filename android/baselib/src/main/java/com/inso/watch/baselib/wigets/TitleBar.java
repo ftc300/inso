@@ -149,4 +149,17 @@ public class TitleBar {
             left.setVisibility(View.GONE);
         }
     }
+
+    public void setLeftTitle( String leftText,String titleText, View.OnClickListener l) {
+        if(titleLayout == null) {
+            return;
+        }
+        TextView left = (TextView) titleLayout.findViewById(R.id.top_left_tv);
+        left.setText(leftText);
+        left.setCompoundDrawablesWithIntrinsicBounds( 0, 0, 0, 0);
+        TextView title = (TextView) titleLayout.findViewById(R.id.top_title_tv);
+        title.setText(titleText);
+        ((View) left.getParent()).setOnClickListener(l);
+        left.setVisibility(View.VISIBLE);
+    }
 }

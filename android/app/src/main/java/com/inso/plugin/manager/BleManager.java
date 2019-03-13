@@ -362,7 +362,6 @@ public class BleManager {
         if (bytes == null) return "";
         String result = "";
         for (int i = 0; i < bytes.length; i++) {
-//          String hexString = Integer.toHexString(bytes[i] & 0xFF);
             String hexString = Integer.toHexString(bytes[i] & 0x0FF);
             if (hexString.length() == 1) {
                 hexString = '0' + hexString;

@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.ethanhua.skeleton.Skeleton;
+import com.ethanhua.skeleton.SkeletonScreen;
 import com.inso.R;
 import com.inso.core.basic.RecycleRefreshFrg;
 import com.inso.entity.http.Product;
@@ -56,6 +58,21 @@ public class MallFrg extends RecycleRefreshFrg<Product> {
                 });
             }
         };
+        final SkeletonScreen skeletonScreen = Skeleton.bind(recyclerView)
+                .adapter(mAdapter)
+                .shimmer(true)
+                .angle(20)
+                .frozen(false)
+                .duration(1200)
+                .count(10)
+                .load(R.layout.select_device_item)
+                .show(); //default count is 10
+        recyclerView.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                skeletonScreen.hide();
+            }
+        }, 3000);
         if(null!= data && data.size() == 0)  mLoadStatusBox.empty();
     }
 

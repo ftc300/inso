@@ -8,7 +8,11 @@ import com.inuker.bluetooth.library.connect.listener.BleConnectStatusListener;
 import com.inuker.bluetooth.library.connect.response.BleConnectResponse;
 import com.inuker.bluetooth.library.connect.response.BleNotifyResponse;
 import com.inuker.bluetooth.library.connect.response.BleReadResponse;
+import com.inuker.bluetooth.library.connect.response.BleReadRssiResponse;
+import com.inuker.bluetooth.library.connect.response.BleUnnotifyResponse;
 import com.inuker.bluetooth.library.connect.response.BleWriteResponse;
+import com.inuker.bluetooth.library.search.SearchRequest;
+import com.inuker.bluetooth.library.search.response.SearchResponse;
 
 import java.util.UUID;
 
@@ -81,9 +85,22 @@ public class BleMgr {
         mClient.disconnect(MAC);
     }
 
+    public void readRssi(String mac,BleReadRssiResponse response){
+        mClient.readRssi(mac,response);
+    }
+
+    public void search(SearchRequest request, SearchResponse response){
+        mClient.search(request, response);
+    }
+    public void stopSearch(){
+        mClient.stopSearch();
+    }
 
     public void notify(String mac, UUID service, UUID character,BleNotifyResponse response) {
         mClient.notify(mac, service, character,response);
+    }
+    public void unNotify(String mac, UUID service, UUID character,BleUnnotifyResponse response) {
+        mClient.unnotify(mac, service, character,response);
     }
 
     public void read(String MAC, final UUID serviceUUID, final UUID characterUUID, final IReadOnResponse readOnResponse) {

@@ -138,6 +138,9 @@ public class BaseFragment extends Fragment{
     protected void setTitleR(boolean showBack, CharSequence title,int rightIcon,View.OnClickListener rightClick) {
         mTitleBar.setTitleBarR(showBack, title,rightIcon,rightClick);
     }
+    protected void setTitleL(String leftText,String titleText, View.OnClickListener l) {
+        mTitleBar.setLeftTitle(leftText, titleText,l);
+    }
 
     /**
      * 设置具有返回按钮的标题

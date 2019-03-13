@@ -5,8 +5,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.inso.R;
-import com.inso.plugin.act.mainpagelogic.PluginMainAct;
 import com.inso.watch.baselib.base.BaseFragment;
+import com.inso.watch.baselib.base.CommonAct;
 import com.inso.watch.baselib.wigets.recycler.CommonAdapter;
 import com.inso.watch.baselib.wigets.recycler.base.ViewHolder;
 
@@ -52,7 +52,7 @@ public class SelectDeviceFrg extends BaseFragment {
                 holder.setOnClickListener(R.id.ll_item, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        switchTo(PluginMainAct.class);
+                        CommonAct.start(mContext,BindFrg.class);
                     }
                 });
             }

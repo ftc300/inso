@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+
+    <ImageView    android:layout_marginTop="-60dp" style="@style/MatchParent" android:background="@drawable/bind_bg"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/watch_common_button"
+        style="?android:attr/borderlessButtonStyle"
+        android:textColor="@drawable/btn_text_bg_selector"
+        android:layout_margin="30dp"
+        android:layout_alignParentBottom="true"
+        android:text="重试"
+        android:id="@+id/btnTryAgain"
+        android:visibility="gone"/>
+
+</RelativeLayout>

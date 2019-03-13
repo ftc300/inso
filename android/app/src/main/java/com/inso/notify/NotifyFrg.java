@@ -68,6 +68,7 @@ public class NotifyFrg extends RecycleRefreshFrg<Information> {
                 });
             }
         };
+        if(null!= data && data.size() == 0)  mLoadStatusBox.empty();
     }
 
 
