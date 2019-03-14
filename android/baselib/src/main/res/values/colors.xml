@@ -62,4 +62,9 @@
     <color name="text_hint">#cccccc</color>
     <color name="main_fore">#fffffe</color>
     <color name="dominate_bg">#e2e4e4</color>
+
+
+    <color name="label_bg_red">#f85959</color>
+    <color name="label_bg_orange">#ff7700</color>
+    <color name="label_bg_blue">#16A7FA</color>
 </resources>

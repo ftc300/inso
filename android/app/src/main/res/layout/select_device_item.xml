@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/selector_information_item"
+    android:stateListAnimator="@drawable/selector_elevation"
     android:layout_margin="@dimen/content_padding"
     android:padding="@dimen/dp5">
 

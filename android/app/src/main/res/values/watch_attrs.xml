@@ -83,4 +83,5 @@
         <attr name="percentDecimal" format="integer"/>
         <attr name="pietextSize" format="dimension"/>
     </declare-styleable>
+
 </resources>

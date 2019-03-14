@@ -1,6 +1,7 @@
 package com.inso.mall;
 
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -40,15 +41,18 @@ public class MallFrg extends RecycleRefreshFrg<Product> {
     @Override
     protected void dealWithFetchData(Product product) {
         data = product.getItems();
-        mAdapter = new CommonAdapter<Product.ItemsBean>(mActivity, R.layout.select_device_item, data) {
+        recyclerView.setLayoutManager(new GridLayoutManager(mActivity,2));
+        mAdapter = new CommonAdapter<Product.ItemsBean>(mActivity, R.layout.item_mall, data) {
             @Override
             protected void convert(ViewHolder holder, Product.ItemsBean item, int position) {
-                holder.setText(R.id.tvContent, item.getName());
+                holder.setText(R.id.tvProductName, item.getName());
+                holder.setText(R.id.tvDesc, item.getDescription());
                 Picasso.get()
                         .load(item.getLogo())
                         .placeholder(R.drawable.pic_default)
                         .error(R.drawable.pic_error)
-                        .into((ImageView) holder.getView(R.id.img_head));
+                        .fit()
+                        .into((ImageView) holder.getView(R.id.imgLogo));
                 holder.setOnClickListener(R.id.ll_item, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

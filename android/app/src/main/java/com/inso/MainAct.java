@@ -70,10 +70,10 @@ public class MainAct extends AppCompatActivity implements BottomNavigationBar.On
         mBottomNavigationBar.setMode(BottomNavigationBar.MODE_FIXED);
         mBottomNavigationBar.setBackgroundStyle(BottomNavigationBar.BACKGROUND_STYLE_STATIC);
         mBottomNavigationBar
-                .addItem(new BottomNavigationItem(R.mipmap.ic_cp, "产品").setActiveColorResource(R.color.black))
-                .addItem(new BottomNavigationItem(R.mipmap.ic_sc, "商城").setActiveColorResource(R.color.black))
-                .addItem(new BottomNavigationItem(R.mipmap.ic_lb, "小喇叭").setActiveColorResource(R.color.black).setBadgeItem(badge))
-                .addItem(new BottomNavigationItem(R.mipmap.ic_wd, "我的").setActiveColorResource(R.color.black))
+                .addItem(new BottomNavigationItem(R.mipmap.ic_cp, "产品").setActiveColorResource(R.color.watch_red))
+                .addItem(new BottomNavigationItem(R.mipmap.ic_sc, "商城").setActiveColorResource(R.color.watch_red))
+                .addItem(new BottomNavigationItem(R.mipmap.ic_lb, "小喇叭").setActiveColorResource(R.color.watch_red).setBadgeItem(badge))
+                .addItem(new BottomNavigationItem(R.mipmap.ic_wd, "我的").setActiveColorResource(R.color.watch_red))
                 .setFirstSelectedPosition(0)
                 .initialise();
     }

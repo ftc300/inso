@@ -160,6 +160,7 @@ public abstract class RecycleRefreshFrg<T> extends BaseFragment implements Swipe
                                 mSwipeRefreshLayout.setRefreshing(false);
                                 mLoadStatusBox.failed();
                                 mSwipeRefreshLayout.setVisibility(View.GONE);
+                                mCache.remove(getRequestUrl());
                             }
                         }
                     }, 800);
