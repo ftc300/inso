@@ -1,4 +1,4 @@
-package com.inso.core;
+package com.inso.core.bind;
 
 /**
  * Comment:

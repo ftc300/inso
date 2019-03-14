@@ -1,4 +1,4 @@
-package com.inso.product;
+package com.inso.core.bind;
 
 import android.content.Context;
 
@@ -21,21 +21,27 @@ public class BindUiHandleImp implements IBindUiHandle {
     }
 
     @Override
-    public void showNoPermison() {
-        L.d("showNoPermison");
-        ToastWidget.showFail(mContext,"showNoPermison");
+    public void showNoPermission() {
+        L.d("showNoPermission");
+        ToastWidget.showFail(mContext,"showNoPermission");
     }
 
     @Override
     public void showNetError() {
         L.d("showNetError");
-        ToastWidget.showFail(mContext,"showNoPermison");
+        ToastWidget.showFail(mContext,"showNoPermission");
     }
 
     @Override
     public void showBleError() {
         L.d("showBleError");
-        ToastWidget.showFail(mContext,"showNoPermison");
+        ToastWidget.showFail(mContext,"showNoPermission");
+    }
+
+    @Override
+    public void showNotFoundDevice() {
+        L.d("showNotFoundDevice");
+        ToastWidget.showFail(mContext,"showNotFoundDevice");
     }
 
     @Override

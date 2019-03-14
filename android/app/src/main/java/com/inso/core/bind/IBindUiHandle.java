@@ -1,4 +1,4 @@
-package com.inso.product;
+package com.inso.core.bind;
 
 /**
  * Comment:
@@ -9,9 +9,10 @@ package com.inso.product;
  */
 
 public interface IBindUiHandle {
-    void showNoPermison();
+    void showNoPermission();
     void showNetError();
     void showBleError();
+    void showNotFoundDevice();
     void showHasBond();
     void showBindTimeout();
     void showBindFail();

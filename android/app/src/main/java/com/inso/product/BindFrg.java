@@ -3,7 +3,8 @@ package com.inso.product;
 import android.view.View;
 
 import com.inso.R;
-import com.inso.core.BindMgr;
+import com.inso.core.bind.BindMgr;
+import com.inso.core.bind.BindUiHandleImp;
 import com.inso.watch.baselib.base.BaseFragment;
 
 /**
