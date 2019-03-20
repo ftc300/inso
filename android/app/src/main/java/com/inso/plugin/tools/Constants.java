@@ -63,9 +63,10 @@ public class Constants {
         public static final String CHARACTERISTIC_SYNC_WATCH_TIME = "c99a3107-7f3c-4e85-bde2-92f2037bfd42";
         public static final String CHARACTERISTIC_STEP_DRIVER_COMPLETE = "c99a3108-7f3c-4e85-bde2-92f2037bfd42";
         public static final String CHARACTERISTIC_SYNC_CURRENT_TIME = "c99a3109-7f3c-4e85-bde2-92f2037bfd42";
-        public static final String CHARACTERISTIC_ALARM_CLOCK = "c99a3201-7f3c-4e85-bde2-92f2037bfd42";
+        public static final String CHARACTERISTIC_SYNC_CURRENT_TIME2 = "c99a3102-7f3c-4e85-bde2-92f2037bfd42";
+        public static final String CHARACTERISTIC_ALARM_CLOCK = "c99a3105-7f3c-4e85-bde2-92f2037bfd42";
         public static final String CHARACTERISTIC_VIBRATION_SETTING = "c99a3202-7f3c-4e85-bde2-92f2037bfd42";
-        public static final String CHARACTERISTIC_INTERVAL_REMIND = "c99a3203-7f3c-4e85-bde2-92f2037bfd42";
+        public static final String CHARACTERISTIC_INTERVAL_REMIND = "c99a3104-7f3c-4e85-bde2-92f2037bfd42";
         public static final String CHARACTERISTIC_HISTORY_STEP = "c99a3204-7f3c-4e85-bde2-92f2037bfd42";
         public static final String CHARACTERISTIC_DEBUG_LOG = "c99a3206-7f3c-4e85-bde2-92f2037bfd42";
         public static final String CHARACTERISTIC_POWER_CONSUMPTION = "c99a3300-7f3c-4e85-bde2-92f2037bfd42";

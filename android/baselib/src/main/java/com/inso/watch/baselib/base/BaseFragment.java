@@ -39,6 +39,7 @@ public class BaseFragment extends Fragment{
 
     protected Context mActivity;
 
+
     Unbinder unbinder;
     /**
      * 设置无标题显示

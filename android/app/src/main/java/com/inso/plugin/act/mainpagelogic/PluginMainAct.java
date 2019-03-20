@@ -14,6 +14,7 @@ import com.inso.core.pressed.ICheckDevicePressed;
 import com.inso.plugin.act.more.MoreAct;
 import com.inso.plugin.basic.BasicAct;
 import com.inso.plugin.basic.BasicFragment;
+import com.inso.plugin.event.HomePageBus;
 import com.inso.plugin.fragment.FragmentBottom;
 import com.inso.plugin.fragment.FragmentTop;
 import com.inso.plugin.manager.SPManager;
@@ -26,6 +27,8 @@ import com.xiaomi.smarthome.common.ui.dialog.MLAlertDialog;
 import com.yanzhenjie.permission.Action;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.Permission;
+
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.List;
 import java.util.Timer;
@@ -137,7 +140,7 @@ public class PluginMainAct extends BasicAct {
                 .onGranted(new Action<List<String>>() {
                     @Override
                     public void onAction(List<String> data) {
-                        checkBleAndConn();
+                        checkBleAndConn2();
                     }
                 })
                 .onDenied(new Action<List<String>>() {
@@ -148,7 +151,23 @@ public class PluginMainAct extends BasicAct {
                 })
                 .start();
     }
-
+    private void checkBleAndConn2() {
+        final String mac = (String) SPManager.get(mContext,SP_ARG_MAC,"");
+        BleMgr.getInstance().connect(mac, new BleConnectResponse() {
+            @Override
+            public void onResponse(int code, BleGattProfile data) {
+                scanner.stopScan(callback);
+                if (code == REQUEST_SUCCESS) {
+                    SPManager.put(mContext, SP_ARG_MAC, mac);
+                    BleMgr.getInstance().write(mac, UUID.fromString(IN_SHOW_SERVICE), UUID.fromString(CHARACTERISTIC_CONTROL), new byte[]{3, 1, 0, 0});
+                    connectSuccessCallback();
+                }else {
+                    connectFailCallback();
+                }
+            }
+        });
+        BleMgr.getInstance().register(mac, mBleConnectStatusListener);
+    }
 
     private void checkBleAndConn() {
         if (BleMgr.getInstance().isBluetoothOpen()) {
@@ -261,5 +280,12 @@ public class PluginMainAct extends BasicAct {
     public void onPause() {
         super.onPause();
         scanner.stopScan(callback);
+    }
+    @Subscribe
+    public void onEventMainThread(HomePageBus event) {
+        if (event.clickTryAgain) {
+            L.e("onEventMainThread =>clickTryAgain 重新连接");
+            checkBleAndConn2();
+        }
     }
 }

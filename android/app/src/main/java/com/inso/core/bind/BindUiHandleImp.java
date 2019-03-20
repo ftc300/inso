@@ -3,6 +3,9 @@ package com.inso.core.bind;
 import android.content.Context;
 
 import com.inso.plugin.tools.L;
+import com.inso.product.BindSuccessFrg;
+import com.inso.watch.baselib.base.BaseFragment;
+import com.inso.watch.baselib.base.CommonAct;
 import com.inso.watch.baselib.wigets.ToastWidget;
 
 /**
@@ -66,5 +69,6 @@ public class BindUiHandleImp implements IBindUiHandle {
     public void showBindSuccess() {
         L.d("showBindSuccess");
         ToastWidget.showSuccess(mContext,"showBindSuccess");
+        CommonAct.start(mContext, BindSuccessFrg.class, BaseFragment.configNoTitle());
     }
 }

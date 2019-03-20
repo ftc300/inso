@@ -141,6 +141,7 @@ public class BleManager {
 
 
 
+
     //同步时间
     public static byte[] I2B_SyncTime(int value) {
         byte[] src = new byte[4];
@@ -148,6 +149,18 @@ public class BleManager {
         src[2] = (byte) ((value >> 16) & 0x0FF);
         src[1] = (byte) ((value >> 8) & 0x0FF);
         src[0] = (byte) (value & 0x0FF);
+        L.e( "TimeSync:int=" + value + ";" + "byteString=" + bytesToHexString(src));
+        return src;
+    }
+    //同步时间
+    public static byte[] I2B_SyncTime2(int value) {
+        byte[] src = new byte[6];
+        src[5] = (byte) ((value>> 24) & 0x0FF);
+        src[4] = (byte) ((value>> 16) & 0x0FF);
+        src[3] = (byte) ((value>> 8) & 0x0FF);
+        src[2] = (byte) (value & 0x0FF);
+        src[1] = 0;
+        src[0] = 0;
         L.e( "TimeSync:int=" + value + ";" + "byteString=" + bytesToHexString(src));
         return src;
     }

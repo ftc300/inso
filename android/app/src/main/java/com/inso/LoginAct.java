@@ -63,7 +63,6 @@ public class LoginAct extends AppCompatActivity {
     private Context mContext = this;
     private Executor mExecutor = Executors.newCachedThreadPool();
 
-
     void switch2Main() {
         this.finish();
         Intent intent = new Intent(this, MainAct.class);
@@ -87,6 +86,7 @@ public class LoginAct extends AppCompatActivity {
                 }
             },800);
         }
+//        switch2Main();
     }
 
     @OnClick({R.id.wechat, R.id.xiaomi})
@@ -161,18 +161,20 @@ public class LoginAct extends AppCompatActivity {
                         try {
                             XmProfile response = new Gson().fromJson(r, XmProfile.class);
                             XmProfile.DataBean data = response.getData();
-                            Sign sign = new Sign(PLATFORM_XM, data.getMiliaoNick(), data.getUnionId(), data.getMiliaoIcon(), "male");
+                            Sign sign = new Sign(PLATFORM_XM, data.getMiliaoNick(), data.getUnionId(), data.getMiliaoIcon(), 1);
                             mRotateloading.start();
-                            HttpMgr.getRequestQueue(getApplicationContext()).add(HttpMgr.postRequest(BASE_URL + "member/signup", new Gson().toJson(sign), new HttpMgr.IResponse<JSONObject>() {
+                            HttpMgr.getRequestQueue(getApplicationContext()).add(HttpMgr.postString(BASE_URL + "member/signup", sign, new HttpMgr.IResponse<String>() {
                                 @Override
-                                public void onSuccess(JSONObject obj) {
+                                public void onSuccess(String obj) {
                                     try {
-                                        SPManager.put(mContext, SP_ACCESS_TOKEN, obj.getString("access_token"));
-                                        SPManager.put(mContext, SP_EXPIRED_AT, obj.getLong("expired_at"));
-                                        L.d("obj.get(\"access_token\")" + obj.get("access_token"));
+                                        JSONObject jsonObject =  new JSONObject(obj);
+                                        SPManager.put(mContext, SP_ACCESS_TOKEN, jsonObject.getString("access_token"));
+                                        SPManager.put(mContext, SP_EXPIRED_AT, jsonObject.getLong("expired_at"));
+                                        L.d("obj.get(\"access_token\")" + jsonObject.get("access_token"));
                                         switch2Main();
                                     } catch (JSONException arg_e) {
                                         arg_e.printStackTrace();
+                                        ToastWidget.showFail(mContext, "Login Error!");
                                     }
                                 }
 
@@ -184,6 +186,7 @@ public class LoginAct extends AppCompatActivity {
                         } catch (Exception e) {
                             e.printStackTrace();
                             L.e(e.getMessage());
+                            ToastWidget.showFail(mContext, "Login Error!");
                         }
                     }
                     L.d(r);

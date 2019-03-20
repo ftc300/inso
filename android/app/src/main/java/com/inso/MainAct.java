@@ -1,11 +1,5 @@
 package com.inso;
 
-import android.content.Intent;
-import android.content.pm.ShortcutInfo;
-import android.content.pm.ShortcutManager;
-import android.graphics.drawable.Icon;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -20,7 +14,6 @@ import com.githang.statusbar.StatusBarCompat;
 import com.inso.mall.MallFrg;
 import com.inso.mine.MineFrg;
 import com.inso.notify.NotifyFrg;
-import com.inso.plugin.act.mainpagelogic.PluginMainAct;
 import com.inso.product.ProductFrg;
 
 import butterknife.BindView;
@@ -56,7 +49,6 @@ public class MainAct extends AppCompatActivity implements BottomNavigationBar.On
         mMallFrg = MallFrg.getInstance();
         InitNavigationBar();
         setDefaultFragment();
-//        addShortcut();
     }
 
     private void InitNavigationBar() {
@@ -110,7 +102,6 @@ public class MainAct extends AppCompatActivity implements BottomNavigationBar.On
                 transaction.replace(R.id.fragment_container, mProductFrg);
                 break;
         }
-        // 事务提交
         transaction.commit();
     }
 
@@ -122,30 +113,6 @@ public class MainAct extends AppCompatActivity implements BottomNavigationBar.On
     @Override
     public void onTabReselected(int position) {
         Log.d("onTabReselected", "onTabReselected: " + position);
-    }
-
-    //添加快捷方式
-    private void addShortcut() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            ShortcutManager scm = (ShortcutManager) getSystemService(SHORTCUT_SERVICE);
-            Intent launcherIntent = new Intent(Intent.ACTION_MAIN, Uri.EMPTY, this, PluginMainAct.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            ShortcutInfo si = new ShortcutInfo.Builder(this, "addShortcut")
-                    .setIcon(Icon.createWithResource(this, R.drawable.watch_default))
-                    .setShortLabel("米家石英表2")
-                    .setIntent(launcherIntent)
-                    .build();
-            assert scm != null;
-            scm.requestPinShortcut(si, null);
-        } else {
-            Intent addShortcutIntent = new Intent("com.android.launcher.action.INSTALL_SHORTCUT");//"com.android.launcher.action.INSTALL_SHORTCUT"
-            addShortcutIntent.putExtra("duplicate", false);// 经测试不是根据快捷方式的名字判断重复的
-            addShortcutIntent.putExtra(Intent.EXTRA_SHORTCUT_NAME, "米家石英表2");
-            addShortcutIntent.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE,
-                    Intent.ShortcutIconResource.fromContext(getApplicationContext(), R.drawable.watch_default));
-            Intent launcherIntent = new Intent(getApplicationContext(), PluginMainAct.class);
-            addShortcutIntent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, launcherIntent);
-            sendBroadcast(addShortcutIntent);
-        }
     }
 
 }

@@ -17,6 +17,7 @@ import com.inso.plugin.tools.L;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -69,37 +70,58 @@ public class HttpMgr {
         return false;
     }
 
+    private static Map<String, String> obj2Map(Object obj) {
+        Map<String, String> map = new HashMap<>();
+        Field[] fields = obj.getClass().getDeclaredFields();
+        for (int i = 0, len = fields.length; i < len; i++) {
+            String varName = fields[i].getName();
+            try {
+                boolean accessFlag = fields[i].isAccessible();
+                fields[i].setAccessible(true);
+                Object o = fields[i].get(obj);
+                if (o != null)
+                    map.put(varName, o.toString());
+                fields[i].setAccessible(accessFlag);
+            } catch (IllegalArgumentException ex) {
+                ex.printStackTrace();
+            } catch (IllegalAccessException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return map;
+    }
+
+
     /**
      * 2.获取StringRequest对象
      *
      * @param url 请求的url
      * @return StringRequest
      */
-    public static StringRequest postString(String url, final String name) {
+    public static StringRequest postString(final String url, final Object obj , final IResponse<String> iResponse) {
+        L.d("######### post data ######### \n" , obj2Map(obj).toString());
         return stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+                        L.d(response);
+                        L.d("######### response from " + url + "######### \n " + response.toString());
+                        try {
+                            iResponse.onSuccess(response);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                L.e("######### response error from " + url + "######### \n " + error.toString());
+                iResponse.onFail();
             }
         }) {
             @Override
             protected Map<String, String> getParams() {
-                //在这里设置需要post的参数
-                Map<String, String> map = new HashMap<>();
-                map.put("name", name);
-                return map;
-            }
-
-            @Override
-            public Map<String, String> getHeaders() {
-                HashMap<String, String> headers = new HashMap<String, String>();
-                headers.put("Accept", "application/json");
-                headers.put("Content-Type", "application/json; charset=UTF-8");
-                return headers;
+                return obj2Map(obj);
             }
         };
     }
@@ -176,6 +198,7 @@ public class HttpMgr {
 
 
     public static JsonObjectRequest postRequest(final String url, String content, final IResponse<JSONObject> iResponse) {
+        L.d("######### post data ########" + content);
         return new JsonObjectRequest(Request.Method.POST, url, content,
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -190,22 +213,31 @@ public class HttpMgr {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                L.e(error.getMessage());
+                L.e("######### response from " + url + "######### \n " + error.toString());
                 iResponse.onFail();
             }
         }) {
 //          @Override
 //          public Map<String, String> getHeaders() {
 //              HashMap<String, String> headers = new HashMap<String, String>();
-//              headers.put("Accept", "application/json");
-//              headers.put("Content-Type", "application/json; charset=UTF-8");
+//              headers.put("Accept", "*/*");
+//              headers.put("Accept-Encoding","gzip,deflate");
+//              headers.put("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
 //              return headers;
 //          }
-
-            @Override
-            public String getBodyContentType() {
-                return "application/x-www-form-urlencoded; charset=UTF-8";
-            }
+//
+//            @Override
+//            protected Map<String, String> getParams() throws AuthFailureError {
+//                Map<String, String> map = new HashMap<>();
+//                map.put("platform","xiaomi");
+//                map.put("unionId","TGIsaVC_10gI9yQwwn3swNz8IHMKiJ8m8O5qASSA");
+//                return map;
+//            }
+//
+//            @Override
+//            public String getBodyContentType() {
+//                return "application/x-www-form-urlencoded;charset=UTF-8";
+//            }
 
         };
     }

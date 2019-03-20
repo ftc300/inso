@@ -1,11 +1,18 @@
 package com.inso.plugin.sync;
 
 
+import com.inso.core.BleMgr;
 import com.inso.plugin.dao.AlarmDao;
 import com.inso.plugin.dao.IntervalDao;
 import com.inso.plugin.dao.VibrationDao;
 import com.inso.plugin.model.VipEntity;
 import com.inso.plugin.provider.DBHelper;
+import com.inso.plugin.tools.L;
+
+import java.util.UUID;
+
+import static com.inso.plugin.tools.Constants.GattUUIDConstant.CHARACTERISTIC_HISTORY_STEP;
+import static com.inso.plugin.tools.Constants.GattUUIDConstant.IN_SHOW_SERVICE;
 
 
 /**
@@ -80,16 +87,17 @@ public class SyncDeviceHelper {
      * @param callback
      */
     public static void syncDeviceStepHistory(final String MAC, final BtCallback callback) {
-//        XmBluetoothManager.getInstance().read(MAC, UUID.fromString(IN_SHOW_SERVICE), UUID.fromString(CHARACTERISTIC_HISTORY_STEP), new Response.BleReadResponse() {
-//            @Override
-//            public void onResponse(int code, byte[] bytes) {
-//                if (code == XmBluetoothManager.Code.REQUEST_SUCCESS) {
-//                    callback.onBtResponse(bytes);
-//                } else {
-//                    L.e("syncDeviceStepHistory:error");
-//                }
-//            }
-//        });
+        BleMgr.getInstance().read(MAC, UUID.fromString(IN_SHOW_SERVICE), UUID.fromString(CHARACTERISTIC_HISTORY_STEP), new BleMgr.IReadOnResponse() {
+            @Override
+            public void onSuccess(byte[] data) {
+                callback.onBtResponse(data);
+            }
+
+            @Override
+            public void onFail() {
+                L.e("syncDeviceStepHistory:error");
+            }
+        });
     }
 
     /**

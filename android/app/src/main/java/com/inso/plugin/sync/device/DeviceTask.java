@@ -2,7 +2,7 @@ package com.inso.plugin.sync.device;
 
 import android.content.Context;
 
-
+import com.inso.core.BleMgr;
 import com.inso.plugin.act.user.WatchUserInfoHelper;
 import com.inso.plugin.dao.AlarmDao;
 import com.inso.plugin.dao.IntervalDao;
@@ -24,12 +24,19 @@ import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import static com.inso.plugin.event.ChangeUI.SYNC_BIND_RENDER;
-import static com.inso.plugin.tools.Constants.*;
-import static com.inso.plugin.tools.Constants.SystemConstant.*;
+import static com.inso.plugin.tools.Constants.GattUUIDConstant.CHARACTERISTIC_HISTORY_STEP;
+import static com.inso.plugin.tools.Constants.GattUUIDConstant.IN_SHOW_SERVICE;
+import static com.inso.plugin.tools.Constants.ON;
+import static com.inso.plugin.tools.Constants.SystemConstant.SP_ARG_MAC;
+import static com.inso.plugin.tools.Constants.SystemConstant.SP_ARG_MODEL;
+import static com.inso.plugin.tools.Constants.SystemConstant.SP_DEBUG_ARG_LOCAL_TIME;
+import static com.inso.plugin.tools.Constants.SystemConstant.SP_INCOMING_SWITCH;
 import static com.inso.plugin.tools.Constants.TimeStamp.DEVICE_SYNC_KEY;
 import static com.inso.plugin.tools.Constants.TimeStamp.STEPS_KEY;
+import static com.inso.plugin.tools.Constants.deltaTimeFromUTC;
 
 /**
  * Created by chendong on 2017/5/16.
@@ -99,26 +106,29 @@ public class DeviceTask implements Runnable {
         try {
 
             //<editor-fold desc="StepHistory">
-//            XmBluetoothManager.getInstance().write(MAC, UUID.fromString(IN_SHOW_SERVICE), UUID.fromString(CHARACTERISTIC_HISTORY_STEP), new byte[]{0, 0, 0, 0}, new Response.BleWriteResponse() {
-//                @Override
-//                public void onResponse(int code, Void data) {
-//                    if (code == XmBluetoothManager.Code.REQUEST_SUCCESS) {
-//                        L.e("CHARACTERISTIC_HISTORY_STEP:write suc");
-//                        SyncDeviceHelper.syncDeviceStepHistory(MAC, callback);
-//                    }
-//                }
-//            });
+            BleMgr.getInstance().write(MAC, UUID.fromString(IN_SHOW_SERVICE), UUID.fromString(CHARACTERISTIC_HISTORY_STEP), new byte[]{0, 0, 0, 0}, new BleMgr.IWriteResponse() {
+                @Override
+                public void onSuccess() {
+                    L.d("CHARACTERISTIC_HISTORY_STEP:write suc");
+                    SyncDeviceHelper.syncDeviceStepHistory(MAC, callback);
+                }
+
+                @Override
+                public void onFail() {
+                    L.d("CHARACTERISTIC_HISTORY_STEP:write fail");
+                }
+            });
             //</editor-fold>
 
             //<editor-fold desc="Flags">
             //notify is android device
-            SyncDeviceHelper.syncSetControlFlag(MAC, new SyncDeviceHelper.BtCallback() {
-                @Override
-                public void onBtResponse(byte[] bytes) {
-                    if (null != utcListener) utcListener.onFinish(); //连接成功就更新页面
-                    writeDataToWatch();
-                }
-            }, new int[]{6, 0, 0, Rom.isMIUI() ? 2 : 3});
+//            SyncDeviceHelper.syncSetControlFlag(MAC, new SyncDeviceHelper.BtCallback() {
+//                @Override
+//                public void onBtResponse(byte[] bytes) {
+//                    if (null != utcListener) utcListener.onFinish(); //连接成功就更新页面
+//                    writeDataToWatch();
+//                }
+//            }, new int[]{6, 0, 0, Rom.isMIUI() ? 2 : 3});
 //            XmBluetoothManager.getInstance().read(MAC, UUID.fromString(IN_SHOW_SERVICE), UUID.fromString(CHARACTERISTIC_CONTROL), new Response.BleReadResponse() {
 //                @Override
 //                public void onResponse(int code, byte[] bytes) {

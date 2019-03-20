@@ -35,9 +35,13 @@ import java.util.TimerTask;
 import java.util.UUID;
 
 import static com.inso.plugin.event.ChangeUI.RENDER_AGAIN;
-import static com.inso.plugin.manager.BleManager.I2B_SyncTime;
-import static com.inso.plugin.tools.Constants.GattUUIDConstant.*;
-import static com.inso.plugin.tools.Constants.SystemConstant.*;
+import static com.inso.plugin.manager.BleManager.I2B_SyncTime2;
+import static com.inso.plugin.tools.Constants.GattUUIDConstant.CHARACTERISTIC_SYNC_CURRENT_TIME2;
+import static com.inso.plugin.tools.Constants.GattUUIDConstant.IN_SHOW_SERVICE;
+import static com.inso.plugin.tools.Constants.SystemConstant.BJID;
+import static com.inso.plugin.tools.Constants.SystemConstant.HKID;
+import static com.inso.plugin.tools.Constants.SystemConstant.SP_ARG_HAS_DEFAULT_CITY;
+import static com.inso.plugin.tools.Constants.SystemConstant.TBID;
 import static com.inso.plugin.tools.Constants.TimeStamp.WORLD_CITY_KEY;
 
 /**
@@ -211,7 +215,7 @@ public class WorldTimeAct extends BasicListAct {
                                                   L.e( " TimeUtil.getNowTimeSeconds(item.zone):" + TimeUtil.getNowTimeSeconds(item.zone) );
                                                   L.e( "TimeUtil.getWatchSysStartTimeSecs() :" +  TimeUtil.getWatchSysStartTimeSecs());
                                                   L.e("TimeUtil.getNowTimeSeconds(item.zone) - TimeUtil.getWatchSysStartTimeSecs() : " + (TimeUtil.getNowTimeSeconds(item.zone) - TimeUtil.getWatchSysStartTimeSecs()));
-                                                  BleMgr.getInstance().write(MAC, UUID.fromString(IN_SHOW_SERVICE), UUID.fromString(CHARACTERISTIC_SYNC_CURRENT_TIME), I2B_SyncTime(TimeUtil.getNowTimeSeconds(item.zone) - TimeUtil.getWatchSysStartTimeSecs()), new BleMgr.IWriteResponse() {
+                                                  BleMgr.getInstance().write(MAC, UUID.fromString(IN_SHOW_SERVICE), UUID.fromString(CHARACTERISTIC_SYNC_CURRENT_TIME2), I2B_SyncTime2(TimeUtil.getNowTimeSeconds(item.zone) - TimeUtil.getWatchSysStartTimeSecs()), new BleMgr.IWriteResponse() {
                                                       @Override
                                                       public void onSuccess() {
                                                           imageView.clearAnimation();
@@ -252,7 +256,7 @@ public class WorldTimeAct extends BasicListAct {
                                                           }
                                                       });
 //                                                      写入北京时间 成功操作数据库
-                                                      BleMgr.getInstance().write(MAC, UUID.fromString(IN_SHOW_SERVICE), UUID.fromString(CHARACTERISTIC_SYNC_CURRENT_TIME), I2B_SyncTime(TimeUtil.getNowTimeSeconds() - TimeUtil.getWatchSysStartTimeSecs()), new BleMgr.IWriteResponse() {
+                                                      BleMgr.getInstance().write(MAC, UUID.fromString(IN_SHOW_SERVICE), UUID.fromString(CHARACTERISTIC_SYNC_CURRENT_TIME2), I2B_SyncTime2(TimeUtil.getNowTimeSeconds() - TimeUtil.getWatchSysStartTimeSecs()), new BleMgr.IWriteResponse() {
                                                           @Override
                                                           public void onSuccess() {
                                                               ToastUtil.showToastNoRepeat(mContext, getString(R.string.time_has_adjusted));

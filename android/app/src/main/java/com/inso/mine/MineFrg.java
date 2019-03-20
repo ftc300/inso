@@ -1,6 +1,5 @@
 package com.inso.mine;
 
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -8,12 +7,10 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.inso.R;
 import com.inso.core.HttpMgr;
-import com.inso.core.transformation.CropCircleTransformation;
 import com.inso.entity.http.SignUpResponse;
 import com.inso.plugin.tools.L;
 import com.inso.watch.baselib.base.BaseFragment;
 import com.inso.watch.baselib.base.CommonAct;
-import com.squareup.picasso.Picasso;
 
 import org.json.JSONObject;
 
@@ -48,17 +45,17 @@ public class MineFrg extends BaseFragment {
             public void onSuccess(JSONObject obj) {
                 L.d("#######  getRequest onSuccess from " + BASE_URL + "member/info" + "\n" + obj.toString());
                 SignUpResponse r = new Gson().fromJson(obj.toString(), SignUpResponse.class);
-                if (null != r) {
-                    if (!TextUtils.isEmpty(r.getProfile().getAvatar())) {
-                        Picasso.get()
-                                .load(r.getProfile().getAvatar())
-                                .placeholder(R.drawable.head_default)
-                                .error(R.drawable.head_default)
-                                .transform(new CropCircleTransformation())
-                                .into(mUserIcon);
-                    }
-                    mUserName.setText(TextUtils.isEmpty(r.getUsername()) ? r.getUser_id() : r.getUsername());
-                }
+//                if (null != r) {
+//                    if (!TextUtils.isEmpty(r.getProfile().getAvatar())) {
+//                        Picasso.get()
+//                                .load(r.getProfile().getAvatar())
+//                                .placeholder(R.drawable.head_default)
+//                                .error(R.drawable.head_default)
+//                                .transform(new CropCircleTransformation())
+//                                .into(mUserIcon);
+//                    }
+//                    mUserName.setText(TextUtils.isEmpty(r.getUsername()) ? r.getUser_id() : r.getUsername());
+//                }
             }
 
             @Override

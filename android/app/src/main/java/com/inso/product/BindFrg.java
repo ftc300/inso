@@ -34,7 +34,7 @@ public class BindFrg extends BaseFragment  {
             }
         });
         mBindUiHandleImp = new BindUiHandleImp(mActivity);
-        mBindMgr = new BindMgr(mBindUiHandleImp);
+        mBindMgr = new BindMgr(mActivity,mBindUiHandleImp);
         mBindMgr.startBind();
     }
 

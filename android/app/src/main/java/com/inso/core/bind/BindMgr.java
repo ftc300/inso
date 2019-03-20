@@ -1,11 +1,13 @@
 package com.inso.core.bind;
 
+import android.content.Context;
 import android.os.Handler;
 
 import com.inso.core.BleMgr;
+import com.inso.plugin.manager.SPManager;
+import com.inso.plugin.tools.Constants;
 import com.inso.plugin.tools.L;
 import com.inso.watch.commonlib.utils.NetworkUtils;
-import com.inso.watch.commonlib.utils.PermissionUtils;
 import com.inuker.bluetooth.library.connect.listener.BleConnectStatusListener;
 import com.inuker.bluetooth.library.connect.response.BleConnectResponse;
 import com.inuker.bluetooth.library.connect.response.BleNotifyResponse;
@@ -13,12 +15,17 @@ import com.inuker.bluetooth.library.model.BleGattProfile;
 import com.inuker.bluetooth.library.search.SearchRequest;
 import com.inuker.bluetooth.library.search.SearchResult;
 import com.inuker.bluetooth.library.search.response.SearchResponse;
+import com.yanzhenjie.permission.Action;
+import com.yanzhenjie.permission.AndPermission;
+import com.yanzhenjie.permission.Permission;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import static com.inso.core.DidHash.hashDid;
 import static com.inso.plugin.tools.Constants.GattUUIDConstant.IN_SHOW_SERVICE;
 import static com.inuker.bluetooth.library.Code.REQUEST_SUCCESS;
 
@@ -49,6 +56,7 @@ public class BindMgr {
     private Handler mHandler;
     private IBindUiHandle mUiHandle;
     private AtomicBoolean foundTarget = new AtomicBoolean(false); // only allow one device bind
+    private Context mContext;
 
 //    private BleConnectStatusListener mStatusListener =  new BleConnectStatusListener() {
 //        @Override
@@ -63,7 +71,9 @@ public class BindMgr {
 
     private BindServerImp mServerImp = new BindServerImp();
 
-    public BindMgr(IBindUiHandle uiHandle) {
+
+    public BindMgr(Context context,IBindUiHandle uiHandle) {
+        mContext = context;
         mUiHandle = uiHandle;
         mHandler = new Handler();
     }
@@ -71,14 +81,27 @@ public class BindMgr {
     public void startBind() {
         //ble 和 wifi 权限
         L.d("bind :: start check permissions");
-        if (!PermissionUtils.isGranted(android.Manifest.permission.INTERNET, android.Manifest.permission.ACCESS_COARSE_LOCATION)) {
-            mUiHandle.showNoPermission();
-            return;
-        }
-        L.d("bind :: start check ble and net");
-        if (!checkBleAndNet()) return;
-        L.d("bind :: startScan");
-        startScan();
+//        if (!PermissionUtils.isGranted(android.Manifest.permission.INTERNET, android.Manifest.permission.ACCESS_COARSE_LOCATION)) {
+            AndPermission.with(mContext)
+                    .runtime()
+                    .permission(Permission.ACCESS_COARSE_LOCATION,android.Manifest.permission.INTERNET)
+                    .onGranted(new Action<List<String>>() {
+                        @Override
+                        public void onAction(List<String> data) {
+                            L.d("bind :: start check ble and net");
+                            if (!checkBleAndNet()) return;
+                            L.d("bind :: startScan");
+                            startScan();
+                        }
+                    })
+                    .onDenied(new Action<List<String>>() {
+                        @Override
+                        public void onAction(List<String> data) {
+                            mUiHandle.showNoPermission();
+                        }
+                    })
+                    .start();
+//        }
     }
 
     private boolean checkBleAndNet() {
@@ -153,6 +176,7 @@ public class BindMgr {
     //request server
     private boolean hasBond(String mac) {
         //todo
+        hashDid(System.currentTimeMillis()/1000,mac.replace(":",""));
         boolean ret = mServerImp.searchInfo();
         if (ret) hasCheckedBondSet.add(mac); // have bond before ,add to set
         return ret;
@@ -193,6 +217,8 @@ public class BindMgr {
                 } else if (response == NOTIFY_KEY_EVENT) {
                     L.d("bind ::receive notify event ");
                     hasAcceptKeyEventNotify.set(true);
+                    BleMgr.getInstance().disConnect(mac);
+                    SPManager.put(mContext, Constants.SystemConstant.SP_ARG_MAC,mac);
                     mUiHandle.showBindSuccess();
                 } else {
                     L.d("bind :: receive unknown");

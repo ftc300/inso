@@ -16,7 +16,6 @@
         android:paddingRight="@dimen/dp5"
         android:layout_gravity="center"
         android:gravity="center"
-        android:paddingTop="@dimen/dp5"
         android:textColor="@color/word_black_second"
         android:textSize="@dimen/sp14"
         tools:text="1月24号 17:40" />
