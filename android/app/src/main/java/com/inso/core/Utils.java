@@ -1,6 +1,7 @@
 package com.inso.core;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ShortcutInfo;
@@ -8,6 +9,7 @@ import android.content.pm.ShortcutManager;
 import android.graphics.drawable.Icon;
 import android.net.Uri;
 import android.os.Build;
+import android.util.DisplayMetrics;
 
 import com.inso.R;
 import com.inso.plugin.act.mainpagelogic.PluginMainAct;
@@ -28,6 +30,31 @@ import static com.inso.plugin.tools.Constants.SystemConstant.EXTRAS_EVENT_BUS;
  */
 
 public class Utils {
+
+
+    /**
+     * 工具方法
+     *
+     * @param context
+     * @return
+     */
+    public static int getScreenWidth(Context context) {
+        DisplayMetrics dm = new DisplayMetrics();
+        ((Activity) context).getWindowManager().getDefaultDisplay()
+                .getMetrics(dm);
+        return dm.widthPixels;
+    }
+
+
+    /**
+     * sp或者 dp 装换为 px
+     */
+    public static int dpToPx(Context context, int dpValue) {
+        float scale = context.getResources().getDisplayMetrics().density;
+        return Math.round(dpValue * scale);
+    }
+
+
     //添加快捷方式
     public static void addShortcut(final Context context,final String shortLabel) {
             AndPermission.with(context)

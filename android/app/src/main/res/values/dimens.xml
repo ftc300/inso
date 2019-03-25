@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <dimen name="up_head_size">150px</dimen>
+
+
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="pull_down_refresh_threshold">60dip</dimen>
     <dimen name="pull_down_header_height">60dip</dimen>

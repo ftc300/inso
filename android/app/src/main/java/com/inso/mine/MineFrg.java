@@ -1,13 +1,16 @@
 package com.inso.mine;
 
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.inso.R;
+import com.inso.core.CacheMgr;
 import com.inso.core.HttpMgr;
-import com.inso.entity.http.SignUpResponse;
+import com.inso.core.UserMgr;
+import com.inso.entity.http.UserInfo;
 import com.inso.plugin.tools.L;
 import com.inso.watch.baselib.base.BaseFragment;
 import com.inso.watch.baselib.base.CommonAct;
@@ -17,6 +20,7 @@ import org.json.JSONObject;
 import butterknife.BindView;
 import butterknife.OnClick;
 
+import static com.inso.core.UserMgr.showUserIcon;
 import static com.inso.watch.baselib.Constants.BASE_URL;
 
 public class MineFrg extends BaseFragment {
@@ -26,7 +30,7 @@ public class MineFrg extends BaseFragment {
     ImageView mUserIcon;
     @BindView(R.id.userName)
     TextView mUserName;
-
+    private UserInfo userInfo;
     public static MineFrg getInstance() {
         return new MineFrg();
     }
@@ -40,29 +44,34 @@ public class MineFrg extends BaseFragment {
     protected void initViewOrData() {
         super.initViewOrData();
         setTitle("我的");
-        HttpMgr.getRequestQueue(mActivity).add(HttpMgr.getRequest(mActivity, BASE_URL + "member/info", new HttpMgr.IResponse<JSONObject>() {
-            @Override
-            public void onSuccess(JSONObject obj) {
-                L.d("#######  getRequest onSuccess from " + BASE_URL + "member/info" + "\n" + obj.toString());
-                SignUpResponse r = new Gson().fromJson(obj.toString(), SignUpResponse.class);
-//                if (null != r) {
-//                    if (!TextUtils.isEmpty(r.getProfile().getAvatar())) {
-//                        Picasso.get()
-//                                .load(r.getProfile().getAvatar())
-//                                .placeholder(R.drawable.head_default)
-//                                .error(R.drawable.head_default)
-//                                .transform(new CropCircleTransformation())
-//                                .into(mUserIcon);
-//                    }
-//                    mUserName.setText(TextUtils.isEmpty(r.getUsername()) ? r.getUser_id() : r.getUsername());
-//                }
-            }
+    }
 
-            @Override
-            public void onFail() {
+    @Override
+    public void onResume() {
+        super.onResume();
+        userInfo = UserMgr.getUserInfo(CacheMgr.get(mActivity));
+        if(null!= userInfo ){
+            showUserIcon(userInfo.getAvatar(),mUserIcon);
+        }else {
+            HttpMgr.getJsonObjectRequest(mActivity, BASE_URL + "member/info", new HttpMgr.IResponse<JSONObject>() {
+                @Override
+                public void onSuccess(JSONObject obj) {
+                    L.d("#######  getRequest onSuccess from " + BASE_URL + "member/info" + "\n" + obj.toString());
+                    userInfo = new Gson().fromJson(obj.toString(), UserInfo.class);
+                    UserMgr.saveUserInfo(CacheMgr.get(mActivity), userInfo);
+                    if (null != userInfo) {
+                        showUserIcon(userInfo.getAvatar(),mUserIcon);
+                        mUserName.setText(TextUtils.isEmpty(userInfo.getUsername()) ? userInfo.getUser_id() : userInfo.getUsername());
+                    }
+                }
+
+                @Override
+                public void onFail() {
+                    L.d("#######  getRequest fail from " + BASE_URL + "member/info" );
 //                ToastWidget.showFail(mActivity, "Fetch Error!");
-            }
-        }));
+                }
+            });
+        }
     }
 
 

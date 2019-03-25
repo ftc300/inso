@@ -24,6 +24,14 @@ public class Constant {
 
     public static final String CHARACTERISTIC_BIND = "c99a310-7f3c-4e85-bde2-92f2037bfd42";
 
+    public static final int MSG_SHOW_PHOTO = 0x325;
+    public static final int MSG_SHOW_USER_ICON = 0x326;
+
+
+    public static final String CACHE_KEY_USER_INFO = "CACHE_KEY_USER_INFO";
+
+
+
 
 
 

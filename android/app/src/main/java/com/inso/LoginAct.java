@@ -32,7 +32,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.util.Calendar;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -45,6 +44,8 @@ import static com.inso.core.Constant.REDIRECT_URI;
 import static com.inso.core.Constant.SP_ACCESS_TOKEN;
 import static com.inso.core.Constant.SP_EXPIRED_AT;
 import static com.inso.core.Constant.XIAOMI_APPID;
+import static com.inso.core.HttpMgr.postStringRequestWithoutToken;
+import static com.inso.core.UserMgr.isExpired;
 import static com.inso.watch.baselib.Constants.BASE_URL;
 
 /**
@@ -75,9 +76,7 @@ public class LoginAct extends AppCompatActivity {
         setContentView(R.layout.act_login);
         StatusBarCompat.setStatusBarColor(this, ContextCompat.getColor(this, R.color.white));
         ButterKnife.bind(this);
-        long expired_at = (Long) SPManager.get(this, SP_EXPIRED_AT, 0L);
-        long now = Calendar.getInstance().getTimeInMillis() / 1000;
-        if (now <= expired_at) {
+        if (isExpired(this)) {
             mRotateloading.start();
             new Handler().postDelayed(new Runnable() {
                 @Override
@@ -163,13 +162,13 @@ public class LoginAct extends AppCompatActivity {
                             XmProfile.DataBean data = response.getData();
                             Sign sign = new Sign(PLATFORM_XM, data.getMiliaoNick(), data.getUnionId(), data.getMiliaoIcon(), 1);
                             mRotateloading.start();
-                            HttpMgr.getRequestQueue(getApplicationContext()).add(HttpMgr.postString(BASE_URL + "member/signup", sign, new HttpMgr.IResponse<String>() {
+                            postStringRequestWithoutToken(mContext,BASE_URL + "member/signup", sign, new HttpMgr.IResponse<String>() {
                                 @Override
                                 public void onSuccess(String obj) {
                                     try {
                                         JSONObject jsonObject =  new JSONObject(obj);
                                         SPManager.put(mContext, SP_ACCESS_TOKEN, jsonObject.getString("access_token"));
-                                        SPManager.put(mContext, SP_EXPIRED_AT, jsonObject.getLong("expired_at"));
+                                        SPManager.put(mContext, SP_EXPIRED_AT, jsonObject.getLong("expires_in")+System.currentTimeMillis()/1000);
                                         L.d("obj.get(\"access_token\")" + jsonObject.get("access_token"));
                                         switch2Main();
                                     } catch (JSONException arg_e) {
@@ -182,7 +181,7 @@ public class LoginAct extends AppCompatActivity {
                                 public void onFail() {
                                     ToastWidget.showFail(mContext, "Login Error!");
                                 }
-                            }));
+                            });
                         } catch (Exception e) {
                             e.printStackTrace();
                             L.e(e.getMessage());

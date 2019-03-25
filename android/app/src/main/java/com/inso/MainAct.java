@@ -49,6 +49,19 @@ public class MainAct extends AppCompatActivity implements BottomNavigationBar.On
         mMallFrg = MallFrg.getInstance();
         InitNavigationBar();
         setDefaultFragment();
+
+//        BindStatus n  = new BindStatus("VyU7MmlnEH-In4YpCOiFBzwNfIVA5c4f", "E3:E5:8A:96:EA:09");
+//        HttpMgr.postStringRequest(this, BASE_URL + "device/check-device", n, new HttpMgr.IResponse<String>() {
+//            @Override
+//            public void onSuccess(final String obj) {
+//                L.d("postStringRequest onSuccess " + obj);
+//            }
+//
+//            @Override
+//            public void onFail() {
+//                L.d("postStringRequest onFail ");
+//            }
+//        });
     }
 
     private void InitNavigationBar() {

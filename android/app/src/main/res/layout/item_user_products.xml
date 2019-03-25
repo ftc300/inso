@@ -43,7 +43,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/word_black"
                 android:textSize="@dimen/sp17"
-                tools:text="米家石英表2" />
+                android:text="米家石英表2" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -62,7 +62,7 @@
                     style="@style/state_label_style"
                     android:layout_marginLeft="@dimen/dp5"
                     android:background="@drawable/bg_corner_red"
-                    tools:text="新固件" />
+                    android:text="新固件" />
             </LinearLayout>
         </LinearLayout>
 

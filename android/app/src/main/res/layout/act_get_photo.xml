@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/jx_main_bg"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/action_take"
+        style="@style/label_main_15sp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/label_row_height"
+        android:background="@drawable/selector_lv_item"
+        android:gravity="center"
+        android:onClick="onClick"
+        android:text="相册"/>
+
+    <View style="@style/jx_horizontal_line"/>
+
+    <TextView
+        android:id="@+id/action_pick"
+        style="@style/label_main_15sp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/label_row_height"
+        android:background="@drawable/selector_lv_item"
+        android:gravity="center"
+        android:onClick="onClick"
+        android:text="拍照"/>
+w
+    <TextView
+        android:id="@+id/action_sheet_cancle"
+        style="@style/label_main_15sp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/label_row_height"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/selector_lv_item"
+        android:gravity="center"
+        android:onClick="onClick"
+        android:text="取消"/>
+
+</LinearLayout>
+

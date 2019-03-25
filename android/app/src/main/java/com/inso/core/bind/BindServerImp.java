@@ -2,13 +2,16 @@ package com.inso.core.bind;
 
 import android.content.Context;
 
+import com.google.gson.Gson;
 import com.inso.core.HttpMgr;
+import com.inso.entity.http.ResBase;
+import com.inso.entity.http.ResBindStatus;
+import com.inso.entity.http.post.Bind;
+import com.inso.entity.http.post.BindStatus;
+import com.inso.entity.http.post.Unbind;
 import com.inso.plugin.tools.L;
 
-import org.json.JSONObject;
-
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.atomic.AtomicBoolean;
+import static com.inso.watch.baselib.Constants.BASE_URL;
 
 /**
  * Comment:
@@ -20,72 +23,75 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 public class BindServerImp implements IBindServer {
     private Context mContext;
-    private CountDownLatch mLatch ;
-    private AtomicBoolean mServerReturn;
+    private Gson mGson;
+    private IServerResult mServerResult;
 
 
-    public BindServerImp() {
-    }
-
-    public BindServerImp(Context context) {
+    public BindServerImp(Context context, IServerResult mServerResult) {
         mContext = context;
+        this.mServerResult = mServerResult;
+        mGson = new Gson();
     }
 
     @Override
-    public  boolean searchInfo() {
-        mServerReturn = new AtomicBoolean(false);
-        mLatch = new CountDownLatch(1);
-        new Thread(new Runnable() {
+    public void checkDeviceStatus(BindStatus o) {
+        L.d(" bind :: checkDeviceStatus " + o.toString());
+        getResult("device/check-device", o, ResBindStatus.class);
+    }
+
+    @Override
+    public void bindDevice(Bind o) {
+        L.d(" bind :: bindDevice " + o.toString());
+        getResult("device/bind", o, ResBase.class);
+    }
+
+    @Override
+    public void unBindDevice(Unbind o) {
+        L.d(" bind :: unBindDevice " + o.toString());
+        getResult("device/unbind", o, ResBase.class);
+    }
+
+    private <T> void getResult(String url, final Object o, final Class<T> cls) {
+        HttpMgr.postStringRequest(mContext, BASE_URL + url, o, new HttpMgr.IResponse<String>() {
             @Override
-            public void run() {
-                try {
-                    L.d("searchInfo sleep 2s");
-                    Thread.sleep(2000);
-                    mServerReturn.set(false);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+            public void onSuccess(final String obj) {
+                L.d("postStringRequest onSuccess " + obj);
+                T t = mGson.fromJson(obj, cls);
+                ResBase base = (ResBase) t;
+                if (o instanceof BindStatus) {
+                    if (isOk(base.getErrcode())) {
+                        ResBindStatus status = (ResBindStatus) t;
+                        if (status.isResult()) {
+                            mServerResult.onDeviceStatusPositive();
+                        } else {
+                            mServerResult.onDeviceStatusNegative();
+                        }
+                    } else {
+                        mServerResult.onDeviceStatusNegative();
+                    }
+                } else if (o instanceof Bind) {
+                    if (isOk(base.getErrcode())) {
+                        mServerResult.onBindSuccess();
+                    } else {
+                        mServerResult.onBindFail();
+                    }
+                } else if (o instanceof Unbind) {
+                    if (isOk(base.getErrcode())) {
+                        mServerResult.onUnBindSuccess();
+                    } else {
+                        mServerResult.onUnBindFail();
+                    }
                 }
-                mLatch.countDown();
-            }
-        }).start();
-        try {
-            L.d("await");
-            mLatch.await();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        L.d("searchInfo return " + mServerReturn.get());
-        return mServerReturn.get();
-    }
-
-    @Override
-    public boolean addBindInfo() {
-        mLatch = new CountDownLatch(1);
-        mServerReturn = new AtomicBoolean(false);
-        HttpMgr.getRequestQueue(mContext).add(HttpMgr.getRequest(mContext, "", new HttpMgr.IResponse<JSONObject>() {
-            @Override
-            public void onSuccess(final JSONObject obj) {
-                mLatch.countDown();
-                mServerReturn.set(true);
             }
 
             @Override
             public void onFail() {
-                mLatch.countDown();
-                mServerReturn.set(false);
+                L.d("postStringRequest onFail ");
             }
-        }));
-        try {
-            mLatch.await();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        return mServerReturn.get();
+        });
     }
 
-    @Override
-    public boolean deleteBindInfo() {
-        mLatch = new CountDownLatch(1);
-        return true;
+    private boolean isOk(int errcode) {
+        return errcode == 0;
     }
 }

@@ -12,13 +12,13 @@ import android.widget.TextView;
 
 import com.inso.R;
 import com.inso.core.BleMgr;
+import com.inso.plugin.act.alarm.AlarmClockAct;
 import com.inso.plugin.act.city.WorldTimeAct;
 import com.inso.plugin.act.datasheet.DataSheetAct;
 import com.inso.plugin.act.interval.IntervalHelper;
 import com.inso.plugin.act.interval.IntervalRemindAct;
 import com.inso.plugin.act.user.WatchUserInfoHelper;
 import com.inso.plugin.act.vip.InComingPhoneAlertAct;
-import com.inso.plugin.act.alarm.AlarmClockAct;
 import com.inso.plugin.basic.BasicFragment;
 import com.inso.plugin.dao.AlarmDao;
 import com.inso.plugin.dao.IntervalDao;
@@ -49,7 +49,7 @@ import static com.inso.plugin.event.ChangeUI.RENDER_AGAIN;
 import static com.inso.plugin.event.ChangeUI.SYNC_BIND_RENDER;
 import static com.inso.plugin.manager.BleManager.B2I_getStep;
 import static com.inso.plugin.manager.BleManager.bytesToHexString;
-import static com.inso.plugin.tools.Constants.GattUUIDConstant.CHARACTERISTIC_TODAY_STEP;
+import static com.inso.plugin.tools.Constants.GattUUIDConstant.CHARACTERISTIC_TODAY_STEP2;
 import static com.inso.plugin.tools.Constants.GattUUIDConstant.IN_SHOW_SERVICE;
 import static com.inso.plugin.tools.Constants.OFF;
 import static com.inso.plugin.tools.Constants.ON;
@@ -341,7 +341,7 @@ public class FragmentBottom extends BasicFragment implements View.OnClickListene
         setOnClickListeners();
         renderByData();
         //通知监听
-        BleMgr.getInstance().notify(MAC, UUID.fromString(IN_SHOW_SERVICE), UUID.fromString(CHARACTERISTIC_TODAY_STEP), new BleNotifyResponse() {
+        BleMgr.getInstance().notify(MAC, UUID.fromString(IN_SHOW_SERVICE), UUID.fromString(CHARACTERISTIC_TODAY_STEP2), new BleNotifyResponse() {
             @Override
             public void onNotify(UUID service, UUID character, byte[] value) {
                 displayNowStep(true, value);
@@ -353,7 +353,7 @@ public class FragmentBottom extends BasicFragment implements View.OnClickListene
             }
         });
         L.e("renderSuccess read  CHARACTERISTIC_TODAY_STEP");
-        BleMgr.getInstance().read(MAC, UUID.fromString(IN_SHOW_SERVICE), UUID.fromString(CHARACTERISTIC_TODAY_STEP), new BleMgr.IReadOnResponse() {
+        BleMgr.getInstance().read(MAC, UUID.fromString(IN_SHOW_SERVICE), UUID.fromString(CHARACTERISTIC_TODAY_STEP2), new BleMgr.IReadOnResponse() {
             @Override
             public void onSuccess(byte[] data) {
                 displayNowStep(false, data);

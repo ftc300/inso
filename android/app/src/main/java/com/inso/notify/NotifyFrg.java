@@ -58,6 +58,7 @@ public class NotifyFrg extends RecycleRefreshFrg<Information> {
                         .error(R.drawable.pic_error)
                         .transform(new RoundedCornersTransformation(DensityUtils.dp2px(mContext,8),0, RoundedCornersTransformation.CornerType.TOP))
                         .fit()
+                        .centerCrop()
                         .into(img);
                 holder.setOnClickListener(R.id.ll_item, new View.OnClickListener() {
                     @Override

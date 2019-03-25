@@ -10,7 +10,7 @@ import java.util.List;
  * GitHub: https://github.com/ftc300
  */
 
-public class Product extends FatherResponse{
+public class Product {
 
     /**
      * errcode : 0

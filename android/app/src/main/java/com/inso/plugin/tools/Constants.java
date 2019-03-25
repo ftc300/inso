@@ -55,6 +55,7 @@ public class Constants {
         public static final String CHARACTERISTIC_BATTERY = "00002a19-0000-1000-8000-00805f9b34fb";
         public static final String IN_SHOW_SERVICE = "c99a3001-7f3c-4e85-bde2-92f2037bfd42";
         public static final String CHARACTERISTIC_TODAY_STEP = "c99a3101-7f3c-4e85-bde2-92f2037bfd42";
+        public static final String CHARACTERISTIC_TODAY_STEP2 = "c99a3107-7f3c-4e85-bde2-92f2037bfd42";
         public static final String CHARACTERISTIC_CONTROL = "c99a3102-7f3c-4e85-bde2-92f2037bfd42";
         public static final String BATTERY_LEVEL = "c99a3103-7f3c-4e85-bde2-92f2037bfd42";
         public static final String CHARACTERISTIC_CURRENT_TIME = "c99a3104-7f3c-4e85-bde2-92f2037bfd42";

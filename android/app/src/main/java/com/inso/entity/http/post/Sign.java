@@ -8,7 +8,7 @@ package com.inso.entity.http.post;
  * GitHub: https://github.com/ftc300
  */
 
-public class Sign {
+public class Sign extends FatherParam{
    public String  platform	;
    public String  nickname	;
    public String  unionId	;

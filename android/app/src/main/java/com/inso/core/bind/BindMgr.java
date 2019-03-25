@@ -4,11 +4,12 @@ import android.content.Context;
 import android.os.Handler;
 
 import com.inso.core.BleMgr;
+import com.inso.entity.http.post.Bind;
+import com.inso.entity.http.post.BindStatus;
 import com.inso.plugin.manager.SPManager;
 import com.inso.plugin.tools.Constants;
 import com.inso.plugin.tools.L;
 import com.inso.watch.commonlib.utils.NetworkUtils;
-import com.inuker.bluetooth.library.connect.listener.BleConnectStatusListener;
 import com.inuker.bluetooth.library.connect.response.BleConnectResponse;
 import com.inuker.bluetooth.library.connect.response.BleNotifyResponse;
 import com.inuker.bluetooth.library.model.BleGattProfile;
@@ -38,7 +39,8 @@ import static com.inuker.bluetooth.library.Code.REQUEST_SUCCESS;
  * GitHub: https://github.com/ftc300
  */
 
-public class BindMgr {
+public class BindMgr implements IServerResult {
+
     private static final String CHARACTERISTIC_BIND = "c99a3106-7f3c-4e85-bde2-92f2037bfd42";
     private static final int TYPE_SECURITY_VALIDATE = 1;
     private static final int TYPE_REQUEST_BIND = 2;
@@ -49,7 +51,6 @@ public class BindMgr {
     private static final int SCAN_DURATION = 10 * 1000;
     private static final int KEY_EVENT_WAIT_FOR = 10 * 1000;
     private static final int RSSI_THRESHOLD = -100;
-
     private AtomicBoolean hasAcceptKeyEventNotify = new AtomicBoolean(false);
     private AtomicBoolean isConnected = new AtomicBoolean(false);
     private Set<String> hasCheckedBondSet = new HashSet<>();
@@ -57,50 +58,40 @@ public class BindMgr {
     private IBindUiHandle mUiHandle;
     private AtomicBoolean foundTarget = new AtomicBoolean(false); // only allow one device bind
     private Context mContext;
+    private String did;
+    private String selectMac;
+    private long timeStamp;
+    private BindServerImp mServerImp;
 
-//    private BleConnectStatusListener mStatusListener =  new BleConnectStatusListener() {
-//        @Override
-//        public void onConnectStatusChanged(String mac, int status) {
-//            if (status == STATUS_CONNECTED) {
-//                L.d("StatusListener receive status on");
-//                notifyWatch(mac);
-//                securityValidate(mac);
-//            }
-//        }
-//    };
-
-    private BindServerImp mServerImp = new BindServerImp();
-
-
-    public BindMgr(Context context,IBindUiHandle uiHandle) {
+    public BindMgr(Context context, IBindUiHandle uiHandle) {
         mContext = context;
         mUiHandle = uiHandle;
         mHandler = new Handler();
+        mServerImp = new BindServerImp(context,this);
     }
 
     public void startBind() {
         //ble 和 wifi 权限
         L.d("bind :: start check permissions");
-//        if (!PermissionUtils.isGranted(android.Manifest.permission.INTERNET, android.Manifest.permission.ACCESS_COARSE_LOCATION)) {
-            AndPermission.with(mContext)
-                    .runtime()
-                    .permission(Permission.ACCESS_COARSE_LOCATION,android.Manifest.permission.INTERNET)
-                    .onGranted(new Action<List<String>>() {
-                        @Override
-                        public void onAction(List<String> data) {
-                            L.d("bind :: start check ble and net");
-                            if (!checkBleAndNet()) return;
-                            L.d("bind :: startScan");
-                            startScan();
-                        }
-                    })
-                    .onDenied(new Action<List<String>>() {
-                        @Override
-                        public void onAction(List<String> data) {
-                            mUiHandle.showNoPermission();
-                        }
-                    })
-                    .start();
+        AndPermission.with(mContext)
+                .runtime()
+                .permission(Permission.ACCESS_COARSE_LOCATION, android.Manifest.permission.INTERNET)
+                .onGranted(new Action<List<String>>() {
+                    @Override
+                    public void onAction(List<String> data) {
+                        L.d("bind :: start check ble and net");
+                        if (!checkBleAndNet()) return;
+                        L.d("bind :: startScan");
+                        startScan();
+                    }
+                })
+                .onDenied(new Action<List<String>>() {
+                    @Override
+                    public void onAction(List<String> data) {
+                        mUiHandle.showNoPermission();
+                    }
+                })
+                .start();
 //        }
     }
 
@@ -134,19 +125,15 @@ public class BindMgr {
                         L.d("bind :: found MiWatch2 " + mac);
                         if (foundTarget.get()) {
                             L.d("there is one binding process exit , reject it ");
+                            BleMgr.getInstance().stopSearch();
                             return;
                         }
                         if (hasCheckedBondSet.contains(mac)) return;
-                        if (hasBond(mac)) {
-                            L.d("have bond " + mac);
-                            mUiHandle.showHasBond();
-                            return;
-                        }
-                        L.d("bind :: found never bond MiWatch2 " + mac);
-                        foundTarget.set(true);
-                        BleMgr.getInstance().stopSearch();
-//                      registerBleConStatusListener(mac,mStatusListener);
-                        connectWatch(mac);
+                        selectMac = mac;
+
+                        timeStamp = System.currentTimeMillis() / 1000;
+                        did = hashDid(timeStamp, mac.replace(":", ""));
+                        mServerImp.checkDeviceStatus(new BindStatus(did, mac));
                     }
                 }
 
@@ -174,16 +161,18 @@ public class BindMgr {
 
 
     //request server
-    private boolean hasBond(String mac) {
-        //todo
-        hashDid(System.currentTimeMillis()/1000,mac.replace(":",""));
-        boolean ret = mServerImp.searchInfo();
-        if (ret) hasCheckedBondSet.add(mac); // have bond before ,add to set
-        return ret;
-    }
+//    private boolean hasBond(String mac) {
+//        //todo
+//        timeStamp = System.currentTimeMillis() / 1000;
+//        did = hashDid(timeStamp, mac.replace(":", ""));
+//        boolean ret = mServerImp.checkDeviceStatus(new BindStatus(did, mac));
+//        if (ret) hasCheckedBondSet.add(mac); // have bond before ,add to set
+//        return ret;
+//    }
 
     private void connectWatch(final String mac) {
         L.d("bind :: connectWatch");
+        selectMac = mac;
         bindFailWithoutKeyEventAfter10(mac);
         BleMgr.getInstance().connect(mac, new BleConnectResponse() {
             @Override
@@ -216,10 +205,7 @@ public class BindMgr {
                     mUiHandle.showBindFail();
                 } else if (response == NOTIFY_KEY_EVENT) {
                     L.d("bind ::receive notify event ");
-                    hasAcceptKeyEventNotify.set(true);
-                    BleMgr.getInstance().disConnect(mac);
-                    SPManager.put(mContext, Constants.SystemConstant.SP_ARG_MAC,mac);
-                    mUiHandle.showBindSuccess();
+                    mServerImp.bindDevice(new Bind(did, "inso_watch2",timeStamp,selectMac,"1234" ));
                 } else {
                     L.d("bind :: receive unknown");
 //                    mUiHandle.showBindFail();
@@ -283,12 +269,45 @@ public class BindMgr {
         return result;
     }
 
-    public void registerBleConStatusListener(String mac, BleConnectStatusListener mBleConnectStatusListener) {
-        BleMgr.getInstance().register(mac, mBleConnectStatusListener);
+
+    // return have bond
+    @Override
+    public void onDeviceStatusPositive() {
+        L.d("bind :: onDeviceStatusPositive ");
+        mUiHandle.showHasBond();
+        hasCheckedBondSet.add(selectMac);
     }
 
+    // return have  never bond
+    @Override
+    public void onDeviceStatusNegative() {
+        L.d("bind :: onDeviceStatusNegative  never bind device mac is " + selectMac);
+        foundTarget.set(true); // find device then stop scan
+        connectWatch(selectMac);
+    }
 
-    public void unRegisterBleConStatusListener(String MAC, BleConnectStatusListener mBleConnectStatusListener) {
-        BleMgr.getInstance().unRegister(MAC, mBleConnectStatusListener);
+    @Override
+    public void onBindSuccess() {
+        L.d("bind :: onBindSuccess  ");
+        hasAcceptKeyEventNotify.set(true);
+        BleMgr.getInstance().disConnect(selectMac);
+        SPManager.put(mContext, Constants.SystemConstant.SP_ARG_MAC, selectMac);
+        mUiHandle.showBindSuccess();
+    }
+
+    @Override
+    public void onBindFail() {
+        L.d("bind :: onBindFail  ");
+        mUiHandle.showBindFail();
+    }
+
+    @Override
+    public void onUnBindSuccess() {
+
+    }
+
+    @Override
+    public void onUnBindFail() {
+
     }
 }

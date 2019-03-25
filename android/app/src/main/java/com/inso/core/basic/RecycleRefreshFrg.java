@@ -117,7 +117,7 @@ public abstract class RecycleRefreshFrg<T> extends BaseFragment implements Swipe
     }
 
     private void loadRecyclerViewData() {
-        HttpMgr.getRequestQueue(mActivity).add(HttpMgr.getRequest(mActivity, getRequestUrl(), new HttpMgr.IResponse<JSONObject>() {
+        HttpMgr.getJsonObjectRequest(mActivity, getRequestUrl(), new HttpMgr.IResponse<JSONObject>() {
             @Override
             public void onSuccess(final JSONObject obj) {
                 L.d("#######  getRequest onSuccess from " + getRequestUrl() + "\n" + obj.toString());
@@ -166,7 +166,7 @@ public abstract class RecycleRefreshFrg<T> extends BaseFragment implements Swipe
                     }, 800);
                 }
             }
-        }));
+        });
     }
 
     private void fillAdapter(String obj) {

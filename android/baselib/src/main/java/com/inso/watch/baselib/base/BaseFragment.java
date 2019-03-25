@@ -37,7 +37,7 @@ public class BaseFragment extends Fragment{
      */
     protected View mContentView;
 
-    protected Context mActivity;
+    protected  Context mActivity;
 
 
     Unbinder unbinder;

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 主背景色 -->
+    <color name="jx_main_bg">#efefef</color>
+    <!-- 主前景色 -->
+    <color name="jx_main_fore">#ffffff</color>
+    <!-- item按下的颜色 -->
+    <color name="jx_item_pressed">#eeeeee</color>
+
+    <color name="jx_divider">#dfdfdf</color>
+</resources>

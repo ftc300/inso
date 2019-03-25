@@ -1,5 +1,9 @@
 package com.inso.core.bind;
 
+import com.inso.entity.http.post.Bind;
+import com.inso.entity.http.post.BindStatus;
+import com.inso.entity.http.post.Unbind;
+
 /**
  * Comment:
  * Author: ftc300
@@ -9,7 +13,7 @@ package com.inso.core.bind;
  */
 
 public interface IBindServer {
-    boolean searchInfo();
-    boolean addBindInfo();
-    boolean deleteBindInfo();
+    void checkDeviceStatus(BindStatus o);
+    void bindDevice(Bind o);
+    void unBindDevice(Unbind o);
 }

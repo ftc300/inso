@@ -32,7 +32,7 @@ ext {
                     android      : "com.squareup.leakcanary:leakcanary-android:$versionConfig.leakcanary",
                     android_no_op: "com.squareup.leakcanary:leakcanary-android-no-op:$versionConfig.leakcanary",
             ],
-            xiaomi_auth              : "com.xiaomi.account:oauth-android:latest.release",
+            xiaomi_auth              : "com.xiaomi.account:oauth-android:2.0.5",
             butterknife: "com.jakewharton:butterknife:$versionConfig.butterknife",
             butterknife_annotationProcessor :"com.jakewharton:butterknife-compiler:$versionConfig.butterknife",
             reactnative : "com.facebook.react:react-native:+",

@@ -1686,7 +1686,7 @@ public class WatchNumberPicker extends LinearLayout {
             // Restore to the old value as we don't allow empty values
             updateInputTextView();
         } else {
-            // Check the new value and ensure it's in range
+            // BindStatus the new value and ensure it's in range
             int current = getSelectedPos(str.toString());
             setValueInternal(current, true);
         }

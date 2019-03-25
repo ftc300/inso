@@ -23,4 +23,33 @@
         <item name="android:paddingLeft">5dp</item>
         <item name="android:paddingRight">5dp</item>
     </style>
+
+    <!-- 对话框的样式 -->
+    <style name="float_base">
+        <item name="android:windowBackground">@android:color/darker_gray</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowIsFloating">true</item>
+    </style>
+
+    <!-- action-sheet 底部弹出菜单的样式 -->
+    <style name="action_sheet" parent="@style/float_base"></style>
+
+    <!-- Base style for animations.  This style specifies no animations. -->
+    <style name="Animation" />
+
+    <style name="action_sheet_animation" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@anim/action_sheet_enter</item>
+        <item name="android:windowExitAnimation">@anim/action_sheet_exit</item>
+    </style>
+
+    <!-- 水平线样式 -->
+    <style name="jx_horizontal_line">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1px</item>
+        <item name="android:background">@color/jx_divider</item>
+    </style>
+
 </resources>

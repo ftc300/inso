@@ -9,9 +9,9 @@
         android:orientation="vertical">
 
         <com.inso.watch.baselib.wigets.LabelTextRow
-            android:id="@+id/mine_setting"
+            android:id="@+id/userId"
             style="@style/label_row"
-            app:labelArrows="true"
+            app:labelArrows="false"
             app:labelDividerIndent="@dimen/content_padding"
             android:layout_marginTop="@dimen/dp10"
             app:labelText="账号" />
@@ -30,7 +30,7 @@
                 android:layout_weight="1"
                 android:text="头像" />
 
-            <com.inso.watch.baselib.wigets.CircleImageView
+            <ImageView
                 android:id="@+id/userIcon"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
@@ -50,7 +50,7 @@
 
 
         <com.inso.watch.baselib.wigets.LabelTextRow
-            android:id="@+id/mine_feedback"
+            android:id="@+id/nickName"
             style="@style/label_row"
             app:labelArrows="true"
             app:labelDividerIndent="@dimen/content_padding"
@@ -58,6 +58,7 @@
 
 
         <com.inso.watch.baselib.wigets.LabelTextRow
+            android:id="@+id/gender"
             style="@style/label_row"
             android:layout_marginTop="@dimen/dp15"
             app:labelDividerIndent="@dimen/content_padding"
@@ -65,24 +66,28 @@
             app:labelText="性别" />
 
         <com.inso.watch.baselib.wigets.LabelTextRow
+            android:id="@+id/birth"
             style="@style/label_row"
             app:labelArrows="true"
             app:labelDividerIndent="@dimen/content_padding"
             app:labelText="出生年月" />
 
         <com.inso.watch.baselib.wigets.LabelTextRow
+            android:id="@+id/height"
             style="@style/label_row"
             app:labelArrows="true"
             app:labelDividerIndent="@dimen/content_padding"
             app:labelText="身高" />
 
         <com.inso.watch.baselib.wigets.LabelTextRow
+            android:id="@+id/weight"
             style="@style/label_row"
             app:labelArrows="true"
             app:labelDividerIndent="@dimen/content_padding"
             app:labelText="体重" />
 
         <com.inso.watch.baselib.wigets.LabelTextRow
+            android:id="@+id/mobile"
             style="@style/label_row"
             android:layout_marginTop="@dimen/dp15"
             app:labelArrows="true"
@@ -90,8 +95,9 @@
             app:labelText="手机号" />
 
         <com.inso.watch.baselib.wigets.LabelTextRow
+            android:id="@+id/changePwd"
             style="@style/label_row"
-            app:labelArrows="true"
+            app:labelArrows="false"
             app:labelText="修改密码" />
     </LinearLayout>
 </ScrollView>
