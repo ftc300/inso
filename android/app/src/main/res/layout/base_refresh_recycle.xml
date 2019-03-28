@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/bg"
+    >
 
     <FrameLayout
         android:id="@+id/contentContainer"
@@ -14,8 +16,22 @@
         android:id="@+id/swipe_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/bg"
         >
         <include  layout="@layout/recycle_layout" />
     </android.support.v4.widget.SwipeRefreshLayout>
+
+
+    <TextView
+        android:id="@+id/tvNoData"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:textColor="@color/black_60_transparent"
+        android:text="还没有添加设备"
+        android:gravity="center"
+        android:textSize="@dimen/sp14"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="133dp"
+        android:visibility="gone"/>
 
 </FrameLayout>

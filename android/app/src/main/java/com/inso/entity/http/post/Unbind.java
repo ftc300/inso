@@ -9,6 +9,11 @@ package com.inso.entity.http.post;
  */
 
 public class Unbind  extends FatherParam{
-    public String device_id;
     public String mac;
+    public String sn;
+
+    public Unbind(String mac, String sn) {
+        this.mac = mac;
+        this.sn = sn;
+    }
 }

@@ -100,7 +100,7 @@ public class TitleBar {
 
         if (showBack) {
             TextView btnBack = (TextView) titleLayout.findViewById(R.id.top_left_tv);
-            btnBack.setCompoundDrawablesWithIntrinsicBounds(R.drawable.top_left_arrow, 0, 0, 0);
+            btnBack.setCompoundDrawablesWithIntrinsicBounds(R.drawable.selector_back, 0, 0, 0);
             btnBack.setVisibility(View.VISIBLE);
             ((ViewGroup) btnBack.getParent()).setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -124,7 +124,7 @@ public class TitleBar {
         }
 
         TextView leftLis = (TextView) titleLayout.findViewById(R.id.top_left_tv);
-        leftLis.setCompoundDrawablesWithIntrinsicBounds(leftIcon > 0 ? leftIcon : R.drawable.top_left_arrow, 0, 0, 0);
+        leftLis.setCompoundDrawablesWithIntrinsicBounds(leftIcon > 0 ? leftIcon : R.drawable.selector_back, 0, 0, 0);
 
         leftLis.setOnClickListener(_lis);
     }

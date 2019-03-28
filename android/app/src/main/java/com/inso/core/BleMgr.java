@@ -96,6 +96,9 @@ public class BleMgr {
         mClient.stopSearch();
     }
 
+    public void indicate(String mac, UUID service, UUID character,BleNotifyResponse response) {
+        mClient.indicate(mac, service, character,response);
+    }
     public void notify(String mac, UUID service, UUID character,BleNotifyResponse response) {
         mClient.notify(mac, service, character,response);
     }

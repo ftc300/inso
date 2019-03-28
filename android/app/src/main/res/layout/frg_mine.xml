@@ -3,79 +3,78 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/bg"
     android:orientation="vertical">
+
     <LinearLayout
         style="@style/VerticalWeightOne"
         android:orientation="vertical">
-    <LinearLayout
-        android:id="@+id/userIconLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:background="@color/label_main_bg"
-        android:layout_marginTop="@dimen/dp10"
-        android:padding="@dimen/content_padding">
 
-        <ImageView
-            android:id="@+id/userIcon"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/head_default"
-          />
-
-        <TextView
-            android:id="@+id/userName"
-            style="@style/label_main_15sp"
-            android:layout_width="0dp"
-            android:layout_marginLeft="15dp"
-            android:layout_weight="1"
-            android:text="小橙子" />
-
-
-        <ImageView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/userIconLayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/arrow_right" />
+            android:layout_marginTop="@dimen/dp10"
+            android:background="@color/label_main_bg"
+            android:gravity="center_vertical"
+            android:padding="@dimen/content_padding">
 
+            <ImageView
+                android:id="@+id/userIcon"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:src="@drawable/head_default" />
+
+            <TextView
+                android:id="@+id/userName"
+                style="@style/label_main_15sp"
+                android:layout_width="0dp"
+                android:layout_marginLeft="15dp"
+                android:layout_weight="1"
+                android:text="小橙子" />
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/arrow_right" />
+
+        </LinearLayout>
+
+        <View
+            style="@style/horizontal_line"
+            android:layout_marginLeft="@dimen/content_padding" />
+
+
+        <com.inso.watch.baselib.wigets.LabelTextRow
+            android:id="@+id/mine_setting"
+            style="@style/label_row"
+            app:labelArrows="true"
+            app:labelDividerIndent="@dimen/content_padding"
+            app:labelText="通知设置" />
+
+        <com.inso.watch.baselib.wigets.LabelTextRow
+            android:id="@+id/mine_feedback"
+            style="@style/label_row"
+            app:labelArrows="true"
+            app:labelDividerIndent="@dimen/content_padding"
+            app:labelText="反馈" />
+
+        <com.inso.watch.baselib.wigets.LabelTextRow
+            android:id="@+id/mine_about"
+            style="@style/label_row"
+            app:labelArrows="true"
+            app:labelText="关于" />
+
+        <com.inso.watch.baselib.wigets.LabelTextRow
+            android:id="@+id/mine_logout"
+            style="@style/label_row"
+            android:layout_marginTop="@dimen/dp13"
+            app:labelArrows="true"
+            app:labelDividerIndent="@dimen/content_padding"
+            app:labelText="注销"
+            app:labelTextColor="@color/inso_red" />
     </LinearLayout>
 
-    <View
-        style="@style/horizontal_line"
-        android:layout_marginLeft="@dimen/content_padding" />
-
-
-    <com.inso.watch.baselib.wigets.LabelTextRow
-        android:id="@+id/mine_setting"
-        style="@style/label_row"
-        app:labelArrows="true"
-        app:labelIcon="@drawable/mine_setting"
-        app:labelDividerIndent="@dimen/content_padding"
-        app:labelText="通知设置" />
-
-    <com.inso.watch.baselib.wigets.LabelTextRow
-        android:id="@+id/mine_feedback"
-        style="@style/label_row"
-        app:labelArrows="true"
-        app:labelDividerIndent="@dimen/content_padding"
-        app:labelIcon="@drawable/mine_feedback"
-        app:labelText="反馈" />
-
-    <com.inso.watch.baselib.wigets.LabelTextRow
-        android:id="@+id/mine_about"
-        style="@style/label_row"
-        app:labelArrows="true"
-        app:labelIcon="@drawable/mine_about"
-        app:labelText="关于" />
-
-    </LinearLayout>
-
-    <com.inso.watch.baselib.wigets.LabelTextRow
-        android:id="@+id/mine_logout"
-        style="@style/label_row"
-        app:labelArrows="true"
-        app:labelDividerIndent="@dimen/content_padding"
-        app:labelIcon="@drawable/mine_logout"
-        android:layout_marginBottom="@dimen/dp10"
-        app:labelText="登出" />
 
 </LinearLayout>

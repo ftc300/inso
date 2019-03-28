@@ -54,8 +54,7 @@ public class NotifyFrg extends RecycleRefreshFrg<Information> {
                 final ImageView img =  holder.getView(R.id.img);
                 Picasso.get()
                         .load(item.getCover())
-                        .placeholder(R.drawable.pic_default_large)
-                        .error(R.drawable.pic_error)
+                        .error(R.drawable.pic_loading_fail)
                         .transform(new RoundedCornersTransformation(DensityUtils.dp2px(mContext,8),0, RoundedCornersTransformation.CornerType.TOP))
                         .fit()
                         .centerCrop()

@@ -1,10 +1,10 @@
 package com.inso;
 
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
@@ -15,6 +15,7 @@ import com.inso.mall.MallFrg;
 import com.inso.mine.MineFrg;
 import com.inso.notify.NotifyFrg;
 import com.inso.product.ProductFrg;
+import com.inso.watch.baselib.base.BaseAct;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -27,7 +28,7 @@ import butterknife.ButterKnife;
  * GitHub: https://github.com/ftc300
  */
 
-public class MainAct extends AppCompatActivity implements BottomNavigationBar.OnTabSelectedListener {
+public class MainAct extends BaseAct implements BottomNavigationBar.OnTabSelectedListener {
 
 
     @BindView(R.id.bottom_navigation_bar)
@@ -40,6 +41,7 @@ public class MainAct extends AppCompatActivity implements BottomNavigationBar.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         StatusBarCompat.setStatusBarColor(this, ContextCompat.getColor(this, R.color.white));
         setContentView(R.layout.act_main);
         ButterKnife.bind(this);
@@ -75,10 +77,11 @@ public class MainAct extends AppCompatActivity implements BottomNavigationBar.On
         mBottomNavigationBar.setMode(BottomNavigationBar.MODE_FIXED);
         mBottomNavigationBar.setBackgroundStyle(BottomNavigationBar.BACKGROUND_STYLE_STATIC);
         mBottomNavigationBar
-                .addItem(new BottomNavigationItem(R.mipmap.ic_cp, "产品").setActiveColorResource(R.color.watch_red))
-                .addItem(new BottomNavigationItem(R.mipmap.ic_sc, "商城").setActiveColorResource(R.color.watch_red))
-                .addItem(new BottomNavigationItem(R.mipmap.ic_lb, "小喇叭").setActiveColorResource(R.color.watch_red).setBadgeItem(badge))
-                .addItem(new BottomNavigationItem(R.mipmap.ic_wd, "我的").setActiveColorResource(R.color.watch_red))
+                .addItem(new BottomNavigationItem(R.mipmap.ic_cp_inactive, "产品").setInactiveIconResource(R.mipmap.ic_cp).setActiveColorResource(R.color.inso_red).setInActiveColor("#E6000000"))
+                .addItem(new BottomNavigationItem(R.mipmap.ic_sc_inactive, "商城").setInactiveIconResource(R.mipmap.ic_sc).setActiveColorResource(R.color.inso_red).setInActiveColor("#E6000000"))
+//                .addItem(new BottomNavigationItem(R.mipmap.ic_lb, "小喇叭").setInactiveIconResource(R.mipmap.ic_cp_active).setBadgeItem(badge))
+                .addItem(new BottomNavigationItem(R.mipmap.ic_lb_inactive, "小喇叭").setInactiveIconResource(R.mipmap.ic_lb).setActiveColorResource(R.color.inso_red).setInActiveColor("#E6000000"))
+                .addItem(new BottomNavigationItem(R.mipmap.ic_wd_inactive, "我的").setInactiveIconResource(R.mipmap.ic_wd).setActiveColorResource(R.color.inso_red).setInActiveColor("#E6000000"))
                 .setFirstSelectedPosition(0)
                 .initialise();
     }

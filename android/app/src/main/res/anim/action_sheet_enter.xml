@@ -3,7 +3,7 @@
 
     <!-- 指相对于父容器 -->
     <translate
-        android:duration="400"
+        android:duration="200"
         android:fromYDelta="100%p" />
 
 </set>

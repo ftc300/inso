@@ -8,4 +8,10 @@
     <color name="jx_item_pressed">#eeeeee</color>
 
     <color name="jx_divider">#dfdfdf</color>
+
+    <color name="inso_red">#cc0000</color>
+
+    <color name="bg">#f2f2f2</color>
+
+
 </resources>

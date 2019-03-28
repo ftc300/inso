@@ -4,12 +4,12 @@ import android.accounts.OperationCanceledException;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 
@@ -20,6 +20,7 @@ import com.inso.entity.http.XmProfile;
 import com.inso.entity.http.post.Sign;
 import com.inso.plugin.manager.SPManager;
 import com.inso.plugin.tools.L;
+import com.inso.watch.baselib.base.BaseAct;
 import com.inso.watch.baselib.wigets.RotateLoading;
 import com.inso.watch.baselib.wigets.ToastWidget;
 import com.xiaomi.account.openauth.XMAuthericationException;
@@ -56,7 +57,7 @@ import static com.inso.watch.baselib.Constants.BASE_URL;
  * GitHub: https://github.com/ftc300
  */
 
-public class LoginAct extends AppCompatActivity {
+public class LoginAct extends BaseAct {
     @BindView(R.id.rotateloading)
     RotateLoading mRotateloading;
     private XiaomiOAuthResults results;
@@ -73,6 +74,7 @@ public class LoginAct extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.act_login);
         StatusBarCompat.setStatusBarColor(this, ContextCompat.getColor(this, R.color.white));
         ButterKnife.bind(this);

@@ -2,18 +2,21 @@ package com.inso.core.basic;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.inso.LoginAct;
 import com.inso.R;
 import com.inso.core.CacheMgr;
 import com.inso.core.HttpMgr;
-import com.inso.plugin.tools.L;
 import com.inso.watch.baselib.base.BaseFragment;
 import com.inso.watch.baselib.wigets.LoadStatusBox;
 import com.inso.watch.baselib.wigets.ToastWidget;
@@ -26,6 +29,8 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 /**
  * Comment:
@@ -44,6 +49,9 @@ public abstract class RecycleRefreshFrg<T> extends BaseFragment implements Swipe
     protected CommonAdapter mAdapter;
     @BindView(R.id.loadStatusBox)
     protected LoadStatusBox mLoadStatusBox;
+    @BindView(R.id.tvNoData)
+    protected TextView mTvNoData;
+    Unbinder unbinder;
     private Class<T> cls = null;
     protected Handler mHandler = new Handler();
     private CacheMgr mCache;
@@ -92,10 +100,10 @@ public abstract class RecycleRefreshFrg<T> extends BaseFragment implements Swipe
          * As animation won't start on onCreate, post runnable is used
          */
         String cache = mCache.getAsString(getRequestUrl());
-        if (null != cache ) {
+        if (null != cache) {
             fillAdapter(cache);
             mLoadStatusBox.success();
-        }else{
+        } else {
             loadRecyclerViewData();
         }
     }
@@ -120,7 +128,6 @@ public abstract class RecycleRefreshFrg<T> extends BaseFragment implements Swipe
         HttpMgr.getJsonObjectRequest(mActivity, getRequestUrl(), new HttpMgr.IResponse<JSONObject>() {
             @Override
             public void onSuccess(final JSONObject obj) {
-                L.d("#######  getRequest onSuccess from " + getRequestUrl() + "\n" + obj.toString());
                 try {
                     if (obj.getInt("errcode") == 401) { //invalid credentials &&  expired
                         ToastWidget.showWarn(mActivity, "登录已经过期，请重新登录");
@@ -139,10 +146,11 @@ public abstract class RecycleRefreshFrg<T> extends BaseFragment implements Swipe
                         public void run() {
                             if (null != mSwipeRefreshLayout && null != mLoadStatusBox && null != recyclerView) {
                                 mLoadStatusBox.success();
+                                mTvNoData.setVisibility(View.GONE);
                                 mSwipeRefreshLayout.setVisibility(View.VISIBLE);
                                 mSwipeRefreshLayout.setRefreshing(false);
                                 fillAdapter(obj.toString());
-                                mCache.put(getRequestUrl(),obj.toString(), CacheMgr.TIME_HOUR);
+                                mCache.put(getRequestUrl(), obj.toString(), CacheMgr.TIME_HOUR);
                             }
                         }
                     }, 800);
@@ -159,6 +167,7 @@ public abstract class RecycleRefreshFrg<T> extends BaseFragment implements Swipe
                             if (null != mSwipeRefreshLayout && null != mLoadStatusBox && null != recyclerView) {
                                 mSwipeRefreshLayout.setRefreshing(false);
                                 mLoadStatusBox.failed();
+                                mTvNoData.setVisibility(View.GONE);
                                 mSwipeRefreshLayout.setVisibility(View.GONE);
                                 mCache.remove(getRequestUrl());
                             }
@@ -173,6 +182,24 @@ public abstract class RecycleRefreshFrg<T> extends BaseFragment implements Swipe
         T t = new Gson().fromJson(obj, cls);
         dealWithFetchData(t);
         recyclerView.setAdapter(mAdapter);
+        showNoData();
     }
 
+    protected void showNoData(){
+
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // TODO: inflate a fragment view
+        View rootView = super.onCreateView(inflater, container, savedInstanceState);
+        unbinder = ButterKnife.bind(this, rootView);
+        return rootView;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
+    }
 }

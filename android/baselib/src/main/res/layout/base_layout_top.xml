@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/title_root"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/dp50"
+    android:layout_height="@dimen/dp48"
     android:background="@color/white">
 
     <FrameLayout
@@ -17,7 +17,7 @@
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:drawableLeft="@drawable/top_left_arrow"
+            android:drawableLeft="@drawable/selector_back"
             android:gravity="center"
             android:text=""
             android:textColor="@color/word_black"

@@ -4,7 +4,6 @@ import android.app.Dialog;
 import android.content.Context;
 import android.view.Gravity;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -50,20 +49,16 @@ public class UIManager {
         final Dialog dialog = new Dialog(context, R.style.action_sheet);
         dialog.setContentView(view);
         dialog.setCanceledOnTouchOutside(true);
-        view.findViewById(R.id.action_sheet_cancle).setOnClickListener(
-            new OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    dialog.dismiss();
-                }
-            });
-
+        view.setBackgroundResource(R.drawable.alertdialog_bg);
         Window window = dialog.getWindow();
         WindowManager.LayoutParams lp = window.getAttributes();
-        int screenW = Utils.getScreenWidth(context);
-        lp.width = screenW;
+        int marigin = Utils.dpToPx(context,10);
+        lp.x = marigin; // left margin
+        lp.y = marigin; // bottom margin
+        window.setAttributes(lp);
         window.setGravity(Gravity.BOTTOM); // 此处可以设置dialog显示的位置
         window.setWindowAnimations(R.style.action_sheet_animation); // 添加动画
+
         return dialog;
     }
 

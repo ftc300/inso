@@ -54,7 +54,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
-            android:button="@drawable/common_check_icon"
+            android:button="@drawable/selector_inso_check"
             android:visibility="gone" />
     </LinearLayout>
 

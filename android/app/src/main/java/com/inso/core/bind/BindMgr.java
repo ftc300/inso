@@ -6,6 +6,7 @@ import android.os.Handler;
 import com.inso.core.BleMgr;
 import com.inso.entity.http.post.Bind;
 import com.inso.entity.http.post.BindStatus;
+import com.inso.entity.http.post.Unbind;
 import com.inso.plugin.manager.SPManager;
 import com.inso.plugin.tools.Constants;
 import com.inso.plugin.tools.L;
@@ -56,18 +57,25 @@ public class BindMgr implements IServerResult {
     private Set<String> hasCheckedBondSet = new HashSet<>();
     private Handler mHandler;
     private IBindUiHandle mUiHandle;
-    private AtomicBoolean foundTarget = new AtomicBoolean(false); // only allow one device bind
+    private AtomicBoolean foundNotBondTarget = new AtomicBoolean(false); // only allow one device bind
     private Context mContext;
     private String did;
     private String selectMac;
     private long timeStamp;
     private BindServerImp mServerImp;
+    private IUnbind mUnbindResult;
+    public IUnbind getUnbindResult() {
+        return mUnbindResult;
+    }
+    public void setUnbindResult(IUnbind unbindResult) {
+        mUnbindResult = unbindResult;
+    }
 
     public BindMgr(Context context, IBindUiHandle uiHandle) {
         mContext = context;
         mUiHandle = uiHandle;
         mHandler = new Handler();
-        mServerImp = new BindServerImp(context,this);
+        mServerImp = new BindServerImp(context, this);
     }
 
     public void startBind() {
@@ -92,7 +100,6 @@ public class BindMgr implements IServerResult {
                     }
                 })
                 .start();
-//        }
     }
 
     private boolean checkBleAndNet() {
@@ -114,7 +121,7 @@ public class BindMgr implements IServerResult {
         BleMgr.getInstance().search(request, new SearchResponse() {
             @Override
             public void onSearchStarted() {
-                foundTarget.set(false);
+                foundNotBondTarget.set(false);
             }
 
             @Override
@@ -123,17 +130,17 @@ public class BindMgr implements IServerResult {
                 synchronized (BindMgr.class) {
                     if (isMiWatch2(device)) {
                         L.d("bind :: found MiWatch2 " + mac);
-                        if (foundTarget.get()) {
+                        if (foundNotBondTarget.get()) {
                             L.d("there is one binding process exit , reject it ");
                             BleMgr.getInstance().stopSearch();
                             return;
                         }
                         if (hasCheckedBondSet.contains(mac)) return;
                         selectMac = mac;
-
+                        hasCheckedBondSet.add(selectMac);
                         timeStamp = System.currentTimeMillis() / 1000;
                         did = hashDid(timeStamp, mac.replace(":", ""));
-                        mServerImp.checkDeviceStatus(new BindStatus(did, mac));
+                        mServerImp.checkDeviceStatus(new BindStatus("1234", mac));
                     }
                 }
 
@@ -158,17 +165,6 @@ public class BindMgr implements IServerResult {
     private boolean isMiWatch2(SearchResult result) {
         return result.rssi > RSSI_THRESHOLD && bytesToHexString(result.scanRecord).contains("1695FE3030CDAB");
     }
-
-
-    //request server
-//    private boolean hasBond(String mac) {
-//        //todo
-//        timeStamp = System.currentTimeMillis() / 1000;
-//        did = hashDid(timeStamp, mac.replace(":", ""));
-//        boolean ret = mServerImp.checkDeviceStatus(new BindStatus(did, mac));
-//        if (ret) hasCheckedBondSet.add(mac); // have bond before ,add to set
-//        return ret;
-//    }
 
     private void connectWatch(final String mac) {
         L.d("bind :: connectWatch");
@@ -196,16 +192,15 @@ public class BindMgr implements IServerResult {
             @Override
             public void onNotify(UUID service, UUID character, byte[] value) {
                 int response = value[0] & 0x0FF;
-//                unRegisterBleConStatusListener(mac,mStatusListener);
                 if (response == NOTIFY_SUCCESS) {
                     L.d("bind ::receive notify security validate success");
-                    requestBind(mac);
+                    requestBleBind(mac);
                 } else if (response == NOTIFY_FAIL) {
                     L.d("bind ::receive notify security validate fail");
                     mUiHandle.showBindFail();
                 } else if (response == NOTIFY_KEY_EVENT) {
                     L.d("bind ::receive notify event ");
-                    mServerImp.bindDevice(new Bind(did, "inso_watch2",timeStamp,selectMac,"1234" ));
+                    mServerImp.bindDevice(new Bind(did, "inso_watch2", timeStamp, selectMac, "1234"));
                 } else {
                     L.d("bind :: receive unknown");
 //                    mUiHandle.showBindFail();
@@ -221,6 +216,10 @@ public class BindMgr implements IServerResult {
                 }
             }
         });
+    }
+
+    public void unBindDevice(String mac, String sn) {
+        mServerImp.unBindDevice(new Unbind(mac, sn));
     }
 
     private void bindFailWithoutKeyEventAfter10(final String mac) {
@@ -241,7 +240,7 @@ public class BindMgr implements IServerResult {
         BleMgr.getInstance().write(mac, UUID.fromString(IN_SHOW_SERVICE), UUID.fromString(CHARACTERISTIC_BIND), inputValue(TYPE_SECURITY_VALIDATE));
     }
 
-    private void requestBind(String mac) {
+    private void requestBleBind(String mac) {
         BleMgr.getInstance().write(mac, UUID.fromString(IN_SHOW_SERVICE), UUID.fromString(CHARACTERISTIC_BIND), inputValue(TYPE_REQUEST_BIND));
     }
 
@@ -272,17 +271,16 @@ public class BindMgr implements IServerResult {
 
     // return have bond
     @Override
-    public void onDeviceStatusPositive() {
-        L.d("bind :: onDeviceStatusPositive ");
+    public void onDeviceHaveBond() {
+        L.d("bind :: onDeviceHaveBond ");
         mUiHandle.showHasBond();
-        hasCheckedBondSet.add(selectMac);
     }
 
     // return have  never bond
     @Override
-    public void onDeviceStatusNegative() {
-        L.d("bind :: onDeviceStatusNegative  never bind device mac is " + selectMac);
-        foundTarget.set(true); // find device then stop scan
+    public void onDeviceNotBond() {
+        L.d("bind :: onDeviceNotBond  never bind device mac is " + selectMac);
+        foundNotBondTarget.set(true); // find device then stop scan
         connectWatch(selectMac);
     }
 
@@ -303,11 +301,18 @@ public class BindMgr implements IServerResult {
 
     @Override
     public void onUnBindSuccess() {
-
+        if (null != mUnbindResult)
+            mUnbindResult.unBindSuccess();
     }
 
     @Override
     public void onUnBindFail() {
+        if (null != mUnbindResult)
+            mUnbindResult.unBindFail();
+    }
+
+    @Override
+    public void onException() {
 
     }
 }

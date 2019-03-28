@@ -52,7 +52,7 @@ public class BindServerImp implements IBindServer {
     }
 
     private <T> void getResult(String url, final Object o, final Class<T> cls) {
-        HttpMgr.postStringRequest(mContext, BASE_URL + url, o, new HttpMgr.IResponse<String>() {
+        HttpMgr.postStringRequest(mContext, BASE_URL + url , o, new HttpMgr.IResponse<String>() {
             @Override
             public void onSuccess(final String obj) {
                 L.d("postStringRequest onSuccess " + obj);
@@ -62,12 +62,12 @@ public class BindServerImp implements IBindServer {
                     if (isOk(base.getErrcode())) {
                         ResBindStatus status = (ResBindStatus) t;
                         if (status.isResult()) {
-                            mServerResult.onDeviceStatusPositive();
+                            mServerResult.onDeviceHaveBond();
                         } else {
-                            mServerResult.onDeviceStatusNegative();
+                            mServerResult.onDeviceNotBond();
                         }
                     } else {
-                        mServerResult.onDeviceStatusNegative();
+                        mServerResult.onException();
                     }
                 } else if (o instanceof Bind) {
                     if (isOk(base.getErrcode())) {

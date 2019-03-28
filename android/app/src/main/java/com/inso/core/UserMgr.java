@@ -60,8 +60,7 @@ public class UserMgr {
         if (!TextUtils.isEmpty(url)) {
             Picasso.get()
                     .load(url)
-                    .placeholder(R.drawable.head_default)
-                    .error(R.drawable.head_default)
+                    .placeholder(R.drawable.pic_avatar_default)
                     .transform(new CropCircleTransformation())
                     .into(imgView);
         }

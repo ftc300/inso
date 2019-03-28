@@ -3,16 +3,15 @@ package com.inso.mall;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.view.View;
-import android.widget.ImageView;
 
 import com.inso.R;
+import com.inso.core.Utils;
 import com.inso.core.basic.RecycleRefreshFrg;
 import com.inso.entity.http.Product;
 import com.inso.watch.baselib.base.CommonAct;
 import com.inso.watch.baselib.base.WebFragment;
 import com.inso.watch.baselib.wigets.recycler.CommonAdapter;
 import com.inso.watch.baselib.wigets.recycler.base.ViewHolder;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,12 +44,7 @@ public class MallFrg extends RecycleRefreshFrg<Product> {
             protected void convert(ViewHolder holder, Product.ItemsBean item, int position) {
                 holder.setText(R.id.tvProductName, item.getName());
                 holder.setText(R.id.tvDesc, item.getDescription());
-                Picasso.get()
-                        .load(item.getLogo())
-                        .placeholder(R.drawable.pic_default)
-                        .error(R.drawable.pic_error)
-                        .fit()
-                        .into((ImageView) holder.getView(R.id.imgLogo));
+                Utils.showWebIcon(item.getLogo(),holder.getView(R.id.imgLogo),R.drawable.pic_loading_fail);
                 holder.setOnClickListener(R.id.ll_item, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -60,21 +54,6 @@ public class MallFrg extends RecycleRefreshFrg<Product> {
                 });
             }
         };
-//        final SkeletonScreen skeletonScreen = Skeleton.bind(recyclerView)
-//                .adapter(mAdapter)
-//                .shimmer(true)
-//                .angle(20)
-//                .frozen(false)
-//                .duration(1200)
-//                .count(10)
-//                .load(R.layout.select_device_item)
-//                .show(); //default count is 10
-//        recyclerView.postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                skeletonScreen.hide();
-//            }
-//        }, 3000);
         if(null!= data && data.size() == 0)  mLoadStatusBox.empty();
     }
 

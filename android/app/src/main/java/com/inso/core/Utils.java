@@ -9,10 +9,15 @@ import android.content.pm.ShortcutManager;
 import android.graphics.drawable.Icon;
 import android.net.Uri;
 import android.os.Build;
+import android.text.TextUtils;
 import android.util.DisplayMetrics;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.inso.R;
+import com.inso.core.transformation.CropCircleTransformation;
 import com.inso.plugin.act.mainpagelogic.PluginMainAct;
+import com.squareup.picasso.Picasso;
 import com.yanzhenjie.permission.Action;
 import com.yanzhenjie.permission.AndPermission;
 
@@ -96,6 +101,26 @@ public class Utils {
             launcherIntent.putExtra(EXTRAS_EVENT_BUS, true);
             addShortcutIntent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, launcherIntent);
             context.sendBroadcast(addShortcutIntent);
+        }
+    }
+
+    public static void showWebIcon(String url, View imgView,int defaultIcon) {
+        if (!TextUtils.isEmpty(url)) {
+            Picasso.get()
+                    .load(url)
+                    .placeholder(defaultIcon)
+                    .fit()
+                    .centerCrop()
+                    .into((ImageView) imgView);
+        }
+    }
+    public static void showCirecleWebIcon(String url, View imgView,int defaultIcon) {
+        if (!TextUtils.isEmpty(url)) {
+            Picasso.get()
+                    .load(url)
+                    .placeholder(defaultIcon)
+                    .transform(new CropCircleTransformation())
+                    .into((ImageView) imgView);
         }
     }
 

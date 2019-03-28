@@ -1,5 +1,6 @@
 package com.inso.core.bind;
 
+import android.app.Activity;
 import android.content.Context;
 
 import com.inso.plugin.tools.L;
@@ -69,6 +70,7 @@ public class BindUiHandleImp implements IBindUiHandle {
     public void showBindSuccess() {
         L.d("showBindSuccess");
         ToastWidget.showSuccess(mContext,"showBindSuccess");
+        ((Activity)mContext).finish();
         CommonAct.start(mContext, BindSuccessFrg.class, BaseFragment.configNoTitle());
     }
 }

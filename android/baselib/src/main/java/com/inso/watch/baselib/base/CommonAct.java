@@ -21,7 +21,8 @@ public class CommonAct extends BaseAct  {
 
     private static final String EXA_NAME = "name";
     private static final String EXA_ARGS = "args";
-
+    protected Context mContext;
+    private Fragment mFragment;
     /**
      * 启动公用的Activity
      * @param context 上下文对象
@@ -95,8 +96,11 @@ public class CommonAct extends BaseAct  {
         return intent;
     }
 
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+    }
 
-    private Fragment mFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

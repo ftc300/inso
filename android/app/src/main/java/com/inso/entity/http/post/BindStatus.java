@@ -9,18 +9,18 @@ package com.inso.entity.http.post;
  */
 
 public class BindStatus extends FatherParam{
-    public String device_id;
+    public String sn;
     public String mac;
 
-    public BindStatus(String device_id, String mac) {
-        this.device_id = device_id;
+    public BindStatus(String sn, String mac) {
+        this.sn = sn;
         this.mac = mac;
     }
 
     @Override
     public String toString() {
         return "BindStatus{" +
-                "device_id='" + device_id + '\'' +
+                "sn='" + sn + '\'' +
                 ", mac='" + mac + '\'' +
                 '}';
     }

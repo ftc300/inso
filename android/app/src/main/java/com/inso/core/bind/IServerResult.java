@@ -9,10 +9,11 @@ package com.inso.core.bind;
  */
 
 public interface IServerResult {
-    public void onDeviceStatusPositive();
-    public void onDeviceStatusNegative();
-    public void onBindSuccess();
-    public void onBindFail();
-    public void onUnBindSuccess();
-    public void onUnBindFail();
+   void onDeviceHaveBond();
+   void onDeviceNotBond();
+   void onBindSuccess();
+   void onBindFail();
+   void onUnBindSuccess();
+   void onUnBindFail();
+   void onException();
 }

@@ -25,8 +25,8 @@
     </style>
 
     <!-- 对话框的样式 -->
-    <style name="float_base">
-        <item name="android:windowBackground">@android:color/darker_gray</item>
+    <style name="float_base" >
+        <!--<item name="android:windowBackground">@android:color/darker_gray</item>-->
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowContentOverlay">@null</item>
@@ -35,7 +35,8 @@
     </style>
 
     <!-- action-sheet 底部弹出菜单的样式 -->
-    <style name="action_sheet" parent="@style/float_base"></style>
+    <style name="action_sheet" parent="@style/float_base">
+    </style>
 
     <!-- Base style for animations.  This style specifies no animations. -->
     <style name="Animation" />

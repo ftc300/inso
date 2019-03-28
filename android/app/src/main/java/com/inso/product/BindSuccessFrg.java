@@ -44,6 +44,7 @@ public class BindSuccessFrg extends BaseFragment {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
+                        finish();
                         switchToWithEventBus(PluginMainAct.class);
                     }
                 },10);

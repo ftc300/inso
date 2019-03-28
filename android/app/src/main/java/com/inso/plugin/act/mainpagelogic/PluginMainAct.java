@@ -18,10 +18,12 @@ import com.inso.plugin.event.HomePageBus;
 import com.inso.plugin.fragment.FragmentBottom;
 import com.inso.plugin.fragment.FragmentTop;
 import com.inso.plugin.manager.SPManager;
+import com.inso.plugin.tools.Constants;
 import com.inso.plugin.tools.L;
 import com.inso.plugin.view.MainDragLayout;
 import com.inuker.bluetooth.library.connect.listener.BleConnectStatusListener;
 import com.inuker.bluetooth.library.connect.response.BleConnectResponse;
+import com.inuker.bluetooth.library.connect.response.BleNotifyResponse;
 import com.inuker.bluetooth.library.model.BleGattProfile;
 import com.xiaomi.smarthome.common.ui.dialog.MLAlertDialog;
 import com.yanzhenjie.permission.Action;
@@ -226,6 +228,7 @@ public class PluginMainAct extends BasicAct {
     private void connectSuccessCallback() {
         dragLayout.setAllowMove(true);
         barMore.setEnabled(true);
+        testIndicate();
         if (firstF.isAdded()) {
             ((FragmentTop) firstF).renderSuccess();
         }
@@ -234,6 +237,22 @@ public class PluginMainAct extends BasicAct {
         }
     }
 
+
+    void testIndicate(){
+        BleMgr.getInstance().indicate(MAC, UUID.fromString(Constants.GattUUIDConstant.IN_SHOW_SERVICE), UUID.fromString(Constants.GattUUIDConstant.CHARACTERISTIC_TODAY_STEP), new BleNotifyResponse() {
+            @Override
+            public void onNotify(UUID service, UUID character, byte[] value) {
+                L.d(String.format("onNotify service %s character %s value %s",service.toString(),character.toString(),BleMgr.bytes2HexString(value)));
+            }
+
+            @Override
+            public void onResponse(int code) {
+               L.d("onResponse code " +code);
+
+            }
+        });
+        BleMgr.getInstance().write(MAC, UUID.fromString(Constants.GattUUIDConstant.IN_SHOW_SERVICE), UUID.fromString(Constants.GattUUIDConstant.CHARACTERISTIC_TODAY_STEP),new byte[]{0,0,0,0});
+    }
     /**
      * 连接失败
      */

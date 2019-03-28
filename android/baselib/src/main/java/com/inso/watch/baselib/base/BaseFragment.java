@@ -8,9 +8,12 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import com.inso.watch.baselib.R;
 import com.inso.watch.baselib.wigets.TitleBar;
+
 import org.greenrobot.eventbus.EventBus;
+
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
@@ -88,14 +91,14 @@ public class BaseFragment extends Fragment{
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         boolean hasTitle = true;
         if (getArguments() != null) {
             hasTitle = getArguments().getBoolean(ARGS_HAS_TITLE, true);
         }
         // 根据参数加载不同的布局文件
         int layoutRes = hasTitle ? R.layout.base_fragment : R.layout.base_fragment_no_title;
-        View layout = inflater.inflate(layoutRes, container, false);
+        final View layout = inflater.inflate(layoutRes, container, false);
 
         mTitleBar = new TitleBar(layout);
         ViewGroup contentContainer = (ViewGroup) layout.findViewById(R.id.contentContainer);
@@ -115,7 +118,6 @@ public class BaseFragment extends Fragment{
         // butterKnife初始化控件
 
         initViewOrData();
-
         return layout;
     }
 
