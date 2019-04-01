@@ -105,6 +105,7 @@ public class HttpMgr {
 
 
     public static void postUploadImageRequest( String requestURL,File file, final IResponse<String> iResponse) {
+        L.d("upload image request url:" + requestURL);
         String BOUNDARY = UUID.randomUUID().toString(); // 边界标识 随机生成
         String PREFIX = "--", LINE_END = "\r\n";
         try {

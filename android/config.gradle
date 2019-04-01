@@ -64,6 +64,7 @@ ext {
     configBaselibDependencies = this.&configBaselibDependencies
     configCommonUIDependencies = this.&configCommonUIDependencies
     configBleLibDependencies = this.&configBleLibDependencies
+    configZxinglite = this.&configZxinglite
 }
 
 def configAndroidDomain(Project pro) {
@@ -179,6 +180,7 @@ def configAppDependencies(Project pro) {
         implementation project(':baselib')
         implementation project(':common_ui')
         implementation project(':blelib')
+        implementation project(':zxinglite')
         implementation depConfig.support.appcompat_v7
         implementation depConfig.support.design
         implementation depConfig.support.design
@@ -249,6 +251,10 @@ def configCommonUIDependencies(Project pro) {
     }
 }
 def configBleLibDependencies(Project pro) {
+    pro.dependencies {
+    }
+}
+def configZxinglite(Project pro) {
     pro.dependencies {
     }
 }

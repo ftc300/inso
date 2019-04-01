@@ -8,6 +8,7 @@ import com.inso.R;
 import com.inso.core.transformation.CropCircleTransformation;
 import com.inso.entity.http.UserInfo;
 import com.inso.plugin.manager.SPManager;
+import com.inso.watch.baselib.wigets.LabelTextRow;
 import com.squareup.picasso.Picasso;
 
 import java.util.Calendar;
@@ -56,13 +57,47 @@ public class UserMgr {
         return (UserInfo) mCache.getAsObject(CACHE_KEY_USER_INFO);
     }
 
-    public static void showUserIcon(String url, ImageView imgView) {
-        if (!TextUtils.isEmpty(url)) {
+    public static void showUserIcon(UserInfo userInfo, ImageView imgView) {
+        if (!TextUtils.isEmpty(userInfo.getAvatar())) {
             Picasso.get()
-                    .load(url)
+                    .load(userInfo.getAvatar())
                     .placeholder(R.drawable.pic_avatar_default)
                     .transform(new CropCircleTransformation())
                     .into(imgView);
         }
     }
+
+
+    public static void showNickName(UserInfo userInfo, LabelTextRow textRow){
+        if (!TextUtils.isEmpty(userInfo.getNickname())) {
+            textRow.setText(userInfo.getNickname());
+        }
+    }
+    public static void showUserId(UserInfo userInfo, LabelTextRow textRow){
+        if (!TextUtils.isEmpty(userInfo.getUser_id())) {
+            textRow.setText(userInfo.getUser_id());
+        }
+    }
+    public static void showGender(UserInfo userInfo, LabelTextRow textRow){
+        if (!TextUtils.isEmpty(userInfo.getGender())) {
+            textRow.setText(userInfo.getGender());
+        }
+    }
+    public static void showBirth(UserInfo userInfo, LabelTextRow textRow){
+        if (!TextUtils.isEmpty(userInfo.getBirth())) {
+            textRow.setText(userInfo.getBirth());
+        }
+    }
+    public static void showHeight(UserInfo userInfo, LabelTextRow textRow){
+        if (!TextUtils.isEmpty(userInfo.getHeight())) {
+            textRow.setText(userInfo.getHeight());
+        }
+    }
+
+    public static void showWeight(UserInfo userInfo, LabelTextRow textRow){
+        if (!TextUtils.isEmpty(userInfo.getWeight())) {
+            textRow.setText(userInfo.getWeight());
+        }
+    }
+
 }

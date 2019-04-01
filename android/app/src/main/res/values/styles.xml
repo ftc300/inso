@@ -41,10 +41,6 @@
     <!-- Base style for animations.  This style specifies no animations. -->
     <style name="Animation" />
 
-    <style name="action_sheet_animation" parent="@android:style/Animation">
-        <item name="android:windowEnterAnimation">@anim/action_sheet_enter</item>
-        <item name="android:windowExitAnimation">@anim/action_sheet_exit</item>
-    </style>
 
     <!-- 水平线样式 -->
     <style name="jx_horizontal_line">

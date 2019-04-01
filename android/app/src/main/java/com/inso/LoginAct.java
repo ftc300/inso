@@ -64,6 +64,7 @@ public class LoginAct extends BaseAct {
     private AsyncTask waitResultTask;
     private Context mContext = this;
     private Executor mExecutor = Executors.newCachedThreadPool();
+    private
 
     void switch2Main() {
         this.finish();
@@ -85,9 +86,8 @@ public class LoginAct extends BaseAct {
                 public void run() {
                     switch2Main();
                 }
-            },800);
+            },600);
         }
-//        switch2Main();
     }
 
     @OnClick({R.id.wechat, R.id.xiaomi})

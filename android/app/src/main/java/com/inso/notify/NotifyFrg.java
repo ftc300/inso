@@ -1,5 +1,6 @@
 package com.inso.notify;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -43,14 +44,15 @@ public class NotifyFrg extends RecycleRefreshFrg<Information> {
     @Override
     protected void dealWithFetchData(Information information) {
         data = information.getItems();
-        mAdapter = new  CommonAdapter<Information.ItemsBean>(mActivity, R.layout.item_xiaolaba, data) {
+        mAdapter = new  CommonAdapter<Information.ItemsBean>(mContext, R.layout.item_xiaolaba, data) {
+            @SuppressLint("SimpleDateFormat")
             @Override
             protected void convert(ViewHolder holder, final Information.ItemsBean item, int position) {
                 holder.setText(R.id.title, item.getTitle());
                 holder.setText(R.id.desc, item.getDescription());
                 Calendar calendar = Calendar.getInstance();
                 calendar.setTimeInMillis(item.getCreated_at()*1000);
-                holder.setText(R.id.date, new SimpleDateFormat("MM月dd日 HH:mm").format(calendar.getTime()));
+                holder.setText(R.id.date, new SimpleDateFormat("M月dd日 HH:mm").format(calendar.getTime()));
                 final ImageView img =  holder.getView(R.id.img);
                 Picasso.get()
                         .load(item.getCover())
@@ -63,7 +65,7 @@ public class NotifyFrg extends RecycleRefreshFrg<Information> {
                     @Override
                     public void onClick(View v) {
                         Bundle args = WebFragment.configArgs(item.getTitle(), item.getLink(), null);
-                        CommonAct.start(mActivity, WebFragment.class, args);
+                        CommonAct.start(NotifyFrg.this.mContext, WebFragment.class, args);
                     }
                 });
             }

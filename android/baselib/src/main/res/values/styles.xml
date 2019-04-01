@@ -1,8 +1,18 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
     <!-- 水平线样式 -->
+    <style name="dialog">
+        <item name="android:windowEnterAnimation">@anim/action_sheet_enter</item>
+        <item name="android:windowExitAnimation">@anim/action_sheet_exit</item>
+    </style>>
+
     <style name="horizontal_line">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">1px</item>
+        <item name="android:background">@color/label_divider</item>
+    </style>
+    <style name="vertical_line">
+        <item name="android:layout_width">1px</item>
+        <item name="android:layout_height">match_parent</item>
         <item name="android:background">@color/label_divider</item>
     </style>
 

@@ -9,6 +9,7 @@ import com.google.gson.Gson;
 import com.inso.R;
 import com.inso.core.CacheMgr;
 import com.inso.core.HttpMgr;
+import com.inso.core.UIManager;
 import com.inso.core.UserMgr;
 import com.inso.entity.http.UserInfo;
 import com.inso.plugin.tools.L;
@@ -20,6 +21,7 @@ import org.json.JSONObject;
 import butterknife.BindView;
 import butterknife.OnClick;
 
+import static com.inso.core.UIManager.showLogoutConfirmFrg;
 import static com.inso.core.UserMgr.showUserIcon;
 import static com.inso.watch.baselib.Constants.BASE_URL;
 
@@ -49,18 +51,18 @@ public class MineFrg extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-        userInfo = UserMgr.getUserInfo(CacheMgr.get(mActivity));
+        userInfo = UserMgr.getUserInfo(CacheMgr.get(mContext));
         if(null!= userInfo ){
-            showUserIcon(userInfo.getAvatar(),mUserIcon);
+            showUserIcon(userInfo,mUserIcon);
         }else {
-            HttpMgr.getJsonObjectRequest(mActivity, BASE_URL + "member/info", new HttpMgr.IResponse<JSONObject>() {
+            HttpMgr.getJsonObjectRequest(mContext, BASE_URL + "member/info", new HttpMgr.IResponse<JSONObject>() {
                 @Override
                 public void onSuccess(JSONObject obj) {
                     L.d("#######  getRequest onSuccess from " + BASE_URL + "member/info" + "\n" + obj.toString());
                     userInfo = new Gson().fromJson(obj.toString(), UserInfo.class);
-                    UserMgr.saveUserInfo(CacheMgr.get(mActivity), userInfo);
+                    UserMgr.saveUserInfo(CacheMgr.get(mContext), userInfo);
                     if (null != userInfo) {
-                        showUserIcon(userInfo.getAvatar(),mUserIcon);
+                        showUserIcon(userInfo,mUserIcon);
                         mUserName.setText(TextUtils.isEmpty(userInfo.getUsername()) ? userInfo.getUser_id() : userInfo.getUsername());
                     }
                 }
@@ -68,7 +70,7 @@ public class MineFrg extends BaseFragment {
                 @Override
                 public void onFail() {
                     L.d("#######  getRequest fail from " + BASE_URL + "member/info" );
-//                ToastWidget.showFail(mActivity, "Fetch Error!");
+//                ToastWidget.showFail(mContext, "Fetch Error!");
                 }
             });
         }
@@ -79,19 +81,24 @@ public class MineFrg extends BaseFragment {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.userIconLayout:
-                CommonAct.start(mActivity, MineInfoFrg.class);
+                CommonAct.start(mContext, MineInfoFrg.class);
                 break;
             case R.id.mine_setting:
-                CommonAct.start(mActivity, MineSettingFrg.class);
+                CommonAct.start(mContext, MineSettingFrg.class);
                 break;
             case R.id.mine_feedback:
-                CommonAct.start(mActivity, MineFeedbackFrg.class);
+                CommonAct.start(mContext, MineFeedbackFrg.class);
                 break;
             case R.id.mine_about:
-                CommonAct.start(mActivity, MineAboutFrg.class);
+                CommonAct.start(mContext, MineAboutFrg.class);
                 break;
             case R.id.mine_logout:
-                finish();
+                showLogoutConfirmFrg(mActivity,new UIManager.IConfirm(){
+                    @Override
+                    public void onConfirm(Object o) {
+                        finish();
+                    }
+                });
                 break;
         }
     }

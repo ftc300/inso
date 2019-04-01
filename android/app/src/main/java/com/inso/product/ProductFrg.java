@@ -37,13 +37,13 @@ public class ProductFrg extends RecycleRefreshFrg<DeviceList> implements IUnbind
     @Override
     protected void initViewOrData() {
         super.initViewOrData();
-        mBindUiHandleImp = new BindUiHandleImp(mActivity);
-        mBindMgr = new BindMgr(mActivity,mBindUiHandleImp);
+        mBindUiHandleImp = new BindUiHandleImp(mContext);
+        mBindMgr = new BindMgr(mContext,mBindUiHandleImp);
         mBindMgr.setUnbindResult(this);
         setTitleR(false, "产品", R.drawable.icon_add, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CommonAct.start(mActivity,SelectDeviceFrg.class);
+                CommonAct.start(mContext,SelectDeviceFrg.class);
             }
         });
     }
@@ -61,8 +61,8 @@ public class ProductFrg extends RecycleRefreshFrg<DeviceList> implements IUnbind
     @Override
     protected void dealWithFetchData(DeviceList list) {
         data = list.getResult();
-        recyclerView.setLayoutManager(new LinearLayoutManager(mActivity));
-        mAdapter = new CommonAdapter<DeviceList.ResultBean>(mActivity, R.layout.item_user_products, data) {
+        recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
+        mAdapter = new CommonAdapter<DeviceList.ResultBean>(mContext, R.layout.item_user_products, data) {
             @Override
             protected void convert(final ViewHolder holder, final DeviceList.ResultBean item, int position) {
                 Utils.showWebIcon(item.getLogo(),holder.getView(R.id.imgLogo),R.drawable.pic_product_default);
@@ -118,7 +118,7 @@ public class ProductFrg extends RecycleRefreshFrg<DeviceList> implements IUnbind
 
     @Override
     public void unBindFail() {
-        ToastWidget.showFail(mActivity,"解绑失败");
+        ToastWidget.showFail(mContext,"解绑失败");
     }
 
 

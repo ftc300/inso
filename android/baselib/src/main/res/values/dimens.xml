@@ -42,4 +42,8 @@
     <dimen name="label_row_height">50dp</dimen>
 
     <dimen name="btn_radius">5dp</dimen>
+    <dimen name="dialog_item_height">50dp</dimen>
+    <dimen name="dialog_img_height">40dp</dimen>
+    <dimen name="dialog_img_margin">5dp</dimen>
+    <dimen name="dialog_buttons_height">48dp</dimen>
 </resources>

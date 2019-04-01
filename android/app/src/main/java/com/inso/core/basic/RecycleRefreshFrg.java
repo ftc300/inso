@@ -87,11 +87,11 @@ public abstract class RecycleRefreshFrg<T> extends BaseFragment implements Swipe
         ParameterizedType type = (ParameterizedType) clz.getGenericSuperclass();
         Type[] types = type.getActualTypeArguments();
         cls = (Class<T>) types[0];
-        mCache = CacheMgr.get(mActivity);
+        mCache = CacheMgr.get(mContext);
         setTitle(getTitle());
         setLoadingClickListener();
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(mActivity));
+        recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         mSwipeRefreshLayout.setOnRefreshListener(this);
         mSwipeRefreshLayout.setColorSchemeResources(R.color.black_50_transparent);
 
@@ -125,15 +125,15 @@ public abstract class RecycleRefreshFrg<T> extends BaseFragment implements Swipe
     }
 
     private void loadRecyclerViewData() {
-        HttpMgr.getJsonObjectRequest(mActivity, getRequestUrl(), new HttpMgr.IResponse<JSONObject>() {
+        HttpMgr.getJsonObjectRequest(mContext, getRequestUrl(), new HttpMgr.IResponse<JSONObject>() {
             @Override
             public void onSuccess(final JSONObject obj) {
                 try {
                     if (obj.getInt("errcode") == 401) { //invalid credentials &&  expired
-                        ToastWidget.showWarn(mActivity, "登录已经过期，请重新登录");
-                        mActivity.startActivity(new Intent(mActivity, LoginAct.class));
-                        ((Activity) mActivity).finish();
-                        ((Activity) mActivity).overridePendingTransition(0, 0);
+                        ToastWidget.showWarn(mContext, "登录已经过期，请重新登录");
+                        mContext.startActivity(new Intent(mContext, LoginAct.class));
+                        ((Activity) mContext).finish();
+                        ((Activity) mContext).overridePendingTransition(0, 0);
                         return;
                     }
                 } catch (JSONException e) {

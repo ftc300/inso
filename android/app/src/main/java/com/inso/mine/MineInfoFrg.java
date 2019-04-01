@@ -1,7 +1,6 @@
 package com.inso.mine;
 
 import android.Manifest;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
@@ -37,7 +36,13 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
+import static com.inso.core.UserMgr.showBirth;
+import static com.inso.core.UserMgr.showGender;
+import static com.inso.core.UserMgr.showHeight;
+import static com.inso.core.UserMgr.showNickName;
 import static com.inso.core.UserMgr.showUserIcon;
+import static com.inso.core.UserMgr.showUserId;
+import static com.inso.core.UserMgr.showWeight;
 import static com.inso.watch.baselib.Constants.BASE_URL;
 
 /**
@@ -73,7 +78,6 @@ public class MineInfoFrg extends BaseFragment implements IUserIconResponse {
     @BindView(R.id.changePwd)
     LabelTextRow mChangePwd;
     private static String image;
-    private Dialog uploadPhoto;
     private MineInfoHandler handImage;
     private static CacheMgr mCache;
     private static UserInfo mUserInfo;
@@ -89,11 +93,17 @@ public class MineInfoFrg extends BaseFragment implements IUserIconResponse {
         super.initViewOrData();
         setTitle(true, "我的信息");
         mainHandler = new Handler(Looper.getMainLooper());
-        handImage = new MineInfoHandler(mActivity, this, this);
-        mCache = CacheMgr.get(mActivity);
+        handImage = new MineInfoHandler(mContext, this, this);
+        mCache = CacheMgr.get(mContext);
         mUserInfo = UserMgr.getUserInfo(mCache);
         if (null != mUserInfo) {
-            showUserIcon(mUserInfo.getAvatar(),mUserIcon);
+            showUserId(mUserInfo,mUserId);
+            showUserIcon(mUserInfo,mUserIcon);
+            showNickName(mUserInfo,mNickName);
+            showBirth(mUserInfo,mBirth);
+            showGender(mUserInfo,mGender);
+            showHeight(mUserInfo,mHeight);
+            showWeight(mUserInfo,mWeight);
         }
     }
 
@@ -106,19 +116,10 @@ public class MineInfoFrg extends BaseFragment implements IUserIconResponse {
             case R.id.userName:
                 break;
             case R.id.userIconLayout:
-                View v = View.inflate(mActivity, R.layout.act_get_photo, null);
-                uploadPhoto = UIManager.getActionSheet(mActivity, v);
-                uploadPhoto.findViewById(R.id.action_take).setOnClickListener(new View.OnClickListener() {
+                UIManager.showChangeUserIconFrg(mActivity, new UIManager.IChangeUserIcon() {
                     @Override
-                    public void onClick(View v) {
-                        MediaManager.getPhotoFromAlbum(MineInfoFrg.this);
-                        uploadPhoto.dismiss();
-                    }
-                });
-                uploadPhoto.findViewById(R.id.action_pick).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        AndPermission.with(mActivity)
+                    public void takePhoto() {
+                        AndPermission.with(mContext)
                                 .runtime()
                                 .permission(Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE,
                                         Manifest.permission.WRITE_EXTERNAL_STORAGE)
@@ -126,7 +127,6 @@ public class MineInfoFrg extends BaseFragment implements IUserIconResponse {
                                     @Override
                                     public void onAction(List<String> data) {
                                         MediaManager.getPhotoFromCamera(MineInfoFrg.this);
-                                        uploadPhoto.dismiss();
                                     }
                                 })
                                 .onDenied(new Action<List<String>>() {
@@ -135,10 +135,13 @@ public class MineInfoFrg extends BaseFragment implements IUserIconResponse {
                                     }
                                 })
                                 .start();
+                    }
 
+                    @Override
+                    public void pickPic() {
+                        MediaManager.getPhotoFromAlbum(MineInfoFrg.this);
                     }
                 });
-                uploadPhoto.show();
                 break;
             case R.id.nickName:
                 break;
@@ -169,7 +172,7 @@ public class MineInfoFrg extends BaseFragment implements IUserIconResponse {
         mainHandler.post(new Runnable() {
             @Override
             public void run() {
-                showUserIcon(url,mUserIcon);
+                showUserIcon(mUserInfo,mUserIcon);
             }
         });
     }
@@ -180,13 +183,12 @@ public class MineInfoFrg extends BaseFragment implements IUserIconResponse {
         mainHandler.post(new Runnable() {
             @Override
             public void run() {
-                ToastWidget.showFail(mActivity, "头像上传失败");
+                ToastWidget.showFail(mContext, "头像上传失败");
             }
         });
     }
 
     static class MineInfoHandler extends Handler {
-        //WeakReference to the outer class's instance.
         private WeakReference<MineInfoFrg> mOuter;
         private IUserIconResponse mResponse;
         private Context mContext;

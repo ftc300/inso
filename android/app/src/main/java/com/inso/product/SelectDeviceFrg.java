@@ -45,12 +45,12 @@ public class SelectDeviceFrg extends BaseFragment {
         setTitleR(true, "选择要添加的产品", R.drawable.product_scan, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                switchTo(ScanCodeAct.class);
             }
         });
         Product p = new Gson().fromJson(dataString,Product.class);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(mActivity));
-        mRecyclerView.setAdapter(new CommonAdapter<Product.ItemsBean>(mActivity,R.layout.select_device_item,p.getItems()) {
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
+        mRecyclerView.setAdapter(new CommonAdapter<Product.ItemsBean>(mContext,R.layout.select_device_item,p.getItems()) {
             @Override
             protected void convert(ViewHolder holder, final Product.ItemsBean item, final int position) {
                 holder.setText(R.id.tvContent, item.getName());

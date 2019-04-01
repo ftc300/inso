@@ -10,18 +10,18 @@ public class ListenerManager {
 
     private ListenerManager(){};
 
-    public static ListenerManager create(Builer builer){
-        if (builer == null){
+    public static ListenerManager create(Builder builder){
+        if (builder == null){
             return null;
         }
-        return builer.build();
+        return builder.build();
     }
 
-    public static class Builer{
+    public static class Builder {
         private ListenerManager listenerManager = new ListenerManager();
 
 
-        public Builer buildOnClickListener(HookListenerContract.OnClickListener onClickListener){
+        public Builder buildOnClickListener(HookListenerContract.OnClickListener onClickListener){
             listenerManager.mOnClickListener = onClickListener;
             return this;
         }

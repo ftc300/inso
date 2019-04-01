@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,7 +41,8 @@ public class BaseFragment extends Fragment{
      */
     protected View mContentView;
 
-    protected  Context mActivity;
+    protected  Context mContext;
+    protected AppCompatActivity mActivity;
 
 
     Unbinder unbinder;
@@ -53,12 +55,12 @@ public class BaseFragment extends Fragment{
     }
     private boolean mDestroyed;
     protected  void switchTo(Class<?> to){
-        Intent intent = new Intent(mActivity,to);
+        Intent intent = new Intent(mContext,to);
         startActivity(intent);
     }
 
     protected  void switchToWithEventBus(Class<?> to){
-        Intent intent = new Intent(mActivity,to);
+        Intent intent = new Intent(mContext,to);
         intent.putExtra(ARGS_EVENT_BUS, true);
         startActivity(intent);
     }
@@ -66,7 +68,8 @@ public class BaseFragment extends Fragment{
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        mActivity = context;
+        mContext = context;
+        mActivity = (AppCompatActivity) context;
         arguments = getArguments();
     }
 
@@ -106,7 +109,7 @@ public class BaseFragment extends Fragment{
         if (mContentView == null) {
             final int contentRes = getContentRes();
             if(contentRes > 0) {
-                mContentView = View.inflate(mActivity, contentRes, null);
+                mContentView = View.inflate(mContext, contentRes, null);
             }
         }
 
@@ -187,6 +190,6 @@ public class BaseFragment extends Fragment{
     }
 
     protected void finish(){
-        ((Activity)mActivity).finish();
+        ((Activity) mContext).finish();
     }
 }

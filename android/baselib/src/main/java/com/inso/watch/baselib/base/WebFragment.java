@@ -38,11 +38,11 @@ public class WebFragment extends BaseFragment {
 
     @Override
     protected View getContentView() {
-        mWebView = (WebView) View.inflate(mActivity, R.layout.webview, null);
+        mWebView = (WebView) View.inflate(mContext, R.layout.webview, null);
 
         final Bundle args = getArguments();
         if (args == null) {
-            ((Activity)mActivity).finish();
+            ((Activity) mContext).finish();
             return null;
         }
 

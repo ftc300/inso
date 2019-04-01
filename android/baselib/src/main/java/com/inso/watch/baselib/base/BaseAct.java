@@ -22,20 +22,17 @@ import com.inso.watch.commonlib.utils.StatusBarCompatUtil;
 
 public class BaseAct extends AppCompatActivity{
     protected Context mContext;
-    private static long LAST_TIME = 0;
-    private static long MIN_INTERVAL_DEFAULT = 600;
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
-        LAST_TIME = 0;
-        ListenerManager.Builer builer = new ListenerManager.Builer();
-        builer.buildOnClickListener(new HookListenerContract.OnClickListener() {
+        ListenerManager.Builder builder = new ListenerManager.Builder();
+        builder.buildOnClickListener(new HookListenerContract.OnClickListener() {
             @Override
             public void doInListener(View v) {
             }
         });
-        HookCore.getInstance().startHook(this, ListenerManager.create(builer));
+        HookCore.getInstance().startHook(this, ListenerManager.create(builder));
     }
 
     @Override
@@ -43,6 +40,5 @@ public class BaseAct extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         StatusBarCompatUtil.compat(this);
-
     }
 }

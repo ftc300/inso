@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_dialog"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:id="@+id/rl_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dialog_item_height" >
+
+        <ImageView
+            android:id="@+id/iv_title"
+            android:layout_width="@dimen/dialog_img_height"
+            android:layout_height="@dimen/dialog_img_height"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dialog_img_margin"
+            android:layout_marginRight="@dimen/dialog_img_margin"
+            android:scaleType="centerInside"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="示例"
+            android:textColor="@color/black_80_transparent"
+            android:textSize="@dimen/sp14" />
+
+        <View
+            style="@style/horizontal_line"
+            android:id="@+id/top_line"
+            android:layout_alignParentBottom="true"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+    </LinearLayout>
+
+    <View
+        android:id="@+id/bottom_line"
+        style="@style/horizontal_line" />
+    <LinearLayout
+        android:id="@+id/rl_buttons"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dialog_buttons_height"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_no"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="取消"
+            android:textColor="@color/black_60_transparent"
+            android:textSize="@dimen/sp14" />
+        <View
+            style="@style/vertical_line" />
+
+        <Button
+            android:id="@+id/btn_yes"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="确定"
+            android:textColor="@color/inso_red"
+            android:textSize="@dimen/sp14" />
+    </LinearLayout>
+
+</LinearLayout>

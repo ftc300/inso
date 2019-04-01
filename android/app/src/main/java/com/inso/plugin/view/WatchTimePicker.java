@@ -42,7 +42,7 @@ import java.util.Locale;
  * digit hours can be accomplished by hitting two digits within a timeout of
  * about a second (e.g. '1' then '2' to select 12). The minutes can be entered
  * by entering single digits. Under AM/PM mode, the user can hit 'a', 'A", 'p'
- * or 'P' to pick. For a dialog using this view, see
+ * or 'P' to pickPic. For a dialog using this view, see
  * {@link android.app.TimePickerDialog}.
  *<p>
  * See the <a href="{@docRoot}resources/tutorials/views/hello-timepicker.html">Time Picker

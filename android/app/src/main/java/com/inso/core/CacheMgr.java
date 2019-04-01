@@ -52,6 +52,7 @@ public class CacheMgr {
     private static Map<String, CacheMgr> mInstanceMap = new HashMap<String, CacheMgr>();
     private ACacheManager mCache;
 
+
     public static CacheMgr get(Context ctx) {
         return get(ctx, "CacheMgr");
     }

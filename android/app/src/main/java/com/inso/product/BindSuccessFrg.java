@@ -40,7 +40,7 @@ public class BindSuccessFrg extends BaseFragment {
                 break;
             case R.id.btnSure:
                 if(mBox3.isChecked())
-                Utils.addShortcut(mActivity,"米家石英表2");
+                Utils.addShortcut(mContext,"米家石英表2");
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {

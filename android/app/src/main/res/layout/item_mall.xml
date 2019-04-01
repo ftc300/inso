@@ -4,21 +4,20 @@
     android:id="@+id/ll_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="@dimen/dp5"
     android:gravity="center"
     android:orientation="vertical">
     <ImageView
         android:id="@+id/imgLogo"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
         android:foregroundGravity="center" />
 
     <TextView
         android:id="@+id/tvDesc"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/black_10_transparent"
-        android:gravity="left"
+        android:layout_height="32dp"
+        android:background="#ebebeb"
+        android:gravity="left|center_vertical"
         android:text="极简设计，简约之美"
         android:paddingTop="@dimen/dp5"
         android:paddingBottom="@dimen/dp5"
@@ -29,7 +28,7 @@
 
     <TextView
         android:id="@+id/tvProductName"
-        android:layout_marginTop="@dimen/dp10"
+        android:layout_marginTop="13dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="left"
@@ -42,7 +41,7 @@
         android:id="@+id/tvPrice"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp5"
+        android:layout_marginTop="@dimen/dp8"
         android:gravity="left"
         android:maxLines="1"
         android:text="￥ 399"
@@ -52,8 +51,8 @@
     <TextView
         android:id="@+id/tvDiscount"
         style="@style/state_label_style"
-        android:layout_marginTop="@dimen/dp2"
-        android:background="@drawable/bg_corner_red"
+        android:layout_marginTop="@dimen/dp8"
+        android:background="@drawable/bg_corner_red_price"
         android:gravity="left"
         android:layout_gravity="left"
         android:maxLines="1"
