@@ -16,10 +16,13 @@ public interface IHandleCallEvent {
 
     void onOutgoingCallStarted(String number, Date start);
 
+    // pick up then end call
     void onIncomingCallEnded(String number, Date start, Date end);
 
     void onOutgoingCallEnded(String number, Date start, Date end);
 
     void onMissedCall(String number, Date start);
+
+    void onPickUp(String number, Date end);
 
 }

@@ -16,13 +16,12 @@ import static com.inso.watch.phonelib.PhoneCallReceiver.mListener;
 
 public class PhoneCallService extends Service implements IHandleCallEvent {
 
-    public static final String TAG = PhoneCallService.class.getSimpleName();
     public static final String ACTION_REGISTER_LISTENER = "action_register_listener";
 
     @Override
     public void onCreate() {
         super.onCreate();
-        L.d(TAG,"PhoneCallService onCreate");
+        L.d("PhoneCallService onCreate");
     }
 
 //    @Override
@@ -48,50 +47,55 @@ public class PhoneCallService extends Service implements IHandleCallEvent {
 
     @Override
     public IBinder onBind(Intent intent) {
-        L.d(TAG,"onBind action: " + intent.getAction());
+        L.d("onBind action: " + intent.getAction());
         return null;
     }
 
     @Override
     public boolean onUnbind(Intent intent) {
-        L.d(TAG,"onUnbind action: " + intent.getAction());
+        L.d("onUnbind action: " + intent.getAction());
         return super.onUnbind(intent);
     }
 
     @Override
     public void onRebind(Intent intent) {
-        L.d(TAG,"onRebind action: " + intent.getAction());
+        L.d("onRebind action: " + intent.getAction());
         super.onRebind(intent);
     }
 
     @Override
     public void onDestroy() {
-        L.d(TAG,"onDestroy");
+        L.d("onDestroy");
         super.onDestroy();
     }
 
     @Override
     public void onIncomingCallStarted(String number, Date start) {
-        L.d(TAG,"onIncomingCallStarted");
+        L.d("onIncomingCallStarted");
     }
 
     @Override
     public void onOutgoingCallStarted(String number, Date start) {
-        L.d(TAG,"onOutgoingCallStarted");
+        L.d("onOutgoingCallStarted");
     }
 
     @Override
     public void onIncomingCallEnded(String number, Date start, Date end) {
-        L.d(TAG,"onIncomingCallEnded");
+        L.d("onIncomingCallEnded");
     }
 
     @Override
     public void onOutgoingCallEnded(String number, Date start, Date end) {
-        L.d(TAG,"onOutgoingCallEnded");
+        L.d("onOutgoingCallEnded");
     }
 
     @Override
     public void onMissedCall(String number, Date start) {
-        L.d(TAG,"onMissedCall");
+        L.d("onMissedCall");
+    }
+
+    @Override
+    public void onPickUp(String number, Date end) {
+        L.d("onMissedCall");
     }
 }

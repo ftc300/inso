@@ -12,6 +12,7 @@ import com.inso.core.HttpMgr;
 import com.inso.core.UIManager;
 import com.inso.core.UserMgr;
 import com.inso.entity.http.UserInfo;
+import com.inso.plugin.manager.SPManager;
 import com.inso.plugin.tools.L;
 import com.inso.watch.baselib.base.BaseFragment;
 import com.inso.watch.baselib.base.CommonAct;
@@ -96,6 +97,8 @@ public class MineFrg extends BaseFragment {
                 showLogoutConfirmFrg(mActivity,new UIManager.IConfirm(){
                     @Override
                     public void onConfirm(Object o) {
+                        CacheMgr.get(mActivity).clear();
+                        SPManager.clear(mActivity);
                         finish();
                     }
                 });

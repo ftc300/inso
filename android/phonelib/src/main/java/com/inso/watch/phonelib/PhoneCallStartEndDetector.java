@@ -1,7 +1,6 @@
 package com.inso.watch.phonelib;
 
 import android.telephony.PhoneStateListener;
-import android.telephony.TelephonyManager;
 
 import com.inso.watch.commonlib.utils.L;
 
@@ -70,6 +69,11 @@ public class PhoneCallStartEndDetector extends PhoneStateListener {
                     callStartTime = new Date();
                     if (null != callEvent) {
                         callEvent.onOutgoingCallStarted(savedNumber, callStartTime);
+                    }
+                }
+                if(lastState == CALL_STATE_RINGING){
+                    if (null != callEvent) {
+                        callEvent.onPickUp(savedNumber, callStartTime);
                     }
                 }
                 break;

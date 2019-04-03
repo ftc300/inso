@@ -2,6 +2,7 @@ package com.inso.plugin.basic;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -104,6 +105,7 @@ public class BasicAct extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.watch_activity_base);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         mContext = this;
         mDBHelper = new DBHelper(mContext);
         flTitle = (FrameLayout) findViewById(R.id.act_base_title);

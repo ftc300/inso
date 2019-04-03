@@ -222,6 +222,17 @@ public class TimeUtil {
     }
 
 
+    /**
+     * todo 获取服务端数据
+     * @param zone
+     * @return
+     */
+    public static int getUtcOffsetMinute(String zone){
+        float ONE_MIN_MILLIS = 60 *1000;
+        TimeZone timeZone = TimeZone.getTimeZone(zone);
+        Date nowDate = new Date();
+        return (int) (timeZone.getOffset(nowDate.getTime()) / ONE_MIN_MILLIS);
+    }
 //    //获取当前时间的秒数
     //201/10/27 remove 使用utc时间
 //    public static int getNowTimeSeconds() {

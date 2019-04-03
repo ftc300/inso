@@ -18,6 +18,7 @@ import com.inso.plugin.event.HomePageBus;
 import com.inso.plugin.fragment.FragmentBottom;
 import com.inso.plugin.fragment.FragmentTop;
 import com.inso.plugin.manager.SPManager;
+import com.inso.plugin.sync.device.IndicationMgr;
 import com.inso.plugin.tools.Constants;
 import com.inso.plugin.tools.L;
 import com.inso.plugin.view.MainDragLayout;
@@ -228,7 +229,8 @@ public class PluginMainAct extends BasicAct {
     private void connectSuccessCallback() {
         dragLayout.setAllowMove(true);
         barMore.setEnabled(true);
-        testIndicate();
+//        testIndicate();
+        IndicationMgr.indicateWorldCity(MAC);
         if (firstF.isAdded()) {
             ((FragmentTop) firstF).renderSuccess();
         }

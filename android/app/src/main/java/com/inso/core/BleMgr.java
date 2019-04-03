@@ -23,7 +23,7 @@ public class BleMgr {
     private static BleMgr mInstance;
     private static BluetoothClient mClient;
 
-    private static void  initClient() {
+    private static void initClient() {
         if (mClient == null) {
             synchronized (BleMgr.class) {
                 if (mClient == null) {
@@ -50,34 +50,34 @@ public class BleMgr {
     // Constants.STATUS_DEVICE_DISCONNECTING
     // Constants.STATUS_DEVICE_DISCONNECTED
 
-    public boolean isBluetoothOpen(){
+    public boolean isBluetoothOpen() {
         return mClient.isBluetoothOpened();
     }
 
-    public void openBluetoothSilently(){
+    public void openBluetoothSilently() {
         mClient.openBluetooth();
     }
 
-    public  int getBleState(String MAC){
+    public int getBleState(String MAC) {
         return mClient.getConnectStatus(MAC);
     }
 
-    public  boolean isConnected(String MAC){
+    public boolean isConnected(String MAC) {
         return mClient.getConnectStatus(MAC) == Constants.STATUS_DEVICE_CONNECTED;
     }
 
 
-    public void register(String MAC,BleConnectStatusListener mBleConnectStatusListener ){
+    public void register(String MAC, BleConnectStatusListener mBleConnectStatusListener) {
         mClient.registerConnectStatusListener(MAC, mBleConnectStatusListener);
     }
 
 
-    public void unRegister(String MAC,BleConnectStatusListener mBleConnectStatusListener ){
+    public void unRegister(String MAC, BleConnectStatusListener mBleConnectStatusListener) {
         mClient.unregisterConnectStatusListener(MAC, mBleConnectStatusListener);
     }
 
 
-    public void connect(String MAC,BleConnectResponse response) {
+    public void connect(String MAC, BleConnectResponse response) {
         mClient.connect(MAC, response);
     }
 
@@ -85,25 +85,28 @@ public class BleMgr {
         mClient.disconnect(MAC);
     }
 
-    public void readRssi(String mac,BleReadRssiResponse response){
-        mClient.readRssi(mac,response);
+    public void readRssi(String mac, BleReadRssiResponse response) {
+        mClient.readRssi(mac, response);
     }
 
-    public void search(SearchRequest request, SearchResponse response){
+    public void search(SearchRequest request, SearchResponse response) {
         mClient.search(request, response);
     }
-    public void stopSearch(){
+
+    public void stopSearch() {
         mClient.stopSearch();
     }
 
-    public void indicate(String mac, UUID service, UUID character,BleNotifyResponse response) {
-        mClient.indicate(mac, service, character,response);
+    public void indicate(String mac, UUID service, UUID character, BleNotifyResponse response) {
+        mClient.indicate(mac, service, character, response);
     }
-    public void notify(String mac, UUID service, UUID character,BleNotifyResponse response) {
-        mClient.notify(mac, service, character,response);
+
+    public void notify(String mac, UUID service, UUID character, BleNotifyResponse response) {
+        mClient.notify(mac, service, character, response);
     }
-    public void unNotify(String mac, UUID service, UUID character,BleUnnotifyResponse response) {
-        mClient.unnotify(mac, service, character,response);
+
+    public void unNotify(String mac, UUID service, UUID character, BleUnnotifyResponse response) {
+        mClient.unnotify(mac, service, character, response);
     }
 
     public void read(String MAC, final UUID serviceUUID, final UUID characterUUID, final IReadOnResponse readOnResponse) {
@@ -111,9 +114,9 @@ public class BleMgr {
             @Override
             public void onResponse(int code, byte[] data) {
                 if (code == REQUEST_SUCCESS) {
-                    L.d("serviceUUID:" + serviceUUID.toString() + ",characterUUID :" + characterUUID.toString()+ ",read:" + bytes2HexString(data));
+                    L.d("serviceUUID:" + serviceUUID.toString() + ",characterUUID :" + characterUUID.toString() + ",read:" + bytes2HexString(data));
                     readOnResponse.onSuccess(data);
-                }else {
+                } else {
                     readOnResponse.onFail();
                 }
             }
@@ -126,32 +129,33 @@ public class BleMgr {
             @Override
             public void onResponse(int code) {
                 if (code == REQUEST_SUCCESS) {
-                    L.d(characterUUID.toString() + ",writeCharacteristic success :"  + bytes2HexString(bytes));
-                }else {
-                    L.d(characterUUID.toString()  +",writeCharacteristic fail" );
+                    L.d(characterUUID.toString() + ",writeCharacteristic success :" + bytes2HexString(bytes));
+                } else {
+                    L.d(characterUUID.toString() + ",writeCharacteristic fail");
                 }
             }
         });
     }
 
-    public void write(String MAC, UUID serviceUUID, final UUID characterUUID, final byte[] bytes,final IWriteResponse writeResponse) {
+    public void write(String MAC, UUID serviceUUID, final UUID characterUUID, final byte[] bytes, final IWriteResponse writeResponse) {
         mClient.write(MAC, serviceUUID, characterUUID, bytes, new BleWriteResponse() {
             @Override
             public void onResponse(int code) {
                 if (code == REQUEST_SUCCESS) {
-                    L.d(characterUUID.toString() + ",writeCharacteristic success :"  + bytes2HexString(bytes));
-                    writeResponse.onSuccess();
-                }else {
-                    L.d(characterUUID.toString()  +",writeCharacteristic fail" );
-                    writeResponse.onFail();
+                    L.d(characterUUID.toString() + ",writeCharacteristic success :" + bytes2HexString(bytes));
+                    if (null != writeResponse)
+                        writeResponse.onSuccess();
+                } else {
+                    L.d(characterUUID.toString() + ",writeCharacteristic fail");
+                    if (null != writeResponse)
+                        writeResponse.onFail();
                 }
             }
         });
     }
 
 
-
-    public void clear(String MAC){
+    public void clear(String MAC) {
         mClient.clearRequest(MAC, Constants.REQUEST_READ);
         // Constants.REQUEST_READ，所有读请求
         // Constants.REQUEST_WRITE，所有写请求
@@ -160,13 +164,15 @@ public class BleMgr {
     }
 
 
-    public interface IReadOnResponse{
+    public interface IReadOnResponse {
         void onSuccess(byte[] data);
+
         void onFail();
     }
 
-    public interface IWriteResponse{
+    public interface IWriteResponse {
         void onSuccess();
+
         void onFail();
     }
 

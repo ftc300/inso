@@ -152,6 +152,7 @@ public class BleManager {
         L.e( "TimeSync:int=" + value + ";" + "byteString=" + bytesToHexString(src));
         return src;
     }
+
     //同步时间
     public static byte[] I2B_SyncTime2(int value) {
         byte[] src = new byte[6];
@@ -165,6 +166,17 @@ public class BleManager {
         return src;
     }
 
+
+    public static byte[] I2B_WorldCity(int cmd,int defaultCity ,long cityId,int offset){
+        byte[] src = new byte[6];
+        src[0] = (byte) (cmd & 0x0FF);
+        src[1] = (byte) (defaultCity & 0x0FF);
+        src[2] = (byte) (cityId & 0x0FF);
+        src[3] = (byte) ((cityId>> 8) & 0x0FF);
+        src[4] = (byte) (offset & 0x0FF);
+        src[5] = (byte) ((offset>> 8) & 0x0FF);
+        return src;
+    }
 
     /**
      * 间隔提醒	0x3203	Read/write	1Byte	命令: 5复位；4打开；3关闭；2设置；1清除；0仅更新状态

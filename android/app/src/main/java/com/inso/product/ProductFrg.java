@@ -15,6 +15,8 @@ import com.inso.core.bind.BindUiHandleImp;
 import com.inso.core.bind.IUnbind;
 import com.inso.entity.http.DeviceList;
 import com.inso.plugin.act.mainpagelogic.PluginMainAct;
+import com.inso.plugin.manager.SPManager;
+import com.inso.plugin.tools.Constants;
 import com.inso.watch.baselib.base.CommonAct;
 import com.inso.watch.baselib.wigets.ToastWidget;
 import com.inso.watch.baselib.wigets.recycler.CommonAdapter;
@@ -66,7 +68,7 @@ public class ProductFrg extends RecycleRefreshFrg<DeviceList> implements IUnbind
             @Override
             protected void convert(final ViewHolder holder, final DeviceList.ResultBean item, int position) {
                 Utils.showWebIcon(item.getLogo(),holder.getView(R.id.imgLogo),R.drawable.pic_product_default);
-                String mac = item.getMac();
+                final String mac = item.getMac();
                 if(!TextUtils.isEmpty(mac)){
 //                    BleMgr.getInstance().register(mac, new BleConnectStatusListener() {
 //                        @Override
@@ -82,6 +84,7 @@ public class ProductFrg extends RecycleRefreshFrg<DeviceList> implements IUnbind
                 holder.setOnClickListener(R.id.card_view, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        SPManager.put(mContext, Constants.SystemConstant.SP_ARG_MAC, mac);
                         switchToWithEventBus(PluginMainAct.class);
                     }
                 });

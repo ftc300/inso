@@ -7,6 +7,7 @@ import android.view.View;
 import com.facebook.react.ReactActivity;
 import com.inso.example.Hybrid.NativeAct;
 import com.inso.example.Login.XiaoMiSampleAct;
+import com.inso.plugin.act.vip.IncomingCallService;
 import com.inso.watch.commonlib.constants.PermissionConstants;
 import com.inso.watch.commonlib.utils.L;
 import com.inso.watch.commonlib.utils.PermissionUtils;
@@ -36,13 +37,18 @@ public class MainExampleActivity extends ReactActivity {
                         @Override
                         public void onGranted(List<String> permissionsGranted) {
                             L.d("permission onGranted");
-                            ServiceUtils.startService("com.ic_launcher.example.IncomingCall");
+                            if(!ServiceUtils.isServiceRunning(IncomingCallService.class)) {
+                                ServiceUtils.startService(IncomingCallService.class);
+                            }
                         }
 
                         @Override
                         public void onDenied(List<String> permissionsDeniedForever,
                                              List<String> permissionsDenied) {
                             L.d("permission onDenied");
+                            if(ServiceUtils.isServiceRunning(IncomingCallService.class)) {
+                                ServiceUtils.stopService(IncomingCallService.class);
+                            }
                         }
                     })
                     .request();

@@ -440,7 +440,7 @@ public class ClockOperationAct extends BasicAct {
      */
     private List<Integer> getAlarmIDs() {
         List<Integer> AlarmIDSource = new ArrayList<>();
-        for (int i = 1; i < 11; i++) {//1到10号闹钟
+        for (int i = 0; i < 10; i++) {//1到10号闹钟
             AlarmIDSource.add(i);
         }
         return AlarmIDSource;

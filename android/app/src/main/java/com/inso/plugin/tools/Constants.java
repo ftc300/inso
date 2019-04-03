@@ -52,6 +52,8 @@ public class Constants {
     //UUID管理
     public static class GattUUIDConstant {
         public static final String BATTERY_SERVICE = "0000180f-0000-1000-8000-00805f9b34fb";
+        public static final String ALERT_NOTIFICATION_SERVICE = "00001811-0000-1000-8000-00805f9b34fb";
+        public static final String CHARACTERISTIC_NEW_ALERT = "00002a46-0000-1000-8000-00805f9b34fb";
         public static final String CHARACTERISTIC_BATTERY = "00002a19-0000-1000-8000-00805f9b34fb";
         public static final String IN_SHOW_SERVICE = "c99a3001-7f3c-4e85-bde2-92f2037bfd42";
         public static final String CHARACTERISTIC_TODAY_STEP = "c99a3101-7f3c-4e85-bde2-92f2037bfd42";
@@ -72,6 +74,7 @@ public class Constants {
         public static final String CHARACTERISTIC_DEBUG_LOG = "c99a3206-7f3c-4e85-bde2-92f2037bfd42";
         public static final String CHARACTERISTIC_POWER_CONSUMPTION = "c99a3300-7f3c-4e85-bde2-92f2037bfd42";
         public static final String CHARACTERISTIC_VIP = "c99a3205-7f3c-4e85-bde2-92f2037bfd42";
+        public static final String CHARACTERISTIC_WORLD_CITY = "c99a3108-7f3c-4e85-bde2-92f2037bfd42";
     }
 
     public static class HttpConstant {

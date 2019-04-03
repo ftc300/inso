@@ -28,7 +28,7 @@ public class ScanCodeAct extends BaseCaptureActivity {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         StatusBarCompatUtil.compat(this);
-        StatusBarCompat.setStatusBarColor(this, ContextCompat.getColor(this, R.color.white));
+        StatusBarCompat.setStatusBarColor(this, ContextCompat.getColor(this, R.color.black_60_transparent));
         setContentView(R.layout.act_scancode);
         ButterKnife.bind(this);
         surfaceView = (SurfaceView) findViewById(R.id.preview_view);

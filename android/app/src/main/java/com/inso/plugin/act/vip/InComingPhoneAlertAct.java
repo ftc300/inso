@@ -14,9 +14,15 @@ import com.inso.plugin.sync.SyncDeviceHelper;
 import com.inso.plugin.sync.http.bean.HttpVipState;
 import com.inso.plugin.tools.Rom;
 import com.inso.plugin.tools.TimeUtil;
+import com.inso.watch.commonlib.constants.PermissionConstants;
+import com.inso.watch.commonlib.utils.L;
+import com.inso.watch.commonlib.utils.PermissionUtils;
+import com.inso.watch.commonlib.utils.ServiceUtils;
 import com.xiaomi.smarthome.common.ui.dialog.MLAlertDialog;
 
 import org.greenrobot.eventbus.EventBus;
+
+import java.util.List;
 
 import static com.inso.plugin.event.ChangeUI.RENDER_AGAIN;
 import static com.inso.plugin.tools.Constants.SystemConstant.SP_INCOMING_SWITCH;
@@ -75,13 +81,13 @@ public class InComingPhoneAlertAct extends BasicAct {
         bindView();
     }
 
-    void bindView(){
+    void bindView() {
         ((TextView) mTitleView.findViewById(R.id.title_bar_title)).setText(getString(R.string.vip_alert));
         centerTv = (TextView) findViewById(R.id.centerTip);
         topTv = (TextView) findViewById(R.id.topTip);
         img = (ImageView) findViewById(R.id.img);
         switchButton = (CheckBox) findViewById(R.id.switchButton);
-        currentState = (Boolean) SPManager.get(mContext,SP_INCOMING_SWITCH,false);
+        currentState = (Boolean) SPManager.get(mContext, SP_INCOMING_SWITCH, false);
         originState = currentState;
         switchButton.setChecked(currentState);
         switchButton.setOnClickListener(new View.OnClickListener() {
@@ -89,9 +95,39 @@ public class InComingPhoneAlertAct extends BasicAct {
             public void onClick(View v) {
                 needPush = true;
                 currentState = !currentState;
-                SPManager.put(mContext,SP_INCOMING_SWITCH,currentState);
-                SyncDeviceHelper.changeInComingAlertState(MAC,currentState);
+                L.d("switchButton.setOnClickListener " + currentState);
+                SPManager.put(mContext, SP_INCOMING_SWITCH, currentState);
+                SyncDeviceHelper.changeInComingAlertState(MAC, currentState);
                 switchButton.setChecked(currentState);
+                if (currentState) {
+                    PermissionUtils.permission(PermissionConstants.CONTACTS, PermissionConstants.PHONE)
+                            .rationale(new PermissionUtils.OnRationaleListener() {
+                                @Override
+                                public void rationale(final ShouldRequest shouldRequest) {
+                                    L.d("permission rationale");
+                                }
+                            })
+                            .callback(new PermissionUtils.FullCallback() {
+                                @Override
+                                public void onGranted(List<String> permissionsGranted) {
+                                    L.d("permission onGranted");
+                                    if (!ServiceUtils.isServiceRunning(IncomingCallService.class)) {
+                                        ServiceUtils.startService(IncomingCallService.class);
+                                    }
+                                }
+
+                                @Override
+                                public void onDenied(List<String> permissionsDeniedForever,
+                                                     List<String> permissionsDenied) {
+                                    L.d("permission onDenied");
+                                    if (ServiceUtils.isServiceRunning(IncomingCallService.class)) {
+                                        ServiceUtils.stopService(IncomingCallService.class);
+                                    }
+                                }
+                            })
+                            .request();
+
+                }
                 renderByState();
                 EventBus.getDefault().post(new ChangeUI(RENDER_AGAIN));
             }
@@ -99,10 +135,10 @@ public class InComingPhoneAlertAct extends BasicAct {
         renderByState();
     }
 
-    void renderByState(){
-        centerTv.setVisibility(currentState? View.GONE:View.VISIBLE);
-        topTv.setVisibility(currentState? View.VISIBLE:View.GONE);
-        img.setVisibility(currentState? View.VISIBLE:View.GONE);
+    void renderByState() {
+        centerTv.setVisibility(currentState ? View.GONE : View.VISIBLE);
+        topTv.setVisibility(currentState ? View.VISIBLE : View.GONE);
+        img.setVisibility(currentState ? View.VISIBLE : View.GONE);
     }
 
 
