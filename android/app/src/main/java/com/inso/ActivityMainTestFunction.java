@@ -1,9 +1,16 @@
 package com.inso;
 
 import android.Manifest;
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
+import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.IBinder;
+import android.os.RemoteException;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.telephony.PhoneStateListener;
@@ -22,6 +29,8 @@ import com.inso.watch.baselib.wigets.ToastWidget;
 import com.inso.watch.commonlib.constants.PermissionConstants;
 import com.inso.watch.commonlib.utils.PermissionUtils;
 import com.inso.watch.commonlib.utils.ServiceUtils;
+import com.inso.watch.server.IRemoteAidlInterface;
+import com.inso.watch.server.Person;
 
 import java.util.List;
 
@@ -41,6 +50,54 @@ public class ActivityMainTestFunction extends AppCompatActivity implements ICome
     private TelephonyManager telephonyManager;
     private PhoneCallListener callListener;
     ComeMessage comeMessage;
+
+    private IRemoteAidlInterface mRemoteAidlInterface;
+    private static final String BIND_SERVICE_ACTION = "android.intent.action.RESPOND_AIDL_MESSAGE";
+    private ServiceConnection mServiceConnection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            mRemoteAidlInterface = IRemoteAidlInterface.Stub.asInterface(service);
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            mRemoteAidlInterface = null;
+        }
+    };
+
+
+    private void bindService() {
+        Intent serviceIntent = new Intent();
+        serviceIntent.setAction(BIND_SERVICE_ACTION);
+        serviceIntent.setComponent(new ComponentName("com.inso.watch.server", "com.inso.watch.server.RemoteService"));
+        final Intent eintent = new Intent(achieveExplicitFromImplicitIntent(this, serviceIntent));
+        bindService(serviceIntent, mServiceConnection, Context.BIND_AUTO_CREATE);
+        L.d("bindService");
+    }
+
+
+    public Intent achieveExplicitFromImplicitIntent(Context context, Intent implicitIntent) {
+        // Retrieve all services that can match the given intent
+        PackageManager pm = context.getPackageManager();
+        List<ResolveInfo> resolveInfo = pm.queryIntentServices(implicitIntent, 0);
+        // Make sure only one match was found
+        if (resolveInfo == null || resolveInfo.size() != 1) {
+            return null;
+        }
+        // Get component info and create ComponentName
+        ResolveInfo serviceInfo = resolveInfo.get(0);
+        String packageName = serviceInfo.serviceInfo.packageName;
+        String className = serviceInfo.serviceInfo.name;
+        L.d("packageName = " + packageName);
+        L.d("className = " + className);
+        ComponentName component = new ComponentName(packageName, className);
+        // Create a new intent. Use the old one for extras and such reuse
+        Intent explicitIntent = new Intent(implicitIntent);
+        // Set the component to be explicit
+        explicitIntent.setComponent(component);
+        return explicitIntent;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,22 +111,22 @@ public class ActivityMainTestFunction extends AppCompatActivity implements ICome
                 telephonyManager.listen(callListener, PhoneStateListener.LISTEN_CALL_STATE);
             }
         });
-        if(ActivityCompat.checkSelfPermission(ActivityMainTestFunction.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(ActivityMainTestFunction.this,new String[]{Manifest.permission.CALL_PHONE},1000);
+        if (ActivityCompat.checkSelfPermission(ActivityMainTestFunction.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(ActivityMainTestFunction.this, new String[]{Manifest.permission.CALL_PHONE}, 1000);
         }
 
         findViewById(R.id.tv_push_msg).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                comeMessage = new ComeMessage(ActivityMainTestFunction.this,ActivityMainTestFunction.this);
-                if(!comeMessage.isEnabled()){
+                comeMessage = new ComeMessage(ActivityMainTestFunction.this, ActivityMainTestFunction.this);
+                if (!comeMessage.isEnabled()) {
                     comeMessage.openSetting();
                     comeMessage.toggleNotificationListenerService();
                 }
             }
         });
 
-        telephonyManager = (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
+        telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
         callListener = new PhoneCallListener();
 
         if (!PermissionUtils.isGranted(PermissionConstants.CONTACTS, PermissionConstants.PHONE)) {
@@ -84,7 +141,7 @@ public class ActivityMainTestFunction extends AppCompatActivity implements ICome
                         @Override
                         public void onGranted(List<String> permissionsGranted) {
                             com.inso.watch.commonlib.utils.L.d("permission onGranted");
-                            ServiceUtils.startService("com.ic_launcher.example.IncomingCall");
+                            ServiceUtils.startService("com.inso.plugin.act.vip.IncomingCall");
                         }
 
                         @Override
@@ -95,23 +152,50 @@ public class ActivityMainTestFunction extends AppCompatActivity implements ICome
                     })
                     .request();
         }
+        bindService();
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (null != mRemoteAidlInterface) {
+                    try {
+                        L.d("mUsername = " + mRemoteAidlInterface.getPersonUserName() + ",mUserage = " + mRemoteAidlInterface.getPersonUserAge());
+                        L.d("add " + mRemoteAidlInterface.add(1, 2));
+                        ToastWidget.showSuccess(c,"mUsername = " + mRemoteAidlInterface.getPersonUserName() + ",mUserage = " + mRemoteAidlInterface.getPersonUserAge());
+                        ToastWidget.showSuccess(c,"add " + mRemoteAidlInterface.add(1, 2));
+                        mRemoteAidlInterface.show(new Person("ftc300","22 years old"));
+                    } catch (RemoteException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        },2000);
+
     }
+
+
+    private void unBindSevice() {
+        unbindService(mServiceConnection);
+        L.d("unbindService");
+    }
+
+
     @Override
     public void comeShortMessage(String msg) {
-        ToastWidget.showSuccess(c,"comeShortMessage" + msg);
-        L.d("comeShortMessage",msg);
+        ToastWidget.showSuccess(c, "comeShortMessage" + msg);
+        L.d("comeShortMessage", msg);
     }
 
     @Override
     public void comeWxMessage(String msg) {
-        ToastWidget.showSuccess(c,"comeWxMessage" + msg);
-        L.d("comeWxMessage",msg);
+        ToastWidget.showSuccess(c, "comeWxMessage" + msg);
+        L.d("comeWxMessage", msg);
     }
 
     @Override
     public void comeQQmessage(String msg) {
-        ToastWidget.showSuccess(c,"comeQQmessage" + msg);
-        L.d("comeQQmessage",msg);
+        ToastWidget.showSuccess(c, "comeQQmessage" + msg);
+        L.d("comeQQmessage", msg);
     }
 
 
@@ -119,6 +203,7 @@ public class ActivityMainTestFunction extends AppCompatActivity implements ICome
     protected void onDestroy() {
         super.onDestroy();
         comeMessage.unRegistBroadcast();
+        unBindSevice();
     }
 
     /**
@@ -140,12 +225,12 @@ public class ActivityMainTestFunction extends AppCompatActivity implements ICome
         }
     }
 
-    private void init(){
+    private void init() {
         final String[] messages = new String[]{"两个黄鹂鸣翠柳，一行白鹭上青天。",
                 "窗含西岭千秋雪，门泊东吴万里船。",
                 "君不见，黄河之水天上来，奔流到海不复回；君不见，高堂明镜悲白发，朝如青丝暮如雪。"};
-        button3 = (Button)this.findViewById(R.id.button3);
-        button4 = (Button)this.findViewById(R.id.button4);
+        button3 = (Button) this.findViewById(R.id.button3);
+        button4 = (Button) this.findViewById(R.id.button4);
 
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -155,7 +240,7 @@ public class ActivityMainTestFunction extends AppCompatActivity implements ICome
                         .setContentViewOperator(new BaseDialogFragment.ContentViewOperator() {
                             @Override
                             public void operate(View contentView) {
-                                EditText et = (EditText)contentView.findViewById(R.id.edit0);
+                                EditText et = (EditText) contentView.findViewById(R.id.edit0);
                                 et.setHint("hint set in operator");
                             }
                         })
@@ -176,7 +261,7 @@ public class ActivityMainTestFunction extends AppCompatActivity implements ICome
 
                             @Override
                             public void onClick(View clickedView, View contentView) {
-                                EditText et = (EditText)contentView.findViewById(R.id.edit0);
+                                EditText et = (EditText) contentView.findViewById(R.id.edit0);
                                 Toast.makeText(getApplicationContext(), "edittext 0 : " + et.getText(), Toast.LENGTH_SHORT).show();
                             }
                         })
@@ -184,7 +269,7 @@ public class ActivityMainTestFunction extends AppCompatActivity implements ICome
 
                             @Override
                             public void onClick(View clickedView, View contentView) {
-                                EditText et = (EditText)contentView.findViewById(R.id.edit1);
+                                EditText et = (EditText) contentView.findViewById(R.id.edit1);
                                 Toast.makeText(getApplicationContext(), "edittext 1 : " + et.getText(), Toast.LENGTH_SHORT).show();
                             }
                         })
@@ -195,7 +280,7 @@ public class ActivityMainTestFunction extends AppCompatActivity implements ICome
                                     Toast.makeText(getApplicationContext(), "index 0", Toast.LENGTH_SHORT).show();
                                 } else if (index == 1) {
                                     Toast.makeText(getApplicationContext(), "index 1", Toast.LENGTH_SHORT).show();
-                                } else if (index ==2 ){
+                                } else if (index == 2) {
                                     Toast.makeText(getApplicationContext(), "index 2", Toast.LENGTH_SHORT).show();
                                 }
                             }
@@ -203,7 +288,7 @@ public class ActivityMainTestFunction extends AppCompatActivity implements ICome
                         .setWidthMaxDp(600)
                         .setShowButtons(true)
                         .create()
-                        .show(ActivityMainTestFunction.this.getSupportFragmentManager(),"Base");
+                        .show(ActivityMainTestFunction.this.getSupportFragmentManager(), "Base");
             }
         });
 
@@ -235,7 +320,7 @@ public class ActivityMainTestFunction extends AppCompatActivity implements ICome
                         .setWidthMaxDp(600)
                         .setShowButtons(true)
                         .create()
-                        .show(ActivityMainTestFunction.this.getSupportFragmentManager(),MESSAGE_TAG);
+                        .show(ActivityMainTestFunction.this.getSupportFragmentManager(), MESSAGE_TAG);
             }
         });
     }
