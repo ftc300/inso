@@ -3,11 +3,14 @@ package com.inso.core.bind;
 import android.app.Activity;
 import android.content.Context;
 
+import com.inso.entity.event.ProductBus;
 import com.inso.plugin.tools.L;
 import com.inso.product.BindSuccessFrg;
 import com.inso.watch.baselib.base.BaseFragment;
 import com.inso.watch.baselib.base.CommonAct;
 import com.inso.watch.baselib.wigets.ToastWidget;
+
+import org.greenrobot.eventbus.EventBus;
 
 /**
  * Comment:
@@ -17,10 +20,10 @@ import com.inso.watch.baselib.wigets.ToastWidget;
  * GitHub: https://github.com/ftc300
  */
 
-public class BindUiHandleImp implements IBindUiHandle {
+public class BindResultImp implements IBindResult {
     private Context mContext;
 
-    public BindUiHandleImp(Context context) {
+    public BindResultImp(Context context) {
         mContext = context;
     }
 
@@ -72,5 +75,6 @@ public class BindUiHandleImp implements IBindUiHandle {
         ToastWidget.showSuccess(mContext,"showBindSuccess");
         ((Activity)mContext).finish();
         CommonAct.start(mContext, BindSuccessFrg.class, BaseFragment.configNoTitle());
+        EventBus.getDefault().post(new ProductBus(true));
     }
 }

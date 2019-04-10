@@ -11,35 +11,49 @@ import com.inso.R;
 import com.inso.core.Utils;
 import com.inso.core.basic.RecycleRefreshFrg;
 import com.inso.core.bind.BindMgr;
-import com.inso.core.bind.BindUiHandleImp;
-import com.inso.core.bind.IUnbind;
+import com.inso.core.bind.BindResultImp;
+import com.inso.core.bind.IUnbindResult;
+import com.inso.entity.event.ProductBus;
 import com.inso.entity.http.DeviceList;
 import com.inso.plugin.act.mainpagelogic.PluginMainAct;
 import com.inso.plugin.manager.SPManager;
 import com.inso.plugin.tools.Constants;
+import com.inso.plugin.tools.L;
 import com.inso.watch.baselib.base.CommonAct;
 import com.inso.watch.baselib.wigets.ToastWidget;
 import com.inso.watch.baselib.wigets.recycler.CommonAdapter;
 import com.inso.watch.baselib.wigets.recycler.base.ViewHolder;
+
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.inso.watch.baselib.Constants.BASE_URL;
 
-public class ProductFrg extends RecycleRefreshFrg<DeviceList> implements IUnbind {
+public class ProductFrg extends RecycleRefreshFrg<DeviceList> implements IUnbindResult {
 
     public static ProductFrg getInstance(){
-        return new ProductFrg();
+        ProductFrg f = new ProductFrg();
+        f.setArguments(enableEventBus());
+        return f;
     }
+
     private List<DeviceList.ResultBean> data = new ArrayList<>();
     private BindMgr mBindMgr;
-    private BindUiHandleImp mBindUiHandleImp;
+    private BindResultImp mBindUiHandleImp;
+
+    @Subscribe
+    public void onEventMainThread(ProductBus bus) {
+        if(bus.bindResult){
+            onRefresh();
+        }
+    }
 
     @Override
     protected void initViewOrData() {
         super.initViewOrData();
-        mBindUiHandleImp = new BindUiHandleImp(mContext);
+        mBindUiHandleImp = new BindResultImp(mContext);
         mBindMgr = new BindMgr(mContext,mBindUiHandleImp);
         mBindMgr.setUnbindResult(this);
         setTitleR(false, "产品", R.drawable.icon_add, new View.OnClickListener() {
@@ -48,6 +62,12 @@ public class ProductFrg extends RecycleRefreshFrg<DeviceList> implements IUnbind
                 CommonAct.start(mContext,SelectDeviceFrg.class);
             }
         });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        L.d("ProductFrg recycle refresh resume");
     }
 
     @Override

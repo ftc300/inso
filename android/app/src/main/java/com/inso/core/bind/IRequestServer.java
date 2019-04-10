@@ -12,7 +12,7 @@ import com.inso.entity.http.post.Unbind;
  * GitHub: https://github.com/ftc300
  */
 
-public interface IBindServer {
+public interface IRequestServer {
     void checkDeviceStatus(BindStatus o);
     void bindDevice(Bind o);
     void unBindDevice(Unbind o);

@@ -4,7 +4,7 @@ import android.view.View;
 
 import com.inso.R;
 import com.inso.core.bind.BindMgr;
-import com.inso.core.bind.BindUiHandleImp;
+import com.inso.core.bind.BindResultImp;
 import com.inso.watch.baselib.base.BaseFragment;
 
 /**
@@ -17,7 +17,7 @@ import com.inso.watch.baselib.base.BaseFragment;
 
 public class BindFrg extends BaseFragment  {
     private BindMgr mBindMgr;
-    private BindUiHandleImp mBindUiHandleImp;
+    private BindResultImp mBindUiHandleImp;
 
     @Override
     protected int getContentRes() {
@@ -33,7 +33,7 @@ public class BindFrg extends BaseFragment  {
                 finish();
             }
         });
-        mBindUiHandleImp = new BindUiHandleImp(mContext);
+        mBindUiHandleImp = new BindResultImp(mContext);
         mBindMgr = new BindMgr(mContext,mBindUiHandleImp);
         mBindMgr.startBind();
     }

@@ -17,6 +17,7 @@ import com.inso.LoginAct;
 import com.inso.R;
 import com.inso.core.CacheMgr;
 import com.inso.core.HttpMgr;
+import com.inso.plugin.tools.L;
 import com.inso.watch.baselib.base.BaseFragment;
 import com.inso.watch.baselib.wigets.LoadStatusBox;
 import com.inso.watch.baselib.wigets.ToastWidget;
@@ -55,11 +56,8 @@ public abstract class RecycleRefreshFrg<T> extends BaseFragment implements Swipe
     private Class<T> cls = null;
     protected Handler mHandler = new Handler();
     private CacheMgr mCache;
-
     protected abstract String getRequestUrl();
-
     protected abstract String getTitle();
-
     protected abstract void dealWithFetchData(T t);
 
     /**
@@ -94,18 +92,20 @@ public abstract class RecycleRefreshFrg<T> extends BaseFragment implements Swipe
         recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         mSwipeRefreshLayout.setOnRefreshListener(this);
         mSwipeRefreshLayout.setColorSchemeResources(R.color.black_50_transparent);
-
-        /**
-         * Showing Swipe Refresh animation on activity create
-         * As animation won't start on onCreate, post runnable is used
-         */
         String cache = mCache.getAsString(getRequestUrl());
-        if (null != cache) {
+//        {"errcode":0,"errmsg":"ok"} length
+        if (null != cache && cache.length()>27) {
+            L.d(getRequestUrl()+"cache &&&&&&" + cache.length());
             fillAdapter(cache);
             mLoadStatusBox.success();
         } else {
             loadRecyclerViewData();
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
     }
 
     /**
@@ -129,7 +129,7 @@ public abstract class RecycleRefreshFrg<T> extends BaseFragment implements Swipe
             @Override
             public void onSuccess(final JSONObject obj) {
                 try {
-                    if (obj.getInt("errcode") == 401) { //invalid credentials &&  expired
+                    if (obj.toString().contains("errcode")&&obj.getInt("errcode") == 401) { //invalid credentials &&  expired
                         ToastWidget.showWarn(mContext, "登录已经过期，请重新登录");
                         mContext.startActivity(new Intent(mContext, LoginAct.class));
                         ((Activity) mContext).finish();
@@ -191,7 +191,6 @@ public abstract class RecycleRefreshFrg<T> extends BaseFragment implements Swipe
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // TODO: inflate a fragment view
         View rootView = super.onCreateView(inflater, container, savedInstanceState);
         unbinder = ButterKnife.bind(this, rootView);
         return rootView;
@@ -202,4 +201,5 @@ public abstract class RecycleRefreshFrg<T> extends BaseFragment implements Swipe
         super.onDestroyView();
         unbinder.unbind();
     }
+
 }

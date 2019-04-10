@@ -8,7 +8,7 @@ package com.inso.core.bind;
  * GitHub: https://github.com/ftc300
  */
 
-public interface IBindUiHandle {
+public interface IBindResult {
     void showNoPermission();
     void showNetError();
     void showBleError();

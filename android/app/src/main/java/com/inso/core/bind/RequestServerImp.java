@@ -21,13 +21,13 @@ import static com.inso.watch.baselib.Constants.BASE_URL;
  * GitHub: https://github.com/ftc300
  */
 
-public class BindServerImp implements IBindServer {
+public class RequestServerImp implements IRequestServer {
     private Context mContext;
     private Gson mGson;
     private IServerResult mServerResult;
 
 
-    public BindServerImp(Context context, IServerResult mServerResult) {
+    public RequestServerImp(Context context, IServerResult mServerResult) {
         mContext = context;
         this.mServerResult = mServerResult;
         mGson = new Gson();

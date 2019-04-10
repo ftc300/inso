@@ -2,6 +2,7 @@ package com.inso.core.bind;
 
 import android.content.Context;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 
 import com.inso.core.BleMgr;
 import com.inso.entity.http.post.Bind;
@@ -56,26 +57,24 @@ public class BindMgr implements IServerResult {
     private AtomicBoolean isConnected = new AtomicBoolean(false);
     private Set<String> hasCheckedBondSet = new HashSet<>();
     private Handler mHandler;
-    private IBindUiHandle mUiHandle;
+    private IBindResult mUiHandle;
     private AtomicBoolean foundNotBondTarget = new AtomicBoolean(false); // only allow one device bind
     private Context mContext;
     private String did;
     private String selectMac;
     private long timeStamp;
-    private BindServerImp mServerImp;
-    private IUnbind mUnbindResult;
-    public IUnbind getUnbindResult() {
-        return mUnbindResult;
-    }
-    public void setUnbindResult(IUnbind unbindResult) {
-        mUnbindResult = unbindResult;
+    private RequestServerImp mServerImp;
+    private IUnbindResult mBindUnbindResult;
+
+    public void setUnbindResult(IUnbindResult unbindResult) {
+        mBindUnbindResult = unbindResult;
     }
 
-    public BindMgr(Context context, IBindUiHandle uiHandle) {
+    public BindMgr(Context context, @NonNull IBindResult uiHandle) {
         mContext = context;
         mUiHandle = uiHandle;
         mHandler = new Handler();
-        mServerImp = new BindServerImp(context, this);
+        mServerImp = new RequestServerImp(context, this);
     }
 
     public void startBind() {
@@ -129,13 +128,13 @@ public class BindMgr implements IServerResult {
                 String mac = device.getAddress();
                 synchronized (BindMgr.class) {
                     if (isMiWatch2(device)) {
-                        L.d("bind :: found MiWatch2 " + mac);
                         if (foundNotBondTarget.get()) {
                             L.d("there is one binding process exit , reject it ");
                             BleMgr.getInstance().stopSearch();
                             return;
                         }
                         if (hasCheckedBondSet.contains(mac)) return;
+                        L.d("bind :: found MiWatch2 " + mac);
                         selectMac = mac;
                         hasCheckedBondSet.add(selectMac);
                         timeStamp = System.currentTimeMillis() / 1000;
@@ -301,18 +300,18 @@ public class BindMgr implements IServerResult {
 
     @Override
     public void onUnBindSuccess() {
-        if (null != mUnbindResult)
-            mUnbindResult.unBindSuccess();
+        if (null != mBindUnbindResult)
+            mBindUnbindResult.unBindSuccess();
     }
 
     @Override
     public void onUnBindFail() {
-        if (null != mUnbindResult)
-            mUnbindResult.unBindFail();
+        if (null != mBindUnbindResult)
+            mBindUnbindResult.unBindFail();
     }
 
     @Override
     public void onException() {
-
+        L.d("bind :: onException ");
     }
 }

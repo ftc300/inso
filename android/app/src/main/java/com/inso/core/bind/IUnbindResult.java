@@ -8,7 +8,7 @@ package com.inso.core.bind;
  * GitHub: https://github.com/ftc300
  */
 
-public interface IUnbind {
+public interface IUnbindResult {
     void unBindSuccess();
     void unBindFail();
 }

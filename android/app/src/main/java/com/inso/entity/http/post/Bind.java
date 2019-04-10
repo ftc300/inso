@@ -22,4 +22,16 @@ public class Bind  extends FatherParam{
         this.mac = mac;
         this.sn = sn;
     }
+
+    @Override
+    public String toString() {
+        return "Bind{" +
+                "system='" + system + '\'' +
+                ", device_id='" + device_id + '\'' +
+                ", product_model='" + product_model + '\'' +
+                ", timestamp=" + timestamp +
+                ", mac='" + mac + '\'' +
+                ", sn='" + sn + '\'' +
+                '}';
+    }
 }
