@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.inso.R;
+import com.inso.core.BleMgr;
+import com.inso.plugin.act.city.BleWorldCityHelper;
 import com.inso.plugin.act.city.WorldTimeAct;
 import com.inso.plugin.basic.BasicFragment;
 import com.inso.plugin.dao.PreferCitiesDao;
@@ -43,6 +45,7 @@ import static com.inso.plugin.event.ChangeUI.CONNECT_FAIL;
 import static com.inso.plugin.event.ChangeUI.CONNECT_ING;
 import static com.inso.plugin.event.ChangeUI.CONNECT_SUCCESS;
 import static com.inso.plugin.event.ChangeUI.RENDER_AGAIN;
+import static com.inso.plugin.manager.BleManager.I2B_SyncTime2;
 import static com.inso.plugin.tools.Constants.ConfigVersion.WORLD_CITY;
 import static com.inso.plugin.tools.Constants.SystemConstant.EXTRAS_EVENT_BUS;
 import static com.inso.plugin.tools.Constants.TimeStamp.WORLD_CITY_KEY;
@@ -242,6 +245,17 @@ public class FragmentTop extends BasicFragment implements IRender {
         tvCity.setText(selectCity);
         currentTv.setTimeZone(TimeZone.getTimeZone(mPreCities.get(mCurrentIndex).zone));
         clockView.setZoneId(mDBHelper.getSettingZone());
+        BleWorldCityHelper.setCurrentTime(MAC, I2B_SyncTime2(TimeUtil.getNowTimeSeconds(mDBHelper.getSettingZone()) - TimeUtil.getWatchSysStartTimeSecs()), new BleMgr.IWriteResponse() {
+            @Override
+            public void onSuccess() {
+            }
+
+            @Override
+            public void onFail() {
+
+            }
+        });
+
     }
 
 

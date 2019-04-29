@@ -91,6 +91,7 @@
         <activity android:name=".plugin.act.more.ScreenOffAct" />
         <activity android:name=".MainAct" />
         <activity android:name=".product.ScanCodeAct" />
+        <activity android:name=".plugin.act.more.adjust.AdjustDebug" />
     </application>
 
 </manifest>

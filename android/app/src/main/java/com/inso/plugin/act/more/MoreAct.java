@@ -3,7 +3,7 @@ package com.inso.plugin.act.more;
 import android.view.View;
 
 import com.inso.R;
-import com.inso.plugin.act.more.adjust.AdjustMainAct;
+import com.inso.plugin.act.more.adjust.AdjustDebug;
 import com.inso.plugin.act.more.order.FunOrderAct;
 import com.inso.plugin.basic.BasicAct;
 import com.inso.plugin.manager.SPManager;
@@ -57,7 +57,8 @@ public class MoreAct extends BasicAct {
                 switchTo(ScreenOffAct.class);
                 break;
             case R.id.adjust:
-                switchToWithEventBus(AdjustMainAct.class);
+//                switchToWithEventBus(AdjustMainAct.class);
+                switchTo(AdjustDebug.class);
                 break;
             case R.id.help:
                 switchTo(InstructionAct.class);

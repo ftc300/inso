@@ -52,12 +52,12 @@ public class BleManager {
 
 
     public static byte[] I2B_ClockDriver(int value) {
-        L.e( "ClockDriver:int=" + value + ";" + "byteString=" + bytesToHexString(I2B_OneBit(value)));
+        L.e("ClockDriver:int=" + value + ";" + "byteString=" + bytesToHexString(I2B_OneBit(value)));
         return I2B_OneBit(value);
     }
 
     public static byte[] I2B_StepDriver(int value) {
-        L.e( "I2B_StepDriver:int=" + value + ";" + "byteString=" + bytesToHexString(I2B_OneBit(value)));
+        L.e("I2B_StepDriver:int=" + value + ";" + "byteString=" + bytesToHexString(I2B_OneBit(value)));
         return I2B_OneBit(value);
     }
 
@@ -74,6 +74,7 @@ public class BleManager {
      * 1B 状态：3过期；2打开；1关闭；0无效
      * 2B	类型：Bit15-0: 0响一次；1-每天；2法定工作日；3法定节假日；4Sunday；5Monday；6Tuesday；7Wednesday；8Thursday；9Friday；10Saturday
      * 4B	时间：duration
+     *
      * @param value
      * @param seconds
      * @param repeatType
@@ -90,32 +91,33 @@ public class BleManager {
         src[2] = (byte) (value[2] & 0x0FF);
         src[1] = (byte) (value[1] & 0x0FF);
         src[0] = (byte) (value[0] & 0x0FF);
-        L.e( "AlarmClockWriteByteString=" + bytesToHexString(src));
+        L.e("AlarmClockWriteByteString=" + bytesToHexString(src));
         return src;
     }
 
     /**
      * Vip联系人
+     *
      * @param id
      * @param operate
      * @param content
      * @return
      */
-    public static byte[] setVip(int id, int operate,byte[] content){
+    public static byte[] setVip(int id, int operate, byte[] content) {
         byte[] src = new byte[20];
         src[0] = (byte) (id & 0x0FF);
         src[1] = (byte) (operate & 0x0FF);
-        System.arraycopy(content,0,src,2,content.length>18?18:content.length);
+        System.arraycopy(content, 0, src, 2, content.length > 18 ? 18 : content.length);
         L.e("setVipWriteByteString=" + bytesToHexString(src));
-        return  src;
+        return src;
     }
 
-    public static byte[] changeVipState(int operate){
+    public static byte[] changeVipState(int operate) {
         byte[] src = new byte[2];
         src[0] = 0x01;
         src[1] = (byte) (operate & 0x0FF);
         L.e("setVipWriteByteString=" + bytesToHexString(src));
-        return  src;
+        return src;
     }
 
     //通知手表它显示的时间
@@ -125,21 +127,20 @@ public class BleManager {
         src[2] = (byte) ((modeTime >> 16) & 0x0FF);
         src[1] = (byte) ((modeTime >> 8) & 0x0FF);
         src[0] = (byte) (modeTime & 0x0FF);
-        L.e( "WatchTime:int=" + value + ";" + "modeTime:" + modeTime + ";byteString=" + bytesToHexString(src));
+        L.e("WatchTime:int=" + value + ";" + "modeTime:" + modeTime + ";byteString=" + bytesToHexString(src));
         return src;
     }
+
     //通知手表它显示的时间
-    public static byte[] I2B_WatchTime( int modeTime) {
+    public static byte[] I2B_WatchTime(int modeTime) {
         byte[] src = new byte[4];
         src[3] = (byte) ((modeTime >> 24) & 0x0FF);
         src[2] = (byte) ((modeTime >> 16) & 0x0FF);
         src[1] = (byte) ((modeTime >> 8) & 0x0FF);
         src[0] = (byte) (modeTime & 0x0FF);
-        L.e(  "WatchPointTime:" + modeTime + ";byteString=" + bytesToHexString(src));
+        L.e("WatchPointTime:" + modeTime + ";byteString=" + bytesToHexString(src));
         return src;
     }
-
-
 
 
     //同步时间
@@ -149,32 +150,32 @@ public class BleManager {
         src[2] = (byte) ((value >> 16) & 0x0FF);
         src[1] = (byte) ((value >> 8) & 0x0FF);
         src[0] = (byte) (value & 0x0FF);
-        L.e( "TimeSync:int=" + value + ";" + "byteString=" + bytesToHexString(src));
+        L.e("TimeSync:int=" + value + ";" + "byteString=" + bytesToHexString(src));
         return src;
     }
 
     //同步时间
     public static byte[] I2B_SyncTime2(int value) {
         byte[] src = new byte[6];
-        src[5] = (byte) ((value>> 24) & 0x0FF);
-        src[4] = (byte) ((value>> 16) & 0x0FF);
-        src[3] = (byte) ((value>> 8) & 0x0FF);
+        src[5] = (byte) ((value >> 24) & 0x0FF);
+        src[4] = (byte) ((value >> 16) & 0x0FF);
+        src[3] = (byte) ((value >> 8) & 0x0FF);
         src[2] = (byte) (value & 0x0FF);
         src[1] = 0;
         src[0] = 0;
-        L.e( "TimeSync:int=" + value + ";" + "byteString=" + bytesToHexString(src));
+        L.e("TimeSync:int=" + value + ";" + "byteString=" + bytesToHexString(src));
         return src;
     }
 
 
-    public static byte[] I2B_WorldCity(int cmd,int defaultCity ,long cityId,int offset){
+    public static byte[] I2B_WorldCity(int cmd, int defaultCity, long cityId, int offset) {
         byte[] src = new byte[6];
         src[0] = (byte) (cmd & 0x0FF);
         src[1] = (byte) (defaultCity & 0x0FF);
         src[2] = (byte) (cityId & 0x0FF);
-        src[3] = (byte) ((cityId>> 8) & 0x0FF);
+        src[3] = (byte) ((cityId >> 8) & 0x0FF);
         src[4] = (byte) (offset & 0x0FF);
-        src[5] = (byte) ((offset>> 8) & 0x0FF);
+        src[5] = (byte) ((offset >> 8) & 0x0FF);
         return src;
     }
 
@@ -183,6 +184,7 @@ public class BleManager {
      * 1Byte	状态：2:打开；1关闭；0无效
      * 1Byte	间隔分钟：[1..60]
      * 2Byte	当前间隔秒：[1..3600]
+     *
      * @param value
      * @return
      */
@@ -193,17 +195,18 @@ public class BleManager {
         src[2] = (byte) (value[2] & 0x0FF);
         src[1] = (byte) (value[1] & 0x0FF);
         src[0] = (byte) (value[0] & 0x0FF);
-        L.e( "IntervalRemind:byteString=" + bytesToHexString(src));
+        L.e("IntervalRemind:byteString=" + bytesToHexString(src));
         return src;
     }
 
 
     /**
-     *振动提醒
+     * 振动提醒
+     *
      * @param value
      * @return
      */
-    public static  byte[] setWriteVibration(int[] value){
+    public static byte[] setWriteVibration(int[] value) {
         byte[] src = new byte[8];
         src[7] = (byte) ((value[4] >> 8) & 0x0FF);
         src[6] = (byte) (value[4] & 0x0FF);
@@ -213,12 +216,11 @@ public class BleManager {
         src[2] = (byte) (value[2] & 0x0FF);
         src[1] = (byte) (value[1] & 0x0FF);
         src[0] = (byte) (value[0] & 0x0FF);
-        L.e( "setWriteVibration:byteString=" + bytesToHexString(src));
+        L.e("setWriteVibration:byteString=" + bytesToHexString(src));
         return src;
     }
 
     /**
-     *
      * @param value
      * @return
      */
@@ -229,13 +231,57 @@ public class BleManager {
         src[2] = (byte) (value[2] & 0x0FF);
         src[1] = (byte) (value[1] & 0x0FF);
         src[0] = (byte) (value[0] & 0x0FF);
-        L.e( "IntervalRemind:byteString=" + bytesToHexString(src));
+        L.e("IntervalRemind:byteString=" + bytesToHexString(src));
+        return src;
+    }
+
+    public static byte[] setAdjustSwitch(boolean state) {
+        byte[] src = new byte[4];
+        src[3] = (byte) ((state ? 1 : 0) & 0x0FF);
+        src[2] = (byte) (2 & 0x0FF);
+        src[1] = (byte) (1 & 0x0FF);
+        src[0] = 0;
+        L.e("setAdjustSwitch:byteString=" + bytesToHexString(src));
+        return src;
+    }
+
+    public static byte[] setAdjustPointerPosition(int h, int m) {
+        byte[] src = new byte[7];
+        src[6] = (byte) ((m>> 8) & 0x0FF);
+        src[5] = (byte) (m & 0x0FF);
+        src[4] = (byte) ((h>> 8) & 0x0FF);
+        src[3] = (byte) (h & 0x0FF);
+        src[2] = 0;
+        src[1] = (byte) (1 & 0x0FF);
+        src[0] = 0;
+        L.e("setAdjustPointerPosition:byteString=" + bytesToHexString(src));
+        return src;
+    }
+
+    public static byte[] setAdjustH(int step) {
+        byte[] src = new byte[7];
+        src[4] = (byte) ((step>> 8) & 0x0FF);
+        src[3] = (byte) (step & 0x0FF);
+        src[2] = (byte) (1 & 0x0FF);
+        src[1] = (byte) (1 & 0x0FF);
+        L.e("setAdjustH:byteString=" + bytesToHexString(src));
+        return src;
+    }
+
+    public static byte[] setAdjustM(int step) {
+        byte[] src = new byte[7];
+        src[6] = (byte) ((step>> 8) & 0x0FF);
+        src[5] = (byte) (step & 0x0FF);
+        src[2] = (byte) (1 & 0x0FF);
+        src[1] = (byte) (1 & 0x0FF);
+        L.e("setAdjustM:byteString=" + bytesToHexString(src));
         return src;
     }
 
 
     /**
      * 控制位
+     *
      * @param value
      * @return
      */
@@ -245,14 +291,14 @@ public class BleManager {
         src[2] = (byte) (value[2] & 0x0FF);
         src[1] = (byte) (value[1] & 0x0FF);
         src[0] = (byte) (value[0] & 0x0FF);
-        L.e( "I2B_Control:byteString=" + bytesToHexString(src));
+        L.e("I2B_Control:byteString=" + bytesToHexString(src));
         return src;
     }
 
 
     //间隔提醒返回剩余时间 当前间隔时间
     public static int getIRRemainInterval(byte[] value) {
-        return (value[3] & 0x0FF)+((value[4] & 0x0FF) << 8);
+        return (value[3] & 0x0FF) + ((value[4] & 0x0FF) << 8);
     }
 
     //间隔提醒返回剩余时间 当前间隔时间
@@ -279,7 +325,7 @@ public class BleManager {
 
     //电池电量
     public static int[] B2I_getBatteryLevel2(byte[] b) {
-        return new int[]{(b[0] & 0x0FF) + ((b[1] & 0x0FF) << 8),(b[2] & 0x0FF) + ((b[3] & 0x0FF) << 8)};
+        return new int[]{(b[0] & 0x0FF) + ((b[1] & 0x0FF) << 8), (b[2] & 0x0FF) + ((b[3] & 0x0FF) << 8)};
     }
 
 
@@ -299,28 +345,30 @@ public class BleManager {
      * 4B	开始时间，秒单位
      * 4B	结束时间，秒单位
      * 4B	计步周期内的步数
+     *
      * @param b
      * @return
      */
     public static int[] B2I_getHistoryStep(byte[] b) {
-        L.e("B2I_getHistoryStep:"+ bytesToHexString(b));
+        L.e("B2I_getHistoryStep:" + bytesToHexString(b));
         int[] ret = new int[4];
         ret[0] = (b[0] & 0x0FF) + ((b[1] & 0x0FF) << 8) + ((b[2] & 0x0FF) << 16) + ((b[3] & 0x0FF) << 24);//id
         ret[1] = (b[4] & 0x0FF) + ((b[5] & 0x0FF) << 8) + ((b[6] & 0x0FF) << 16) + ((b[7] & 0x0FF) << 24);//id
         ret[2] = (b[8] & 0x0FF) + ((b[9] & 0x0FF) << 8) + ((b[10] & 0x0FF) << 16) + ((b[11] & 0x0FF) << 24);//id
         ret[3] = (b[12] & 0x0FF) + ((b[13] & 0x0FF) << 8) + ((b[14] & 0x0FF) << 16) + ((b[15] & 0x0FF) << 24);//id
-        L.e("B2I_getHistoryStep:"+"data[0]:"+ret[0]+",data[1]:"+ret[1]+",data[2]:"+ret[2]+",data[3]:"+ret[3]);
+        L.e("B2I_getHistoryStep:" + "data[0]:" + ret[0] + ",data[1]:" + ret[1] + ",data[2]:" + ret[2] + ",data[3]:" + ret[3]);
         return ret;
     }
 
 
     /**
-     *  写计步数据GSensor采样数据
+     * 写计步数据GSensor采样数据
+     *
      * @param b
      * @return
      */
     public static int[] B2I_getStepSteam(byte[] b) {
-        L.e("GSensor:"+ bytesToHexString(b));
+        L.e("GSensor:" + bytesToHexString(b));
         int[] ret = new int[4];
         ret[0] = (b[0] & 0x0FF) + ((b[1] & 0x0FF) << 8) + ((b[2] & 0x0FF) << 16) + ((b[3] & 0x0FF) << 24);//id
         ret[1] = (b[4] & 0x0FF) + ((b[5] & 0x0FF) << 8) + ((b[6] & 0x0FF) << 16) + ((b[7] & 0x0FF) << 24);//id
@@ -332,6 +380,7 @@ public class BleManager {
 
     /**
      * 调试手表日志
+     *
      * @param b
      * @return
      */
@@ -341,7 +390,7 @@ public class BleManager {
         ret[1] = (b[4] & 0x0FF) + ((b[5] & 0x0FF) << 8) + ((b[6] & 0x0FF) << 16) + ((b[7] & 0x0FF) << 24);//id
         ret[2] = (b[8] & 0x0FF) + ((b[9] & 0x0FF) << 8) + ((b[10] & 0x0FF) << 16) + ((b[11] & 0x0FF) << 24);//id
         ret[3] = (b[12] & 0x0FF) + ((b[13] & 0x0FF) << 8) + ((b[14] & 0x0FF) << 16) + ((b[15] & 0x0FF) << 24);//id
-        L.e("B2I_getHistoryStep:"+"data[0]:"+ret[0]+",data[1]:"+ret[1]+",data[2]:"+ret[2]+",data[3]:"+ret[3]);
+        L.e("B2I_getHistoryStep:" + "data[0]:" + ret[0] + ",data[1]:" + ret[1] + ",data[2]:" + ret[2] + ",data[3]:" + ret[3]);
         return ret;
     }
 
@@ -352,6 +401,7 @@ public class BleManager {
      * 1 Byte	计步消耗电量百分比
      * 1 Byte	振动消耗电量百分比
      * 1 Byte	数据传输消耗电量百分比
+     *
      * @param b
      * @return
      */
@@ -360,8 +410,8 @@ public class BleManager {
         result[0] = b[0] & 0x0FF;
         result[1] = (b[1] & 0x0FF) + ((b[2] & 0x0FF) << 8) + ((b[3] & 0x0FF) << 16) + ((b[4] & 0x0FF) << 24);
         result[2] = b[5] & 0x0FF;
-        result[3] =(b[6] & 0x0FF) + ((b[7] & 0x0FF) << 8) + ((b[8] & 0x0FF) << 16) + ((b[9] & 0x0FF) << 24);
-        L.e("getPowerConsumption:byteString=" + bytesToHexString(b) +"，电池电量为:"+result[0]);
+        result[3] = (b[6] & 0x0FF) + ((b[7] & 0x0FF) << 8) + ((b[8] & 0x0FF) << 16) + ((b[9] & 0x0FF) << 24);
+        L.e("getPowerConsumption:byteString=" + bytesToHexString(b) + "，电池电量为:" + result[0]);
         return result;
     }
 
@@ -372,14 +422,14 @@ public class BleManager {
         result[1] = b[1] & 0x0FF;
         result[2] = b[2] & 0x0FF;
         result[3] = b[3] & 0x0FF;
-        L.e("I2B_Control:byteString=" + bytesToHexString(b)+";重启标志:"+result[1]+",绑定标志:"+result[2]);
+        L.e("I2B_Control:byteString=" + bytesToHexString(b) + ";重启标志:" + result[1] + ",绑定标志:" + result[2]);
         return result;
     }
 
 
     //当前时间
     public static int B2I_getTime(byte[] b) {
-        L.e( "当前时间：" + bytesToHexString(b));
+        L.e("当前时间：" + bytesToHexString(b));
         return (b[0] & 0x0FF) + ((b[1] & 0x0FF) << 8) + ((b[2] & 0x0FF) << 16) + ((b[3] & 0x0FF) << 24);
     }
 
@@ -395,5 +445,6 @@ public class BleManager {
         }
         return result;
     }
+
 
 }

@@ -5,11 +5,6 @@ import android.view.View;
 
 import com.inso.watch.commonlib.utils.L;
 
-/**
- * Created by wulei
- * Data: 2016/10/17.
- */
-
 public class OnClickListenerProxy implements View.OnClickListener{
     private View.OnClickListener object;
     private HookListenerContract.OnClickListener mlistener;

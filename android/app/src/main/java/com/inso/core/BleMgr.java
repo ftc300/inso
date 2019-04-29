@@ -137,6 +137,19 @@ public class BleMgr {
         });
     }
 
+    public void writeNoRsp(String MAC, UUID serviceUUID, final UUID characterUUID, final byte[] bytes) {
+        mClient.writeNoRsp(MAC, serviceUUID, characterUUID, bytes, new BleWriteResponse() {
+            @Override
+            public void onResponse(int code) {
+//                if (code == REQUEST_SUCCESS) {
+//                    L.d(characterUUID.toString() + ",writeCharacteristic success :" + bytes2HexString(bytes));
+//                } else {
+//                    L.d(characterUUID.toString() + ",writeCharacteristic fail");
+//                }
+            }
+        });
+    }
+
     public void write(String MAC, UUID serviceUUID, final UUID characterUUID, final byte[] bytes, final IWriteResponse writeResponse) {
         mClient.write(MAC, serviceUUID, characterUUID, bytes, new BleWriteResponse() {
             @Override

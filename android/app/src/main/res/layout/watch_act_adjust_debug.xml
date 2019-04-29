@@ -1,0 +1,69 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/act_base"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/watch_gray"
+    android:paddingTop="27dp"
+    android:paddingBottom="38dp"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:id="@+id/tv_tip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="点击或长按转针按钮，将指针调整到12点"
+        android:textColor="@color/black_80_transparent"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:layout_marginTop="15dp"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/watch_common_button"
+        style="?android:attr/borderlessButtonStyle"
+        android:textColor="@color/black_80_transparent"
+        android:layout_margin="10dp"
+        android:text="时针"
+        android:id="@+id/hourPointer" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/watch_common_button"
+        style="?android:attr/borderlessButtonStyle"
+        android:textColor="@color/black_80_transparent"
+        android:layout_margin="10dp"
+        android:text="时针倒转"
+        android:id="@+id/neHourPointer" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/watch_common_button"
+        style="?android:attr/borderlessButtonStyle"
+        android:textColor="@color/black_80_transparent"
+        android:layout_margin="10dp"
+        android:text="分针"
+        android:id="@+id/minPointer" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/watch_common_button"
+        style="?android:attr/borderlessButtonStyle"
+        android:textColor="@color/black_80_transparent"
+        android:layout_margin="10dp"
+        android:text="分针倒转"
+        android:id="@+id/neMinPointer" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/watch_common_button"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_margin="10dp"
+        android:textColor="@color/black_80_transparent"
+        android:text="@string/button_ok"
+        android:id="@+id/ok" />
+</LinearLayout>
