@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="com.umeng.umsdk:push-5.0.2">
+    <CLASSES>
+      <root url="jar://D:/AndroidEnvironment/AS/.gradle/caches/transforms-1/files-1.1/push-5.0.2.aar/9b20c8e16d0357da8608e908f1191c79/jars/classes.jar!/" />
+      <root url="file://D:/AndroidEnvironment/AS/.gradle/caches/transforms-1/files-1.1/push-5.0.2.aar/9b20c8e16d0357da8608e908f1191c79/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://D:/AndroidEnvironment/AS/.gradle/caches/modules-2/files-2.1/com.umeng.umsdk/push/5.0.2/c19d0aa515505f1fbf1de4fa88efc82549dab7e0/push-5.0.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

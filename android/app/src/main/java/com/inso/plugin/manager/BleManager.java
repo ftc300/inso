@@ -433,6 +433,13 @@ public class BleManager {
         return (b[0] & 0x0FF) + ((b[1] & 0x0FF) << 8) + ((b[2] & 0x0FF) << 16) + ((b[3] & 0x0FF) << 24);
     }
 
+
+    // 间隔 indication
+    public  static  int[] getIntervalIndicate(byte[] b){
+        L.e("间隔提醒：" + bytesToHexString(b));
+        return new int[]{b[0] & 0x0FF,b[1] & 0x0FF,b[2] & 0x0FF,(b[3] & 0x0FF) + ((b[4] & 0x0FF) << 8)};
+    }
+
     public static String bytesToHexString(byte[] bytes) {
         if (bytes == null) return "";
         String result = "";
