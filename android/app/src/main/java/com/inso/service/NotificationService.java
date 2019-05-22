@@ -230,12 +230,14 @@ public class NotificationService extends NotificationListenerService {
         BleMgr.getInstance().connect(MAC, new BleConnectResponse() {
             @Override
             public void onResponse(int code, BleGattProfile data) {
+                L.d("indicateIntervalReminder");
                 BleMgr.getInstance().indicate(MAC, UUID.fromString(Constants.GattUUIDConstant.IN_SHOW_SERVICE), UUID.fromString(Constants.GattUUIDConstant.CHARACTERISTIC_INTERVAL_REMIND), new BleNotifyResponse() {
                     @Override
                     public void onNotify(UUID service, UUID character, byte[] value) {
 //                        000230400B
                         L.d(String.format("onNotify service %s character %s value %s",service.toString(),character.toString(),BleMgr.bytes2HexString(value)));
                         int[] indication  = getIntervalIndicate(value);
+                        pushIntervalReminder2Server(indication);
                     }
 
                     @Override
@@ -251,8 +253,8 @@ public class NotificationService extends NotificationListenerService {
      status:on/off
      time: xx （单位分钟)
      **/
-    void pushIntervalReminder2Server(){
-        HttpMgr.postStringRequest(self, BASE_URL + "/v1/flowy/client" , new Interval("on",30), new HttpMgr.IResponse<String>() {
+    void pushIntervalReminder2Server(int[] indication){
+        HttpMgr.postStringRequest(self, BASE_URL + "flowy/client" , new Interval(indication[1] == 2?"on":"off",indication[2]), new HttpMgr.IResponse<String>() {
             @Override
             public void onSuccess(final String obj) {
                 L.d("postStringRequest  /v1/flowy/client onSuccess " + obj);
