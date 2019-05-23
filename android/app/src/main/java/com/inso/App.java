@@ -3,7 +3,6 @@ package com.inso;
 import android.app.Application;
 import android.app.Notification;
 import android.content.Context;
-import android.os.Handler;
 import android.widget.RemoteViews;
 
 import com.facebook.react.ReactApplication;
@@ -137,13 +136,13 @@ public class App extends Application implements ReactApplication {
         // 通知栏
 
 //        if(!isNotificationListenEnable(this)){
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
+//        new Handler().postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
                 ToastWidget.showWarn(instance,"请先打开通知开关");
                 startNotificationListenSettings(instance);
-            }
-        },2000);
+//            }
+//        },2000);
 
 //        }
 

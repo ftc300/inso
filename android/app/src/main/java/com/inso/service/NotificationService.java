@@ -23,12 +23,16 @@ import com.inso.entity.http.post.Interval;
 import com.inso.plugin.manager.SPManager;
 import com.inso.plugin.tools.Constants;
 import com.inso.plugin.tools.L;
+import com.inso.watch.baselib.wigets.ToastWidget;
 import com.inuker.bluetooth.library.connect.response.BleConnectResponse;
 import com.inuker.bluetooth.library.connect.response.BleNotifyResponse;
 import com.inuker.bluetooth.library.model.BleGattProfile;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -38,6 +42,7 @@ import static com.inso.plugin.tools.Constants.GattUUIDConstant.CHARACTERISTIC_IN
 import static com.inso.plugin.tools.Constants.GattUUIDConstant.IN_SHOW_SERVICE;
 import static com.inso.plugin.tools.Constants.SystemConstant.SP_ARG_MAC;
 import static com.inso.watch.baselib.Constants.BASE_URL;
+import static com.inuker.bluetooth.library.Code.REQUEST_SUCCESS;
 
 /**
  * 杀死app后需要重新开启通知使用权限 bug？
@@ -49,6 +54,7 @@ public class NotificationService extends NotificationListenerService {
     private static final String ENABLED_NOTIFICATION_LISTENERS = "enabled_notification_listeners";
     private static NotificationService self;
     private static NotificationListener notificationListener;
+    private  int count = 0;
 
     /*----------------- 静态方法 -----------------*/
     public synchronized static void startNotificationService(Context context, NotificationListener notificationListener) {
@@ -105,7 +111,33 @@ public class NotificationService extends NotificationListenerService {
                 ensureCollectorRunning();
             }
         });
-        indicateIntervalReminder();
+        ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
+        executor.scheduleAtFixedRate(
+                new Runnable() {
+                    @Override
+                    public void run() {
+                        final String MAC = (String) SPManager.get(self, SP_ARG_MAC, "");
+                        boolean isConnected = BleMgr.getInstance().isConnected(MAC);
+                        if (isConnected && count ==0) {
+                            indicateIntervalReminder();
+                        }else if(!isConnected) {
+                            BleMgr.getInstance().connect(MAC, new BleConnectResponse() {
+                                @Override
+                                public void onResponse(int code, BleGattProfile data) {
+                                    if (code == REQUEST_SUCCESS) {
+                                        L.d("scheduleAtFixedRate connect success ");
+                                       count++;
+                                    }else {
+                                        L.d("connect fail ");
+                                    }
+                                }
+                            });
+                        }
+                    }
+                },
+                0,
+                2,
+                TimeUnit.SECONDS);
     }
 
     @Override
@@ -171,18 +203,18 @@ public class NotificationService extends NotificationListenerService {
                 content.concat(bundle.get(key).toString());
             }
             content = bundle.get("android.text").toString();
-            L.d("bundle.get(key):"+content);
+            L.d("bundle.get(key):" + content);
             if (!content.contains("间隔提醒")) return;
             if (content.contains("关闭")) {
                 closeWatchInterval();
-            }else if( content.contains("开启")){
-                String regEx="[^0-9]";
+            } else if (content.contains("开启")) {
+                String regEx = "[^0-9]";
                 Pattern p = Pattern.compile(regEx);
                 Matcher m = p.matcher(content);
                 String number = m.replaceAll("").trim();
-                if(TextUtils.isEmpty(number)&& content.contains("整点")){
+                if (TextUtils.isEmpty(number) && content.contains("整点")) {
                     setWatchInterval(61);
-                }else if(Integer.parseInt(number) >=5 && Integer.parseInt(number) <=60){
+                } else if (Integer.parseInt(number) >= 5 && Integer.parseInt(number) <= 60) {
                     setWatchInterval(Integer.parseInt(number));
                 }
             }
@@ -199,12 +231,16 @@ public class NotificationService extends NotificationListenerService {
         BleMgr.getInstance().connect(MAC, new BleConnectResponse() {
             @Override
             public void onResponse(int code, BleGattProfile data) {
-                int[] inputs = new int[4];
-                inputs[0] = 2;
-                inputs[1] = 0;
-                inputs[2] = min; //min
-                inputs[3] = min * 60; //s 整点就是61*60
-                BleMgr.getInstance().write(MAC, UUID.fromString(IN_SHOW_SERVICE), UUID.fromString(CHARACTERISTIC_INTERVAL_REMIND), setWriteIntervalByte(inputs));
+                if (code == REQUEST_SUCCESS) {
+                    int[] inputs = new int[4];
+                    inputs[0] = 2;
+                    inputs[1] = 0x88; //demo 点亮屏幕
+                    inputs[2] = min; //min
+                    inputs[3] = min * 60; //s 整点就是61*60
+                    BleMgr.getInstance().write(MAC, UUID.fromString(IN_SHOW_SERVICE), UUID.fromString(CHARACTERISTIC_INTERVAL_REMIND), setWriteIntervalByte(inputs));
+                } else {
+                    ToastWidget.showFail(self, "设置间隔失败，请检查蓝牙状态是否正常。");
+                }
             }
         });
     }
@@ -215,46 +251,44 @@ public class NotificationService extends NotificationListenerService {
         BleMgr.getInstance().connect(MAC, new BleConnectResponse() {
             @Override
             public void onResponse(int code, BleGattProfile data) {
-                int[] inputs = new int[4];
-                inputs[0] = 3;
-                inputs[1] = 0;
-                inputs[2] = 0;
-                inputs[3] = 0;
-                BleMgr.getInstance().write(MAC, UUID.fromString(IN_SHOW_SERVICE), UUID.fromString(CHARACTERISTIC_INTERVAL_REMIND), setWriteIntervalByte(inputs));
+                if (code == REQUEST_SUCCESS) {
+                    int[] inputs = new int[4];
+                    inputs[0] = 3;
+                    inputs[1] = 0;
+                    inputs[2] = 0;
+                    inputs[3] = 0;
+                    BleMgr.getInstance().write(MAC, UUID.fromString(IN_SHOW_SERVICE), UUID.fromString(CHARACTERISTIC_INTERVAL_REMIND), setWriteIntervalByte(inputs));
+                } else {
+                    ToastWidget.showFail(self, "关闭间隔失败，请检查蓝牙状态是否正常。");
+                }
             }
-            });
+        });
     }
 
-    public void indicateIntervalReminder(){
+    public void indicateIntervalReminder() {
         final String MAC = (String) SPManager.get(self, SP_ARG_MAC, "");
-        BleMgr.getInstance().connect(MAC, new BleConnectResponse() {
+        BleMgr.getInstance().indicate(MAC, UUID.fromString(Constants.GattUUIDConstant.IN_SHOW_SERVICE), UUID.fromString(Constants.GattUUIDConstant.CHARACTERISTIC_INTERVAL_REMIND), new BleNotifyResponse() {
             @Override
-            public void onResponse(int code, BleGattProfile data) {
-                L.d("indicateIntervalReminder");
-                BleMgr.getInstance().indicate(MAC, UUID.fromString(Constants.GattUUIDConstant.IN_SHOW_SERVICE), UUID.fromString(Constants.GattUUIDConstant.CHARACTERISTIC_INTERVAL_REMIND), new BleNotifyResponse() {
-                    @Override
-                    public void onNotify(UUID service, UUID character, byte[] value) {
+            public void onNotify(UUID service, UUID character, byte[] value) {
 //                        000230400B
-                        L.d(String.format("onNotify service %s character %s value %s",service.toString(),character.toString(),BleMgr.bytes2HexString(value)));
-                        int[] indication  = getIntervalIndicate(value);
-                        pushIntervalReminder2Server(indication);
-                    }
+                L.d(String.format("onNotify service %s character %s value %s", service.toString(), character.toString(), BleMgr.bytes2HexString(value)));
+                int[] indication = getIntervalIndicate(value);
+                pushIntervalReminder2Server(indication);
+            }
 
-                    @Override
-                    public void onResponse(int code) {
-                    }
-                });
+            @Override
+            public void onResponse(int code) {
             }
         });
     }
 
     /**
-     /v1/flowy/client
-     status:on/off
-     time: xx （单位分钟)
+     * /v1/flowy/client
+     * status:on/off
+     * time: xx （单位分钟)
      **/
-    void pushIntervalReminder2Server(int[] indication){
-        HttpMgr.postStringRequest(self, BASE_URL + "flowy/client" , new Interval(indication[1] == 2?"on":"off",indication[2]), new HttpMgr.IResponse<String>() {
+    void pushIntervalReminder2Server(int[] indication) {
+        HttpMgr.postStringRequest(self, BASE_URL + "flowy/client", new Interval(indication[1] == 2 ? "on" : "off", indication[2]), new HttpMgr.IResponse<String>() {
             @Override
             public void onSuccess(final String obj) {
                 L.d("postStringRequest  /v1/flowy/client onSuccess " + obj);
@@ -269,11 +303,11 @@ public class NotificationService extends NotificationListenerService {
 
 
     @Override
-    public void onNotificationRemoved (StatusBarNotification sbn){
-            if (self != null && notificationListener != null) {
-                notificationListener.onNotificationRemoved(sbn);
-            }
+    public void onNotificationRemoved(StatusBarNotification sbn) {
+        if (self != null && notificationListener != null) {
+            notificationListener.onNotificationRemoved(sbn);
         }
+    }
 
     public void printCurrentNotifications() {
         StatusBarNotification[] ns = getActiveNotifications();

@@ -6,6 +6,7 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="InShow_LogTAG" />
     <option name="TOOL_WINDOW_LOG_LEVEL" value="debug" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
@@ -73,30 +74,69 @@
       <file leaf-file-name="NotificationService.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/inso/service/NotificationService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="278">
-              <caret line="231" column="64" lean-forward="false" selection-start-line="231" selection-start-column="64" selection-end-line="231" selection-end-column="64" />
+            <state relative-caret-position="-231">
+              <caret line="146" column="134" lean-forward="false" selection-start-line="146" selection-start-column="8" selection-end-line="146" selection-end-column="134" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#4074#4210#0" expanded="true" />
-                <element signature="e#4209#4210#0" expanded="true" />
-                <element signature="e#7858#8356#0" expanded="true" />
-                <element signature="e#8355#8356#0" expanded="true" />
-                <element signature="e#8521#8994#0" expanded="true" />
-                <element signature="e#8993#8994#0" expanded="true" />
-                <element signature="e#10165#10166#0" expanded="true" />
+                <element signature="e#4622#5738#0" expanded="true" />
+                <element signature="e#5106#5670#0" expanded="true" />
+                <element signature="e#5669#5670#0" expanded="true" />
+                <element signature="e#5737#5738#0" expanded="true" />
+                <element signature="e#9436#10134#0" expanded="true" />
+                <element signature="e#10133#10134#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PluginMainAct.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/inso/plugin/act/mainpagelogic/PluginMainAct.java">
+      <file leaf-file-name="BleMgr.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/inso/core/BleMgr.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="343">
-              <caret line="164" column="151" lean-forward="false" selection-start-line="164" selection-start-column="20" selection-end-line="164" selection-end-column="151" />
+            <state relative-caret-position="455">
+              <caret line="104" column="58" lean-forward="false" selection-start-line="104" selection-start-column="0" selection-end-line="105" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ScheduledThreadPoolExecutor.java" pinned="false" current-in-tab="false">
+        <entry file="file://C:/androidsdk/sources/android-27/java/util/concurrent/ScheduledThreadPoolExecutor.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="524">
+              <caret line="129" column="40" lean-forward="false" selection-start-line="129" selection-start-column="13" selection-end-line="129" selection-end-column="40" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="App.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/inso/App.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="475">
+              <caret line="144" column="18" lean-forward="false" selection-start-line="144" selection-start-column="18" selection-end-line="144" selection-end-column="18" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BindFrg.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/inso/product/BindFrg.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="277">
+              <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ProductFrg.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/inso/product/ProductFrg.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="237">
+              <caret line="113" column="2" lean-forward="false" selection-start-line="113" selection-start-column="2" selection-end-line="118" selection-end-column="34" />
               <folding>
-                <element signature="e#8631#8932#0" expanded="true" />
-                <element signature="e#8931#8932#0" expanded="true" />
+                <element signature="e#4302#4603#0" expanded="true" />
+                <element signature="e#4602#4603#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -117,12 +157,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>e</find>
-      <find>event</find>
-      <find>eventbu</find>
-      <find>eventbus</find>
-      <find>@Subscribe</find>
-      <find>Subscribe</find>
       <find>onEvent</find>
       <find>MODIFIERS_IGNORE</find>
       <find>ne</find>
@@ -146,7 +180,13 @@
       <find>T</find>
       <find>H</find>
       <find>Http</find>
+      <find>3104</find>
+      <find>jie</find>
+      <find>ji</find>
+      <find>j</find>
+      <find>解绑</find>
       <find>connect</find>
+      <find>connect success</find>
     </findStrings>
     <replaceStrings>
       <replace>label_</replace>
@@ -10902,10 +10942,10 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/inso/core/msg/ComeMessage.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/inso/ActivityMainTestFunction.java" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/inso/App.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/inso/plugin/act/interval/IntervalHelper.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/inso/entity/http/post/Interval.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/inso/plugin/manager/BleManager.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/inso/App.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/inso/service/NotificationService.java" />
       </list>
     </option>
@@ -10947,8 +10987,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -10961,8 +11000,75 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="inso" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="inso" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="inso" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="inso" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="AndroidView">
         <subPane>
           <PATH>
@@ -10977,7 +11083,7 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -11198,7 +11304,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1558490450001" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1558605297243" />
       </method>
     </configuration>
     <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests">
@@ -11246,7 +11352,7 @@
       </Profilers>
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1558490450001" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1558605297243" />
       </method>
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -11291,27 +11397,6 @@
         </option>
         <option name="vmOptions" />
       </ExternalSystemSettings>
-      <method />
-    </configuration>
-    <configuration default="true" type="JUnit" factoryName="JUnit">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <module name="" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
       <method />
     </configuration>
     <configuration default="true" type="JarApplication" factoryName="JAR Application">
@@ -11442,7 +11527,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1558490450003" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1558605297244" />
       </method>
     </configuration>
     <configuration default="false" name="server" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
@@ -11491,7 +11576,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1558490450003" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1558605297244" />
       </method>
     </configuration>
     <list size="7">
@@ -11567,7 +11652,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2308448" sideWeight="0.50852877" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="RNConsole" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37524557" sideWeight="0.49166667" order="13" side_tool="false" content_ui="tabs" x="0" y="389" width="1920" height="382" />
       <window_info id="Flutter Outline" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Logcat" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41453832" sideWeight="0.47228146" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Logcat" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3222004" sideWeight="0.47228146" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21481876" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -11580,10 +11665,11 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3330059" sideWeight="0.48720682" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2308448" sideWeight="0.4914712" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2308448" sideWeight="0.4914712" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23772103" sideWeight="0.50852877" order="14" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23347548" sideWeight="0.49115914" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16311301" sideWeight="0.49115914" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23870334" sideWeight="0.48134327" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.12899786" sideWeight="0.4960707" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -11596,7 +11682,6 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2857143" sideWeight="0.4960707" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23870334" sideWeight="0.48134327" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Android Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32907662" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -11746,13 +11831,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/inso/service/NotificationService.java</url>
-          <line>131</line>
+          <line>163</line>
           <properties />
           <option name="timeStamp" value="165" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/inso/service/NotificationService.java</url>
-          <line>174</line>
+          <line>206</line>
           <properties />
           <option name="timeStamp" value="166" />
         </line-breakpoint>
@@ -11776,13 +11861,36 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4074#4210#0" expanded="true" />
-            <element signature="e#4209#4210#0" expanded="true" />
-            <element signature="e#7858#8356#0" expanded="true" />
-            <element signature="e#8355#8356#0" expanded="true" />
-            <element signature="e#8521#8994#0" expanded="true" />
-            <element signature="e#8993#8994#0" expanded="true" />
-            <element signature="e#10165#10166#0" expanded="true" />
+            <element signature="e#4622#5738#0" expanded="true" />
+            <element signature="e#5106#5670#0" expanded="true" />
+            <element signature="e#5669#5670#0" expanded="true" />
+            <element signature="e#5737#5738#0" expanded="true" />
+            <element signature="e#9436#10134#0" expanded="true" />
+            <element signature="e#10133#10134#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/inso/plugin/act/mainpagelogic/PluginMainAct.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4100">
+          <caret line="164" column="151" lean-forward="false" selection-start-line="164" selection-start-column="20" selection-end-line="164" selection-end-column="151" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/inso/service/NotificationService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#4622#5738#0" expanded="true" />
+            <element signature="e#5106#5670#0" expanded="true" />
+            <element signature="e#5669#5670#0" expanded="true" />
+            <element signature="e#5737#5738#0" expanded="true" />
+            <element signature="e#9436#10134#0" expanded="true" />
+            <element signature="e#10133#10134#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -11815,13 +11923,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="925">
           <caret line="48" column="33" lean-forward="false" selection-start-line="48" selection-start-column="33" selection-end-line="48" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#2915#2916#0" expanded="false" />
-            <element signature="e#2979#2980#0" expanded="false" />
-            <element signature="e#3038#3039#0" expanded="false" />
-            <element signature="e#3073#3074#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -11829,7 +11930,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="250">
           <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -11837,7 +11937,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="250">
           <caret line="10" column="21" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -11846,7 +11945,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#1676#1690#0" expanded="false" />
+            <element signature="e#1649#1663#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -11916,27 +12015,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/inso/App.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="875">
-          <caret line="133" column="0" lean-forward="true" selection-start-line="133" selection-start-column="0" selection-end-line="133" selection-end-column="0" />
-          <folding>
-            <element signature="e#1676#1690#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/inso/core/bind/RequestServerImp.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="925">
           <caret line="48" column="33" lean-forward="false" selection-start-line="48" selection-start-column="33" selection-end-line="48" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#2915#2916#0" expanded="false" />
-            <element signature="e#2979#2980#0" expanded="false" />
-            <element signature="e#3038#3039#0" expanded="false" />
-            <element signature="e#3073#3074#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -11944,7 +12026,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="250">
           <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -11952,22 +12033,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="250">
           <caret line="10" column="21" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/inso/core/BleMgr.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3099">
-          <caret line="194" column="48" lean-forward="true" selection-start-line="194" selection-start-column="48" selection-end-line="194" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/inso/plugin/manager/BleManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="73">
-          <caret line="437" column="45" lean-forward="false" selection-start-line="437" selection-start-column="26" selection-end-line="437" selection-end-column="45" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -12005,36 +12070,91 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/inso/plugin/tools/Constants.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="60" column="35" lean-forward="false" selection-start-line="60" selection-start-column="35" selection-end-line="60" selection-end-column="35" />
+        <state relative-caret-position="210">
+          <caret line="71" column="35" lean-forward="false" selection-start-line="71" selection-start-column="35" selection-end-line="71" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/inso/plugin/manager/BleManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="226" column="25" lean-forward="false" selection-start-line="226" selection-start-column="25" selection-end-line="226" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/inso/plugin/act/mainpagelogic/PluginMainAct.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="343">
-          <caret line="164" column="151" lean-forward="false" selection-start-line="164" selection-start-column="20" selection-end-line="164" selection-end-column="151" />
+        <state relative-caret-position="275">
+          <caret line="162" column="10" lean-forward="false" selection-start-line="162" selection-start-column="10" selection-end-line="162" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/inso/App.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="475">
+          <caret line="144" column="18" lean-forward="false" selection-start-line="144" selection-start-column="18" selection-end-line="144" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/inso/product/BindFrg.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="277">
+          <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/inso/product/ProductFrg.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="237">
+          <caret line="113" column="2" lean-forward="false" selection-start-line="113" selection-start-column="2" selection-end-line="118" selection-end-column="34" />
           <folding>
-            <element signature="e#8631#8932#0" expanded="true" />
-            <element signature="e#8931#8932#0" expanded="true" />
+            <element signature="e#4302#4603#0" expanded="true" />
+            <element signature="e#4602#4603#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/androidsdk/sources/android-27/java/util/concurrent/ScheduledThreadPoolExecutor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="524">
+          <caret line="129" column="40" lean-forward="false" selection-start-line="129" selection-start-column="13" selection-end-line="129" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/blelib/src/main/java/com/inuker/bluetooth/library/BluetoothClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2250">
+          <caret line="112" column="39" lean-forward="false" selection-start-line="112" selection-start-column="39" selection-end-line="112" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/inso/core/BleMgr.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="455">
+          <caret line="104" column="58" lean-forward="false" selection-start-line="104" selection-start-column="0" selection-end-line="105" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/inso/service/NotificationService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="278">
-          <caret line="231" column="64" lean-forward="false" selection-start-line="231" selection-start-column="64" selection-end-line="231" selection-end-column="64" />
+        <state relative-caret-position="-231">
+          <caret line="146" column="134" lean-forward="false" selection-start-line="146" selection-start-column="8" selection-end-line="146" selection-end-column="134" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4074#4210#0" expanded="true" />
-            <element signature="e#4209#4210#0" expanded="true" />
-            <element signature="e#7858#8356#0" expanded="true" />
-            <element signature="e#8355#8356#0" expanded="true" />
-            <element signature="e#8521#8994#0" expanded="true" />
-            <element signature="e#8993#8994#0" expanded="true" />
-            <element signature="e#10165#10166#0" expanded="true" />
+            <element signature="e#4622#5738#0" expanded="true" />
+            <element signature="e#5106#5670#0" expanded="true" />
+            <element signature="e#5669#5670#0" expanded="true" />
+            <element signature="e#5737#5738#0" expanded="true" />
+            <element signature="e#9436#10134#0" expanded="true" />
+            <element signature="e#10133#10134#0" expanded="true" />
           </folding>
         </state>
       </provider>
