@@ -10,9 +10,9 @@ import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
+import com.inso.core.websocket.WebsocketMgr;
 import com.inso.example.Hybrid.HybridPackage;
 import com.inso.plugin.tools.L;
-import com.inso.watch.baselib.wigets.ToastWidget;
 import com.inuker.bluetooth.library.BluetoothContext;
 import com.umeng.commonsdk.UMConfigure;
 import com.umeng.message.IUmengRegisterCallback;
@@ -25,8 +25,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import static com.inso.service.NotificationService.startNotificationListenSettings;
-import static com.inso.service.NotificationService.startNotificationService;
-import static com.inso.service.NotificationService.stopNotificationService;
 
 public class App extends Application implements ReactApplication {
     private static App instance;
@@ -72,10 +70,8 @@ public class App extends Application implements ReactApplication {
         // 参数四：设备类型，必须参数，传参数为UMConfigure.DEVICE_TYPE_PHONE则表示手机；传参数为UMConfigure.DEVICE_TYPE_BOX则表示盒子；默认为手机；
         // 参数五：Push推送业务的secret 填充Umeng Message Secret对应信息（需替换）
         UMConfigure.init(this, "5ce398b8570df3d6580004e2", "Umeng", UMConfigure.DEVICE_TYPE_PHONE, "c56790ddde61e4b8a745db176392022a");
-
         //获取消息推送代理示例
         PushAgent mPushAgent = PushAgent.getInstance(this);
-
         //注册推送服务，每次调用register方法都会回调该接口
         mPushAgent.register(new IUmengRegisterCallback() {
 
@@ -121,7 +117,6 @@ public class App extends Application implements ReactApplication {
             }
         };
         mPushAgent.setMessageHandler(messageHandler);
-
         UmengNotificationClickHandler notificationClickHandler = new UmengNotificationClickHandler(){
 
             @Override
@@ -130,28 +125,25 @@ public class App extends Application implements ReactApplication {
             }
 
         };
-
         mPushAgent.setNotificationClickHandler(notificationClickHandler);
 
         // 通知栏
+        startNotificationListenSettings(instance);
 
-//        if(!isNotificationListenEnable(this)){
-//        new Handler().postDelayed(new Runnable() {
+
+//        new Thread(new Runnable() {
 //            @Override
 //            public void run() {
-                ToastWidget.showWarn(instance,"请先打开通知开关");
-                startNotificationListenSettings(instance);
+//                WebsocketMgr.connect();
+//                WebsocketMgr.sendMsg("南京 inso");
 //            }
-//        },2000);
-
-//        }
-
-        startNotificationService(this,null);
+//        }).start();
     }
+
 
     @Override
     public void onTerminate() {
         super.onTerminate();
-        stopNotificationService(this);
+        WebsocketMgr.disconnect();
     }
 }

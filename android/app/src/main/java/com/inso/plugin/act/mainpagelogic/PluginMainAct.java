@@ -47,6 +47,10 @@ import static com.inso.plugin.tools.Constants.GattUUIDConstant.IN_SHOW_SERVICE;
 import static com.inso.plugin.tools.Constants.SystemConstant.SP_ARG_BLUETOOTH_CONNECTED;
 import static com.inso.plugin.tools.Constants.SystemConstant.SP_ARG_DEVICE_NAME;
 import static com.inso.plugin.tools.Constants.SystemConstant.SP_ARG_MAC;
+import static com.inso.service.NotificationService.indicateIntervalReminder;
+import static com.inso.service.NotificationService.startNotificationListenSettings;
+import static com.inso.service.NotificationService.startNotificationService;
+import static com.inso.service.NotificationService.stopNotificationService;
 import static com.inuker.bluetooth.library.Code.REQUEST_SUCCESS;
 import static com.inuker.bluetooth.library.Constants.STATUS_CONNECTED;
 import static com.inuker.bluetooth.library.Constants.STATUS_DISCONNECTED;
@@ -164,6 +168,9 @@ public class PluginMainAct extends BasicAct {
                     SPManager.put(mContext, SP_ARG_MAC, mac);
                     BleMgr.getInstance().write(mac, UUID.fromString(IN_SHOW_SERVICE), UUID.fromString(CHARACTERISTIC_CONTROL), new byte[]{3, 1, 0, 0});
                     connectSuccessCallback();
+                    startNotificationService(mContext,null);
+                    indicateIntervalReminder(mac);
+                    startNotificationListenSettings(mContext);
                 }else {
                     connectFailCallback();
                 }
@@ -171,6 +178,7 @@ public class PluginMainAct extends BasicAct {
         });
         BleMgr.getInstance().register(mac, mBleConnectStatusListener);
     }
+
 
     private void checkBleAndConn() {
         if (BleMgr.getInstance().isBluetoothOpen()) {
@@ -295,6 +303,7 @@ public class PluginMainAct extends BasicAct {
         if(BleMgr.getInstance().isConnected(MAC)) {
             BleMgr.getInstance().disConnect(MAC);
         }
+        stopNotificationService(mContext);
     }
 
     @Override

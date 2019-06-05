@@ -30,9 +30,6 @@ import com.inuker.bluetooth.library.model.BleGattProfile;
 
 import java.util.List;
 import java.util.UUID;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -111,39 +108,11 @@ public class NotificationService extends NotificationListenerService {
                 ensureCollectorRunning();
             }
         });
-        ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
-        executor.scheduleAtFixedRate(
-                new Runnable() {
-                    @Override
-                    public void run() {
-                        final String MAC = (String) SPManager.get(self, SP_ARG_MAC, "");
-                        boolean isConnected = BleMgr.getInstance().isConnected(MAC);
-                        if (isConnected && count ==0) {
-                            indicateIntervalReminder();
-                        }else if(!isConnected) {
-                            BleMgr.getInstance().connect(MAC, new BleConnectResponse() {
-                                @Override
-                                public void onResponse(int code, BleGattProfile data) {
-                                    if (code == REQUEST_SUCCESS) {
-                                        L.d("scheduleAtFixedRate connect success ");
-                                       count++;
-                                    }else {
-                                        L.d("connect fail ");
-                                    }
-                                }
-                            });
-                        }
-                    }
-                },
-                0,
-                2,
-                TimeUnit.SECONDS);
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.i(TAG, "onStartCommand..");
-
         return notificationListener == null ? START_STICKY : notificationListener.onServiceStartCommand(this, intent, flags, startId);
     }
 
@@ -200,6 +169,7 @@ public class NotificationService extends NotificationListenerService {
             String content = "";
             for (String key : bundle.keySet()) {
                 Log.i(TAG, key + ": " + bundle.get(key));
+                if(bundle.get(key)!=null)
                 content.concat(bundle.get(key).toString());
             }
             content = bundle.get("android.text").toString();
@@ -265,8 +235,8 @@ public class NotificationService extends NotificationListenerService {
         });
     }
 
-    public void indicateIntervalReminder() {
-        final String MAC = (String) SPManager.get(self, SP_ARG_MAC, "");
+    public static void indicateIntervalReminder(String MAC) {
+//        final String MAC = (String) SPManager.get(self, SP_ARG_MAC, "");
         BleMgr.getInstance().indicate(MAC, UUID.fromString(Constants.GattUUIDConstant.IN_SHOW_SERVICE), UUID.fromString(Constants.GattUUIDConstant.CHARACTERISTIC_INTERVAL_REMIND), new BleNotifyResponse() {
             @Override
             public void onNotify(UUID service, UUID character, byte[] value) {
@@ -287,7 +257,7 @@ public class NotificationService extends NotificationListenerService {
      * status:on/off
      * time: xx （单位分钟)
      **/
-    void pushIntervalReminder2Server(int[] indication) {
+    static void pushIntervalReminder2Server(int[] indication) {
         HttpMgr.postStringRequest(self, BASE_URL + "flowy/client", new Interval(indication[1] == 2 ? "on" : "off", indication[2]), new HttpMgr.IResponse<String>() {
             @Override
             public void onSuccess(final String obj) {

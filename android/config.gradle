@@ -50,7 +50,8 @@ ext {
             skeleton: 'com.ethanhua:skeleton:1.1.2',
             shimmerlayout: 'io.supercharge:shimmerlayout:2.1.0',
             cardview: "com.android.support:cardview-v7:$versionConfig.support",
-            hashids: 'org.hashids:hashids:1.0.3'
+            hashids: 'org.hashids:hashids:1.0.3',
+            websocket: 'com.neovisionaries:nv-websocket-client:2.8'
     ]
 
 
@@ -205,6 +206,7 @@ def configAppDependencies(Project pro) {
         implementation depConfig.skeleton
         implementation depConfig.cardview
         implementation depConfig.hashids
+        implementation depConfig.websocket
         //PushSDK必须依赖基础组件库，所以需要加入对应依赖
         implementation 'com.umeng.umsdk:common:1.5.4'
         //PushSDK必须依赖utdid库，所以需要加入对应依赖
